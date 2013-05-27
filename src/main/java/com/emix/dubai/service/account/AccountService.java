@@ -102,7 +102,7 @@ public class AccountService {
             sort = new Sort(Sort.Direction.DESC, "id");
         } else if ("loginName".equals(sortType)) {
             sort = new Sort(Sort.Direction.ASC, "loginName");
-        } else if ("name".equals(sortType)) {
+        } else if ("niceName".equals(sortType)) {
             sort = new Sort(Sort.Direction.ASC, "name");
         }
 
@@ -136,7 +136,7 @@ public class AccountService {
 	/**
 	 * 设定安全的密码，生成随机的salt并经过1024次 sha-1 hash
 	 */
-	private void entryptPassword(User user) {
+	void entryptPassword(User user) {
 		byte[] salt = Digests.generateSalt(SALT_SIZE);
 		user.setSalt(Encodes.encodeHex(salt));
 

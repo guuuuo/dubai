@@ -1,23 +1,23 @@
 package com.emix.dubai.service.account;
 
-import static org.junit.Assert.*;
-
-import java.util.Date;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import com.emix.dubai.data.UserData;
 import com.emix.dubai.entity.User;
 import com.emix.dubai.repository.TaskDao;
 import com.emix.dubai.repository.UserDao;
 import com.emix.dubai.service.ServiceException;
 import com.emix.dubai.service.account.ShiroDbRealm.ShiroUser;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springside.modules.test.security.shiro.ShiroTestUtils;
 import org.springside.modules.utils.DateProvider.ConfigurableDateProvider;
+
+import java.util.Date;
+
+import static org.junit.Assert.*;
 
 /**
  * AccountService的测试用例, 测试Service层的业务逻辑.
@@ -85,4 +85,15 @@ public class AccountServiceTest {
 		}
 		Mockito.verify(mockUserDao, Mockito.never()).delete(1L);
 	}
+
+    @Test
+    public void entryptPassword() {
+        User user = UserData.randomNewUser();
+        user.setPlainPassword("admin");
+        accountService.entryptPassword(user);
+        System.out.println(user.getLoginName());
+        System.out.println(user.getPlainPassword());
+        System.out.println(user.getSalt());
+        System.out.println(user.getPassword());
+    }
 }

@@ -19,12 +19,15 @@ import com.google.common.collect.ImmutableList;
 @Table(name = "dubai_user")
 public class User extends IdEntity {
 	private String loginName;
-	private String name;
-	private String plainPassword;
-	private String password;
+	private String niceName;
+    private String plainPassword;
+    private String password;
+    private String email;
 	private String salt;
 	private String roles;
 	private Date registerDate;
+    private String activationKey;
+    private Integer statusCode;
 
 	public User() {
 	}
@@ -43,12 +46,12 @@ public class User extends IdEntity {
 	}
 
 	@NotBlank
-	public String getName() {
-		return name;
+	public String getNiceName() {
+		return niceName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNiceName(String niceName) {
+		this.niceName = niceName;
 	}
 
 	// 不持久化到数据库，也不显示在Restful接口的属性.
@@ -70,7 +73,16 @@ public class User extends IdEntity {
 		this.password = password;
 	}
 
-	public String getSalt() {
+    @NotBlank
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSalt() {
 		return salt;
 	}
 
@@ -103,7 +115,23 @@ public class User extends IdEntity {
 		this.registerDate = registerDate;
 	}
 
-	@Override
+    public String getActivationKey() {
+        return activationKey;
+    }
+
+    public void setActivationKey(String activationKey) {
+        this.activationKey = activationKey;
+    }
+
+    public Integer getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(Integer statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    @Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
 	}

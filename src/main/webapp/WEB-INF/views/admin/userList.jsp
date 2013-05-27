@@ -27,7 +27,7 @@
                     <div class="span10">
                         <form class="form-search" action="#">
                             <label>登录名：</label> <input type="text" name="search_LIKE_loginName" class="input-medium" value="${param.search_LIKE_loginName}">
-                            <label>用户名：</label> <input type="text" name="search_LIKE_name" class="input-medium" value="${param.search_LIKE_name}">
+                            <label>用户名：</label> <input type="text" name="search_LIKE_name" class="input-medium" value="${param.search_LIKE_niceName}">
                             <button type="submit" class="btn btn-primary" id="search_btn">Search</button>
                             <button type="submit" class="btn" id="reset_btn">Reset</button>
                         </form>
@@ -41,7 +41,7 @@
                     <c:forEach items="${users.content}" var="user">
                         <tr>
                             <td><a href="${ctx}/admin/user/update/${user.id}">${user.loginName}</a></td>
-                            <td>${user.name}</td>
+                            <td>${user.niceName}</td>
                             <td>
                                 <fmt:formatDate value="${user.registerDate}" pattern="yyyy年MM月dd日  HH时mm分ss秒" />
                             </td>

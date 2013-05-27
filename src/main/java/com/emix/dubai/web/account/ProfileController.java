@@ -36,7 +36,7 @@ public class ProfileController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String update(@Valid @ModelAttribute("preloadUser") User user) {
 		accountService.updateUser(user);
-		updateCurrentUserName(user.getName());
+		updateCurrentUserName(user.getNiceName());
 		return "redirect:/";
 	}
 
