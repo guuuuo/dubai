@@ -9,8 +9,8 @@
 <head>
     <title>Dubai >> Login</title>
     <!-- The styles -->
-    <link id="bs-css" href="/assets/css/vendor/bootstrap-cerulean.css" rel="stylesheet">
-    <link href='/assets/css/vendor/uniform.default.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap-cerulean.css">
+    <link rel='stylesheet' href='/assets/css/vendor/uniform.default.css'>
     <style type="text/css">
         body {
             background-color: #f5f5f5;
@@ -117,10 +117,8 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- jQuery -->
     <script src="/assets/js/vendor/jquery-1.7.2.min.js"></script>
-    <!-- alert enhancer library -->
-    <script src="/assets/js/vendor/bootstrap-alert.js"></script>
-    <!-- library for advanced tooltip -->
-    <script src="/assets/js/vendor/bootstrap-tooltip.js"></script>
+    <!-- Bootstrap -->
+    <script src="/assets/vendor/bootstrap/js/bootstrap.js"></script>
     <!-- checkbox, radio, and file input styler -->
     <script src="/assets/js/vendor/jquery.uniform.min.js"></script>
     <!-- application script -->

@@ -157,7 +157,8 @@ select {
     width: auto;
     clear: none;
     float: left;
-    line-height: 25px;
+    line-height: 28px;
+    margin: 0;
 }
 
 .box-header h3 {

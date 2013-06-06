@@ -1,11 +1,4 @@
 $(document).ready(function () {
-    //disbaling some functions for Internet Explorer
-    if ($.browser.msie) {
-        $('#toggle-fullscreen').hide();
-        $('.login-box').find('.input-large').removeClass('span10');
-
-    }
-
     //highlight current / active link
     $('ul.main-menu li a').each(function () {
         if (String(window.location).indexOf($($(this))[0].href) == 0)

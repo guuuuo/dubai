@@ -13,7 +13,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <%@ include file="/WEB-INF/layouts/js.jsp"%>
     <%@ include file="/WEB-INF/layouts/css.jsp"%>
     <sitemesh:head/>
 </head>
@@ -48,5 +47,6 @@
 
 <hr>
 <%@ include file="/WEB-INF/layouts/bottom-footer.jsp"%>
+<%@ include file="/WEB-INF/layouts/js.jsp"%>
 </body>
 </html>
