@@ -9,7 +9,7 @@
 <head>
     <title>Dubai >> Login</title>
     <!-- The styles -->
-    <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap-cerulean.css">
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.css">
     <link rel='stylesheet' href='/assets/css/vendor/uniform.default.css'>
     <style type="text/css">
         body {

@@ -1,5 +1,6 @@
 <!-- The styles -->
-<link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap-cerulean.css">
+<link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap-responsive.css">
 <link rel='stylesheet' href='/assets/css/vendor/uniform.default.css'>
 <link rel="stylesheet" href="/assets/css/main.css">
 

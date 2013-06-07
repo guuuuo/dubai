@@ -28,9 +28,15 @@
                     <input type="hidden" name="id" value="${user.id}"/>
                     <fieldset>
                         <div class="control-group">
-                            <label for="name" class="control-label">用户名:</label>
+                            <label for="loginName" class="control-label">登录名:</label>
                             <div class="controls">
-                                <input type="text" id="name" name="name" value="${user.name}" class="input-large required"/>
+                                <input type="text" disabled="disabled" id="loginName" name="loginName" value="${user.loginName}" class="input-large required"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="niceName" class="control-label">昵称:</label>
+                            <div class="controls">
+                                <input type="text" id="niceName" name="niceName" value="${user.niceName}" class="input-large required"/>
                             </div>
                         </div>
                         <div class="control-group">

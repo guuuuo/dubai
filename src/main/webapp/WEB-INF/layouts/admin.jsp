@@ -22,7 +22,7 @@
 <%@ include file="/WEB-INF/layouts/top-nav.jsp"%>
 <!-- topbar ends -->
 
-<div class="container-fluid">
+<div id="main-container" class="container-fluid">
     <div class="row-fluid">
 
         <!-- left menu starts -->

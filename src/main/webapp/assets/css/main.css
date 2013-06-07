@@ -1,5 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Shojumaru);
 
+body {
+    color: #555555;
+    font-family: "Ubuntu", Helvetica, Arial, sans-serif, Tahoma, simsun;
+    line-height: 18px;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.2);
+}
+
 select {
     background-color: #fff;
 }
@@ -122,7 +129,7 @@ select {
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-/*    margin-top: 10px; */
+    /*    margin-top: 10px; */
     margin-bottom: 10px;
     box-shadow: 0 0 10px rgba(189, 189, 189, 0.4);
     -webkit-box-shadow: 0 0 10px rgba(189, 189, 189, 0.4);
@@ -423,12 +430,10 @@ div.center, p.center, img.center {
     margin-left: 10px;
 }
 
-.navbar-inner {
+.navbar-fixed-top .navbar-inner, .navbar-static-top .navbar-inner, .navbar-inner {
     border-radius: 0 0 10px 10px;
     -webkit-border-radius: 0 0 10px 10px;
     -moz-border-radius: 0 0 10px 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
 }
 
 div.dataTables_length select {
@@ -532,8 +537,24 @@ ul.ajax-loaders {
 .box-content.buttons {
     min-height: 297px;
 }
+
 /* 输入控件验证出错*/
-form  input.error { border:solid 1px red;}
+form  input.error {
+    border: solid 1px red;
+}
 
 /* 验证错误提示信息*/
-form em.error{width: 200px;margin-left: 10px; color: Red;}
+form em.error {
+    width: 200px;
+    margin-left: 10px;
+    color: Red;
+}
+
+#main-container {
+    padding: 60px 20px 80px 20px;
+}
+
+.navbar .nav > li > a {
+    font-size: 16px;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.2);
+}
