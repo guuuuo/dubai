@@ -14,12 +14,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <%@ include file="/WEB-INF/layouts/css.jsp"%>
+    <%@ include file="/WEB-INF/layouts/includes/css.jsp"%>
     <sitemesh:head/>
 </head>
 
 <body>
     <sitemesh:body/>
-    <%@ include file="/WEB-INF/layouts/js.jsp"%>
+    <%@ include file="/WEB-INF/layouts/includes/js.jsp"%>
 </body>
 </html>

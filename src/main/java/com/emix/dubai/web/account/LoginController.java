@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author calvin
  */
 @Controller
-@RequestMapping(value = "/login")
+@RequestMapping(value = "/account/login")
 public class LoginController {
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String login() {
+	public String loginForm() {
 		return "account/login";
 	}
 

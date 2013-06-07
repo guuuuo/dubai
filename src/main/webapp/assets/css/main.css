@@ -538,18 +538,6 @@ ul.ajax-loaders {
     min-height: 297px;
 }
 
-/* 输入控件验证出错*/
-form  input.error {
-    border: solid 1px red;
-}
-
-/* 验证错误提示信息*/
-form em.error {
-    width: 200px;
-    margin-left: 10px;
-    color: Red;
-}
-
 #main-container {
     padding: 60px 20px 80px 20px;
 }
@@ -557,4 +545,8 @@ form em.error {
 .navbar .nav > li > a {
     font-size: 16px;
     text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.2);
+}
+
+td.actions ul {
+    margin: 0;
 }

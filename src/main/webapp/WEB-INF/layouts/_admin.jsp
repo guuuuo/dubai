@@ -13,20 +13,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <%@ include file="/WEB-INF/layouts/css.jsp"%>
+    <%@ include file="/WEB-INF/layouts/includes/css.jsp"%>
     <sitemesh:head/>
 </head>
 
 <body>
 <!-- topbar starts -->
-<%@ include file="/WEB-INF/layouts/top-nav.jsp"%>
+<%@ include file="/WEB-INF/layouts/includes/top-nav.jsp"%>
 <!-- topbar ends -->
 
 <div id="main-container" class="container-fluid">
     <div class="row-fluid">
 
         <!-- left menu starts -->
-        <%@ include file="/WEB-INF/layouts/left-menu.jsp"%>
+        <%@ include file="/WEB-INF/layouts/includes/left-menu.jsp"%>
         <!-- left menu ends -->
 
         <div id="content" class="span10">
@@ -46,7 +46,7 @@
 </div><!--/.fluid-container-->
 
 <hr>
-<%@ include file="/WEB-INF/layouts/bottom-footer.jsp"%>
-<%@ include file="/WEB-INF/layouts/js.jsp"%>
+<%@ include file="/WEB-INF/layouts/includes/bottom-footer.jsp"%>
+<%@ include file="/WEB-INF/layouts/includes/js.jsp"%>
 </body>
 </html>

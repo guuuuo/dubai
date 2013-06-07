@@ -51,6 +51,12 @@
                                 <input type="password" id="confirmPassword" name="confirmPassword" class="input-large" equalTo="#plainPassword" />
                             </div>
                         </div>
+                        <div class="control-group">
+                            <label for="confirmPassword" class="control-label">电子邮件:</label>
+                            <div class="controls">
+                                <input type="text" id="email" name="email" class="input-large" value="${user.email}" />
+                            </div>
+                        </div>
                         <div class="form-actions">
                             <input id="submit_btn" class="btn btn-primary" type="submit" value="提交"/>&nbsp;
                             <input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>

@@ -26,8 +26,8 @@
                 <div class="row-fluid">
                     <div class="span10">
                         <form class="form-search" action="#">
-                            <label>登录名：</label> <input type="text" name="search_LIKE_loginName" class="input-medium" value="${param.search_LIKE_loginName}">
-                            <label>用户名：</label> <input type="text" name="search_LIKE_name" class="input-medium" value="${param.search_LIKE_niceName}">
+                            <label for="search_LIKE_loginName">登录名：</label> <input type="text" id="search_LIKE_loginName" name="search_LIKE_loginName" class="input-medium" value="${param.search_LIKE_loginName}">
+                            <label for="search_LIKE_name">昵称：</label> <input type="text"  id="search_LIKE_name" name="search_LIKE_name" class="input-medium" value="${param.search_LIKE_niceName}">
                             <button type="submit" class="btn btn-primary" id="search_btn">Search</button>
                             <button type="submit" class="btn" id="reset_btn">Reset</button>
                         </form>
@@ -36,18 +36,41 @@
                 </div>
 
                 <table id="contentTable" class="table table-striped table-bordered table-condensed">
-                    <thead><tr><th>登录名</th><th>用户名</th><th>注册时间<th>管理</th></tr></thead>
+                    <thead>
+                        <tr>
+                            <th>登录名</th>
+                            <th>昵称</th>
+                            <th>电子邮件</th>
+                            <th>注册时间</th>
+                            <th>状态</th>
+                            <th>管理</th>
+                        </tr>
+                    </thead>
                     <tbody>
                     <c:forEach items="${users.content}" var="user">
                         <tr>
                             <td><a href="${ctx}/admin/user/update/${user.id}">${user.loginName}</a></td>
                             <td>${user.niceName}</td>
+                            <td>${user.email}</td>
                             <td>
-                                <fmt:formatDate value="${user.registerDate}" pattern="yyyy年MM月dd日  HH时mm分ss秒" />
+                                <fmt:formatDate value="${user.registerDate}" pattern="yyyy-MM-dd HH:mm:ss" />
                             </td>
                             <td>
-                                <a href="${ctx}/admin/user/update/${user.id}">Update</a>-
-                                <a href="${ctx}/admin/user/delete/${user.id}">Delete</a>
+                                <c:if test="${user.statusCode == 1}">
+                                    <span class="label label-success">Active</span>
+                                </c:if>
+                                <c:if test="${user.statusCode == 0}">
+                                    <span class="label label-warning">Pending</span>
+                                </c:if>
+                                <c:if test="${user.statusCode == -1}">
+                                    <span class="label">Inactive</span>
+                                </c:if>
+                            </td>
+                            <td class="actions">
+                                <ul class="inline">
+                                    <li><a href="${ctx}/admin/user/update/${user.id}">Update</a></li>
+                                    <li><a href="${ctx}/admin/user/delete/${user.id}">Delete</a></li>
+                                </ul>
                             </td>
                         </tr>
                     </c:forEach>

@@ -20,14 +20,14 @@ import com.emix.dubai.service.account.ShiroDbRealm.ShiroUser;
  * @author calvin
  */
 @Controller
-@RequestMapping(value = "/profile")
+@RequestMapping(value = "/account/profile")
 public class ProfileController {
 
 	@Autowired
 	private AccountService accountService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String updateForm(Model model) {
+	public String profileForm(Model model) {
 		Long id = getCurrentUserId();
 		model.addAttribute("user", accountService.getUser(id));
 		return "account/profile";

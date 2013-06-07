@@ -25,6 +25,7 @@ import org.springside.modules.persistence.SearchFilter;
 import org.springside.modules.security.utils.Digests;
 import org.springside.modules.utils.DateProvider;
 import org.springside.modules.utils.Encodes;
+import sun.security.provider.MD5;
 
 /**
  * 用户管理类.
@@ -61,8 +62,12 @@ public class AccountService {
 	@Transactional(readOnly = false)
 	public void registerUser(User user) {
 		entryptPassword(user);
+        generateActivationKey(user);
 		user.setRoles("user");
 		user.setRegisterDate(dateProvider.getDate());
+        user.setActKeyGenDate(dateProvider.getDate());
+        user.setNiceName(user.getLoginName());
+        user.setStatusCode(0);
 
 		userDao.save(user);
 	}
@@ -143,6 +148,10 @@ public class AccountService {
 		byte[] hashPassword = Digests.sha1(user.getPlainPassword().getBytes(), salt, HASH_INTERATIONS);
 		user.setPassword(Encodes.encodeHex(hashPassword));
 	}
+
+    void generateActivationKey(User user) {
+        user.setActivationKey(Encodes.encodeHex(Digests.sha1((user.getLoginName() + System.currentTimeMillis()).getBytes())));
+    }
 
 	@Autowired
 	public void setUserDao(UserDao userDao) {

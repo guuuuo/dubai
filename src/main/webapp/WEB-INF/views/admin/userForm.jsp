@@ -27,7 +27,7 @@
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label">用户名:</label>
+				<label class="control-label">昵称:</label>
 				<div class="controls">
 					<input type="text" id="niceName" name="niceName" value="${user.niceName}" class="input-large required"/>
 				</div>
@@ -44,6 +44,18 @@
 					<input type="password" id="confirmPassword" name="confirmPassword" class="input-large" equalTo="#plainPassword" />
 				</div>
 			</div>
+            <div class="control-group">
+				<label for="confirmPassword" class="control-label">电子邮件:</label>
+				<div class="controls">
+					<input type="text" id="email" name="email" class="input-large" value="${user.email}" />
+				</div>
+			</div>
+            <div class="control-group">
+                <label for="confirmPassword" class="control-label">状态:</label>
+                <div class="controls">
+                    <input type="text" id="statusCode" name="statusCode" class="input-large" value="${user.statusCode}" />
+                </div>
+            </div>
             <c:if test="${action == 'update'}">
                 <div class="control-group">
                     <label class="control-label">注册日期:</label>

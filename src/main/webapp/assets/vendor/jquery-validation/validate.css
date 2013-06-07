@@ -1,0 +1,13 @@
+/* 输入控件验证出错*/
+form  input.error {
+    border: solid 1px red;
+}
+
+/* 验证错误提示信息*/
+form em.error {
+    background: url("./images/unchecked.gif") no-repeat 0px 0px;
+    margin-left: 1em;
+    padding-left: 16px;
+    padding-bottom: 2px;
+    color: #EA5200;
+}

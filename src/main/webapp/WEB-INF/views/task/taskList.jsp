@@ -46,9 +46,11 @@
                         <tr>
                             <td><a href="${ctx}/task/update/${task.id}">${task.title}</a></td>
                             <td>${task.description}</td>
-                            <td>
-                                <a href="${ctx}/task/update/${task.id}">Update</a>-
-                                <a href="${ctx}/task/delete/${task.id}">Delete</a>
+                            <td class="actions">
+                                <ul class="inline">
+                                    <li><a href="${ctx}/task/update/${task.id}">Update</a></li>
+                                    <li><a href="${ctx}/task/delete/${task.id}">Delete</a></li>
+                                </ul>
                             </td>
                         </tr>
                     </c:forEach>
