@@ -477,11 +477,6 @@ ul.ajax-loaders {
     background: url(../img/ajax-loaders/ajax-loader-6.gif);
 }
 
-.box-content .nav-tabs {
-    margin-right: -10px;
-    margin-left: -10px;
-}
-
 #inputIcon {
     width: 200px;
 }

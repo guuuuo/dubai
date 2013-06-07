@@ -28,8 +28,7 @@
                 /assets/** = anon
 				/api/** = anon
                 /*.txt = anon
-				/account/register = anon
-                /account/reset-password = anon
+				/account/** = anon
 				/admin/** = roles[admin]
 				/** = user
 			</value>

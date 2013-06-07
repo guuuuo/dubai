@@ -35,13 +35,13 @@
                         }
                     %>
                     <div class="control-group">
-                        <label for="loginName" class="control-label">登录名:</label>
+                        <label for="loginName" class="control-label">用户名:</label>
                         <div class="controls">
                             <input type="text" id="loginName" name="loginName" class="input-large required" minlength="6"/>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="email" class="control-label">电子邮件:</label>
+                        <label for="email" class="control-label">邮箱地址:</label>
                         <div class="controls">
                             <input type="email" id="email" name="email" class="input-large required"/>
                         </div>
