@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.emix.dubai.entity.User;
 import com.emix.dubai.service.account.AccountService;
 import com.emix.dubai.service.account.ShiroDbRealm.ShiroUser;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * 用户修改自己资料的Controller.
@@ -20,7 +21,7 @@ import com.emix.dubai.service.account.ShiroDbRealm.ShiroUser;
  * @author calvin
  */
 @Controller
-@RequestMapping(value = "/account/profile")
+@RequestMapping(value = "/account/settings/profile")
 public class ProfileController {
 
 	@Autowired
@@ -34,10 +35,11 @@ public class ProfileController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String update(@Valid @ModelAttribute("preloadUser") User user) {
+	public String updateProfile(@Valid @ModelAttribute("preloadUser") User user, RedirectAttributes redirectAttributes) {
 		accountService.updateUser(user);
 		updateCurrentUserName(user.getNiceName());
-		return "redirect:/";
+        redirectAttributes.addFlashAttribute("message", "个人资料成功保存。");
+        return "redirect:/account/settings/profile";
 	}
 
 	@ModelAttribute("preloadUser")

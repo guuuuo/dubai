@@ -5,10 +5,10 @@
 		<pattern>/api/*</pattern>
 	</excludes>
 
-    <decorator name="account" page="_account.jsp">
-        <pattern>/account/login</pattern>
-        <pattern>/account/register</pattern>
-        <pattern>/account/reset-pwd</pattern>
+    <decorator name="account" page="_blank.jsp">
+        <pattern>/login</pattern>
+        <pattern>/register</pattern>
+        <pattern>/*-password</pattern>
     </decorator>
 
     <decorator name="default" page="_admin.jsp">

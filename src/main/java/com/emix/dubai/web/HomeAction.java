@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author nikog
  */
 @Controller
-@RequestMapping(value = "/home")
+@RequestMapping(value = "/")
 public class HomeAction {
     @RequestMapping(method = RequestMethod.GET)
     public String dashboard() {

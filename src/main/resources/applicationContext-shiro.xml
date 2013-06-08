@@ -19,16 +19,20 @@
 	<!-- Shiro Filter -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/account/login" />
+		<property name="loginUrl" value="/login" />
 		<property name="successUrl" value="/dashboard" />
 		<property name="filterChainDefinitions">
 			<value>
-				/account/login = authc
-				/account/logout = logout
+				/login = authc
+				/logout = logout
                 /assets/** = anon
 				/api/** = anon
                 /*.txt = anon
-				/account/** = anon
+                /favicon.ico = anon
+				/register = anon
+                /register/** = anon
+				/*-password = anon
+				/activation = anon
 				/admin/** = roles[admin]
 				/** = user
 			</value>

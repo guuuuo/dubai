@@ -1,4 +1,4 @@
-package com.emix.dubai.web.account;
+package com.emix.dubai.web;
 
 import com.emix.dubai.entity.User;
 import com.emix.dubai.service.account.AccountService;
@@ -16,7 +16,7 @@ import javax.validation.Valid;
  * @author nikog
  */
 @Controller
-@RequestMapping(value = "/account/register")
+@RequestMapping(value = "/register")
 public class RegisterController {
 
     @Autowired
@@ -24,14 +24,14 @@ public class RegisterController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String registerForm() {
-        return "account/register";
+        return "register";
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String register(@Valid User user, RedirectAttributes redirectAttributes) {
         accountService.registerUser(user);
         redirectAttributes.addFlashAttribute("username", user.getLoginName());
-        return "redirect:/account/login";
+        return "redirect:/login";
     }
 
     /**

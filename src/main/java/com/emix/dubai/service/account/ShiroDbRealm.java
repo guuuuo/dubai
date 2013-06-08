@@ -22,6 +22,7 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 
+import com.emix.dubai.status.UserStatus;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -51,7 +52,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
         try{
             UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
             User user = accountService.findUserByLoginName(token.getUsername());
-            if (user != null) {
+            if (user != null && user.getStatusCode() == UserStatus.Active.code()) {
                 byte[] salt = Encodes.decodeHex(user.getSalt());
                 return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getLoginName(), user.getNiceName()),
                         user.getPassword(), ByteSource.Util.bytes(salt), getName());

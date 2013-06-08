@@ -20,15 +20,15 @@
                     <input type="hidden" name="id" value="${task.id}"/>
                     <fieldset>
                         <div class="control-group">
-                            <label for="task_title" class="control-label">任务名称:</label>
+                            <label for="task_title" class="control-label">任务名称</label>
                             <div class="controls">
                                 <input type="text" id="task_title" name="title"  value="${task.title}" class="input-large required" minlength="3"/>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label for="description" class="control-label">任务描述:</label>
+                            <label for="description" class="control-label">任务描述</label>
                             <div class="controls">
-                                <textarea id="description" name="description" class="input-large">${task.description}</textarea>
+                                <textarea id="description" name="description" class="cleditor input-large">${task.description}</textarea>
                             </div>
                         </div>
                         <div class="form-actions">

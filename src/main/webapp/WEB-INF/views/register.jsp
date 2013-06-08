@@ -21,7 +21,7 @@
 
     <div class="row-fluid">
         <div class="span6 account-box" style="margin: 0 auto; float:none;">
-            <form id="inputForm" action="${ctx}/account/register" method="post" class="form-horizontal">
+            <form id="inputForm" action="${ctx}/register" method="post" class="form-horizontal">
                 <fieldset>
                     <legend><small>创建新帐号</small></legend>
                     <%
@@ -35,32 +35,31 @@
                         }
                     %>
                     <div class="control-group">
-                        <label for="loginName" class="control-label">用户名:</label>
+                        <label for="loginName" class="control-label">用户名</label>
                         <div class="controls">
                             <input type="text" id="loginName" name="loginName" class="input-large required" minlength="6"/>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="email" class="control-label">邮箱地址:</label>
+                        <label for="email" class="control-label">电子邮件</label>
                         <div class="controls">
                             <input type="email" id="email" name="email" class="input-large required"/>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="plainPassword" class="control-label">密码:</label>
+                        <label for="plainPassword" class="control-label">密码</label>
                         <div class="controls">
                             <input type="password" id="plainPassword" name="plainPassword" class="input-large required"/>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="confirmPassword" class="control-label">确认密码:</label>
+                        <label for="confirmPassword" class="control-label">确认密码</label>
                         <div class="controls">
                             <input type="password" id="confirmPassword" name="confirmPassword" class="input-large required" equalTo="#plainPassword"/>
                         </div>
                     </div>
                     <div class="form-actions">
-                        <input id="submit_btn" class="btn btn-primary" type="submit" value="提交注册信息"/>&nbsp;
-                        <input id="cancel_btn" class="btn" type="button" value="取消" onclick="history.back()"/>
+                        <input id="submit_btn" class="btn btn-primary" type="submit" value="提交注册信息"/>
                     </div>
                 </fieldset>
             </form>
@@ -68,7 +67,7 @@
     </div><!--/row-->
 
     <div class="account-extra">
-        已有帐号？ 请<a href="${ctx}/account/login">直接登录</a>
+        已有帐号？ 请 <a href="${ctx}/login">直接登录</a>
     </div>
 
     <!-- *** JavaScript *** -->
@@ -79,10 +78,9 @@
             $("#loginName").focus();
             //为inputForm注册validate函数
             $("#inputForm").validate({
-                errorElement: "em",
                 rules: {
                     loginName: {
-                        remote: "${ctx}/account/register/checkLoginName"
+                        remote: "${ctx}/register/checkLoginName"
                     },
                     email : {
                         required: true,
@@ -91,8 +89,14 @@
                 },
                 messages: {
                     loginName: {
-                        remote: "用户登录名已存在"
+                        remote: "用户名已存在，请检查后重新输入"
                     }
+                },
+                highlight: function(element) {
+                    $(element).closest('.control-group').removeClass('success').addClass('error');
+                },
+                success: function(element) {
+                    element.text('').addClass('valid').closest('.control-group').removeClass('error').addClass('success');
                 }
             });
         });

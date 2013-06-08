@@ -1,13 +1,16 @@
-/* 输入控件验证出错*/
-form  input.error {
-    border: solid 1px red;
-}
-
 /* 验证错误提示信息*/
-form em.error {
+form label.error {
+    display: inline;
     background: url("./images/unchecked.gif") no-repeat 0px 0px;
     margin-left: 1em;
     padding-left: 16px;
     padding-bottom: 2px;
     color: #EA5200;
+    font-size: 12px;
+    font-style: normal;
+}
+
+form label.valid {
+    display: inline;
+    background: url("./images/checked.gif") no-repeat 0px 0px;
 }

@@ -25,8 +25,8 @@
                 <div class="row-fluid">
                     <div class="span10">
                         <form class="form-search" action="#">
-                            <label>Title：</label> <input type="text" name="search_LIKE_title" class="input-medium" value="${param.search_LIKE_title}">
-                            <label>Desc.：</label> <input type="text" name="search_LIKE_description" class="input-medium" value="${param.search_LIKE_description}">
+                            <label>Title</label> <input type="text" name="search_LIKE_title" class="input-medium" value="${param.search_LIKE_title}">
+                            <label>Desc.</label> <input type="text" name="search_LIKE_description" class="input-medium" value="${param.search_LIKE_description}">
                             <button type="submit" class="btn btn-primary" id="search_btn">Search</button>
                             <button type="submit" class="btn" id="reset_btn">Reset</button>
                         </form>

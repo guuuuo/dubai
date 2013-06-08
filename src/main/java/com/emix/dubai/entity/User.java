@@ -25,7 +25,7 @@ public class User extends IdEntity {
     private String roles;
     private Date registerDate;
     private Integer statusCode;
-    private String activationKey;
+    private String actKey;
     private Date actKeyGenDate;
     private Date actDate;
 
@@ -123,12 +123,12 @@ public class User extends IdEntity {
         this.statusCode = statusCode;
     }
 
-    public String getActivationKey() {
-        return activationKey;
+    public String getActKey() {
+        return actKey;
     }
 
-    public void setActivationKey(String activationKey) {
-        this.activationKey = activationKey;
+    public void setActKey(String actKey) {
+        this.actKey = actKey;
     }
 
     // 设定JSON序列化时的日期格式

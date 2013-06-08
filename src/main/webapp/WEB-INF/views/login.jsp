@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>重置密码</title>
+    <title>登录</title>
 </head>
 
 <body>
@@ -20,9 +20,9 @@
 
     <div class="row-fluid">
         <div class="span6 account-box" style="margin: 0 auto; float:none;">
-            <form id="inputForm" action="${ctx}/account/reset-pwd" method="post" class="form-horizontal">
+            <form id="inputForm" action="${ctx}/login" method="post" class="form-horizontal">
                 <fieldset>
-                    <legend><small>请输入用户名/邮箱地址，申请重置密码</small></legend>
+                    <legend><small>登录</small></legend>
                     <%
                         String error = (String) request.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
                         if(error != null){
@@ -34,20 +34,25 @@
                         }
                     %>
                     <div class="control-group">
-                        <label for="loginName" class="control-label">用户名:</label>
+                        <label for="username" class="control-label">用户名</label>
                         <div class="controls">
-                            <input type="text" id="loginName" name="loginName" class="input-large" minlength="6"/>
+                            <input type="text" id="username" name="username" class="input-large required" value="${username}"/>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="email" class="control-label">或者 邮箱地址:</label>
+                        <label for="password" class="control-label">密码</label>
                         <div class="controls">
-                            <input type="email" id="email" name="email" class="input-large"/>
+                            <input type="password" id="password" name="password" class="input-large required"/>
                         </div>
                     </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <label for="rememberMe"><input type="checkbox" id="rememberMe" name="rememberMe" />记住我的登录信息<span class="red">（请勿在公用电脑或者网吧内使用此项）</span></label>
+                        </div>
+                    </div>
+
                     <div class="form-actions">
-                        <input id="submit_btn" class="btn btn-primary" type="submit" value="提交申请"/>&nbsp;
-                        <input id="cancel_btn" class="btn" type="button" value="取消" onclick="history.back()"/>
+                        <input id="submit_btn" class="btn btn-primary" type="submit" value="登录"/>
                     </div>
                 </fieldset>
             </form>
@@ -55,9 +60,16 @@
     </div><!--/row-->
 
     <div class="account-extra">
-        没有帐号？ <a href="${ctx}/account/register">创建新帐号</a><br>
-        已有帐号？ 请<a href="${ctx}/account/login">直接登录</a>
+        没有帐号？ <a href="${ctx}/register">创建新帐号</a><br>
+        忘记登录密码？ <a href="${ctx}/forgot-password">重置密码</a>
     </div>
 
+    <!-- *** JavaScript *** -->
+    <%@ include file="/WEB-INF/layouts/includes/js.jsp"%>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#username").focus();
+        });
+    </script>
 </body>
 </html>
