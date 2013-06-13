@@ -21,7 +21,9 @@ CREATE TABLE dubai_user (
   salt           VARCHAR(64)                        NOT NULL,
   roles          VARCHAR(255)                       NOT NULL,
   register_date  TIMESTAMP                          NOT NULL DEFAULT 0,
-  activation_key VARCHAR(60)                        NOT NULL DEFAULT '',
+  act_key VARCHAR(60)                        NOT NULL DEFAULT '',
+  act_key_gen_date  TIMESTAMP                          NOT NULL DEFAULT 0,
+  act_ate  TIMESTAMP                          NOT NULL DEFAULT 0,
   status_code         INT DEFAULT 0                      NOT NULL,
   PRIMARY KEY (id)
 )

@@ -68,17 +68,17 @@
                     <div class="control-group">
                         <label class="control-label">状态</label>
                         <div class="controls">
-                            <label class="radio">
+                            <label class="radio inline">
                                 <div class="radio"><span class="checked"><input type="radio" value="1" name="statusCode"></span></div>
                                 Active
                             </label>
-                            <div style="clear:both"></div>
-                            <label class="radio">
+
+                            <label class="radio inline">
                                 <div class="radio"><span><input type="radio" value="0" name="statusCode"></span></div>
                                 Pending
                             </label>
-                            <div style="clear:both"></div>
-                            <label class="radio">
+
+                            <label class="radio inline">
                                 <div class="radio"><span><input type="radio" value="-1" name="statusCode"></span></div>
                                 Deactive
                             </label>
