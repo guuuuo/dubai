@@ -12,24 +12,24 @@ CREATE TABLE dubai_task (
 )
   ENGINE =InnoDB;
 
-CREATE TABLE dubai_user (
-  id             BIGINT AUTO_INCREMENT,
-  login_name     VARCHAR(64)                        NOT NULL UNIQUE,
-  nice_name      VARCHAR(64)                        NOT NULL DEFAULT '',
-  password       VARCHAR(255)                       NOT NULL,
-  email          VARCHAR(100)                       NOT NULL,
-  salt           VARCHAR(64)                        NOT NULL,
-  roles          VARCHAR(255)                       NOT NULL,
-  register_date  TIMESTAMP                          NOT NULL DEFAULT 0,
-  act_key VARCHAR(60)                        NOT NULL DEFAULT '',
-  act_key_gen_date  TIMESTAMP                          NOT NULL DEFAULT 0,
-  act_ate  TIMESTAMP                          NOT NULL DEFAULT 0,
-  status_code         INT DEFAULT 0                      NOT NULL,
-  PRIMARY KEY (id)
-)
-  ENGINE =InnoDB;
-CREATE INDEX user_login_name ON dubai_user (login_name);
-CREATE INDEX user_nice_name ON dubai_user (nice_name);
+CREATE TABLE dubai_user
+(
+  id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  login_name VARCHAR(64) NOT NULL,
+  nice_name VARCHAR(64) DEFAULT '' NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  salt VARCHAR(64) NOT NULL,
+  roles VARCHAR(255) NOT NULL,
+  register_date TIMESTAMP DEFAULT '0000-00-00 00:00:00' NOT NULL,
+  status_code INT DEFAULT 0 NOT NULL,
+  act_key VARCHAR(60) DEFAULT '' NOT NULL,
+  act_key_gen_date TIMESTAMP DEFAULT '0000-00-00 00:00:00' NOT NULL,
+  act_date TIMESTAMP DEFAULT '0000-00-00 00:00:00' NOT NULL
+);
+CREATE UNIQUE INDEX idx_unq_user_login_name ON dubai_user ( login_name );
+CREATE INDEX idx_user_login_name ON dubai_user ( login_name );
+CREATE INDEX idx_user_nice_name ON dubai_user ( nice_name );
 
 CREATE TABLE dubai_option
 (
@@ -39,7 +39,7 @@ CREATE TABLE dubai_option
   autoload VARCHAR(20) DEFAULT 'yes'   NOT NULL
 )
   ENGINE =InnoDB;
-CREATE UNIQUE INDEX option_name ON dubai_option (name);
+CREATE UNIQUE INDEX idx_unq_option_name ON dubai_option (name);
 
 CREATE TABLE dubai_post
 (
@@ -63,8 +63,8 @@ CREATE TABLE dubai_post
   comment_count         BIGINT DEFAULT 0                       NOT NULL
 )
   ENGINE =InnoDB;
-CREATE INDEX post_name ON dubai_post (post_name);
-CREATE INDEX post_status_date ON dubai_post (post_status, create_date, ID);
-CREATE INDEX post_parent ON dubai_post (post_parent);
-CREATE INDEX post_author ON dubai_post (author);
+CREATE INDEX idx_post_name ON dubai_post (post_name);
+CREATE INDEX idx_post_status_date ON dubai_post (post_status, create_date, ID);
+CREATE INDEX idx_post_parent ON dubai_post (post_parent);
+CREATE INDEX idx_post_author ON dubai_post (author);
 

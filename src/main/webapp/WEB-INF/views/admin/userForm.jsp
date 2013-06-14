@@ -72,12 +72,10 @@
                                 <div class="radio"><span class="checked"><input type="radio" value="1" name="statusCode"></span></div>
                                 Active
                             </label>
-
                             <label class="radio inline">
                                 <div class="radio"><span><input type="radio" value="0" name="statusCode"></span></div>
                                 Pending
                             </label>
-
                             <label class="radio inline">
                                 <div class="radio"><span><input type="radio" value="-1" name="statusCode"></span></div>
                                 Deactive
