@@ -2,7 +2,7 @@ package com.emix.dubai.web.passport;
 
 import com.emix.dubai.entity.User;
 import com.emix.dubai.service.account.AccountService;
-import com.emix.dubai.service.common.MailService;
+import com.emix.dubai.service.common.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +23,7 @@ public class RegisterController {
     @Autowired
     private AccountService accountService;
     @Autowired
-    private MailService mailService;
+    private NotificationService notificationService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String registerForm() {
@@ -33,7 +33,7 @@ public class RegisterController {
     @RequestMapping(method = RequestMethod.POST)
     public String register(@Valid User user, RedirectAttributes redirectAttributes) {
         accountService.registerUser(user);
-        mailService.sendRegisterNotification(user);
+        notificationService.sendRegisterNotification(user);
         redirectAttributes.addFlashAttribute("user", user);
         return "passport/registerResult";
     }
