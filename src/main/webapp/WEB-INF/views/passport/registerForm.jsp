@@ -21,7 +21,7 @@
 
     <div class="row-fluid">
         <div class="span6 account-box" style="margin: 0 auto; float:none;">
-            <form id="inputForm" action="${ctx}/register" method="post" class="form-horizontal">
+            <form id="inputForm" action="${ctx}/passport/register" method="post" class="form-horizontal">
                 <fieldset>
                     <legend><small>创建新帐号</small></legend>
                     <%
@@ -77,7 +77,7 @@
     </div><!--/row-->
 
     <div class="account-extra">
-        已有帐号？ 请 <a href="${ctx}/login">直接登录</a>
+        已有帐号？ 请 <a href="${ctx}/passport/login">直接登录</a>
     </div>
 
     <!-- *** JavaScript *** -->
@@ -90,7 +90,7 @@
             $("#inputForm").validate({
                 rules: {
                     loginName: {
-                        remote: "${ctx}/register/checkLoginName"
+                        remote: "${ctx}/passport/register/checkLoginName"
                     },
                     email : {
                         required: true,

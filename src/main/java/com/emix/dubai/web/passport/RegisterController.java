@@ -1,4 +1,4 @@
-package com.emix.dubai.web;
+package com.emix.dubai.web.passport;
 
 import com.emix.dubai.entity.User;
 import com.emix.dubai.service.account.AccountService;
@@ -17,7 +17,7 @@ import javax.validation.Valid;
  * @author nikog
  */
 @Controller
-@RequestMapping(value = "/register")
+@RequestMapping(value = "/passport/register")
 public class RegisterController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class RegisterController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String registerForm() {
-        return "registerForm";
+        return "passport/registerForm";
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -35,7 +35,7 @@ public class RegisterController {
         accountService.registerUser(user);
         mailService.sendRegisterNotification(user);
         redirectAttributes.addFlashAttribute("user", user);
-        return "registerResult";
+        return "passport/registerResult";
     }
 
     /**

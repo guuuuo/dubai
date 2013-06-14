@@ -1,4 +1,4 @@
-package com.emix.dubai.service;
+package com.emix.dubai.exception;
 
 /**
  * Service层公用的Exception.

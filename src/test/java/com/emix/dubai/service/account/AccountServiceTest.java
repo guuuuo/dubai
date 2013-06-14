@@ -4,7 +4,7 @@ import com.emix.dubai.data.UserData;
 import com.emix.dubai.entity.User;
 import com.emix.dubai.repository.TaskDao;
 import com.emix.dubai.repository.UserDao;
-import com.emix.dubai.service.ServiceException;
+import com.emix.dubai.exception.ServiceException;
 import com.emix.dubai.service.account.ShiroDbRealm.ShiroUser;
 import org.junit.Before;
 import org.junit.Test;

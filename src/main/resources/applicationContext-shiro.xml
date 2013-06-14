@@ -20,7 +20,7 @@
 	<!-- Shiro Filter -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/login" />
+		<property name="loginUrl" value="/passport/login" />
 		<property name="successUrl" value="/dashboard" />
         <property name="unauthorizedUrl" value="/403" />
         <property name="filters">
@@ -30,18 +30,15 @@
         </property>
         <property name="filterChainDefinitions">
 			<value>
-				/login = authc
-				/logout = logout
+                /passport/login = authc
+                /passport/logout = logout
+                /*.txt = anon
                 /assets/** = anon
 				/api/** = anon
-                /*.txt = anon
+                /passport/** = anon
                 /favicon.ico = anon
                 /captcha = anon
-                /403 = anon		
-				/register = anon
-                /register/** = anon
-				/*-password = anon
-				/activation = anon
+                /403 = anon
 				/admin/** = roles[admin]
 				/** = user
 			</value>

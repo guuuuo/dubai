@@ -24,7 +24,7 @@
 
     <div class="row-fluid">
         <div class="span6 account-box" style="margin: 0 auto; float:none;">
-            <form id="inputForm" action="${ctx}/login" method="post" class="form-horizontal">
+            <form id="inputForm" action="${ctx}/passport/login" method="post" class="form-horizontal">
                 <fieldset>
                     <legend><small>登录</small></legend>
                     <%
@@ -85,8 +85,8 @@
     </div><!--/row-->
 
     <div class="account-extra">
-        没有帐号？ <a href="${ctx}/register">创建新帐号</a><br>
-        忘记登录密码？ <a href="${ctx}/forgot-password">重置密码</a>
+        没有帐号？ <a href="${ctx}/passport/register">创建新帐号</a><br>
+        忘记登录密码？ <a href="${ctx}/passport/forgot-password">重置密码</a>
     </div>
 
     <!-- *** JavaScript *** -->

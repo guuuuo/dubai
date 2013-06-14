@@ -1,4 +1,4 @@
-package com.emix.dubai.web;
+package com.emix.dubai.web.passport;
 
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.springframework.stereotype.Controller;
@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author calvin
  */
 @Controller
-@RequestMapping(value = "/login")
+@RequestMapping(value = "/passport/login")
 public class LoginController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String loginForm() {
-		return "loginForm";
+		return "passport/loginForm";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String fail(@RequestParam(FormAuthenticationFilter.DEFAULT_USERNAME_PARAM) String userName, Model model) {
 		model.addAttribute(FormAuthenticationFilter.DEFAULT_USERNAME_PARAM, userName);
-		return "loginForm";
+		return "passport/loginForm";
 	}
 
 }

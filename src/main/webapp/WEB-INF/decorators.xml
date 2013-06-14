@@ -5,10 +5,8 @@
 		<pattern>/api/*</pattern>
 	</excludes>
 
-    <decorator name="account" page="_blank.jsp">
-        <pattern>/login</pattern>
-        <pattern>/register</pattern>
-        <pattern>/*-password</pattern>
+    <decorator name="account" page="_passport.jsp">
+        <pattern>/passport/*</pattern>
     </decorator>
 
     <decorator name="default" page="_admin.jsp">

@@ -2,7 +2,7 @@ package com.emix.dubai.web.admin;
 
 import com.emix.dubai.constants.GlobalConstants;
 import com.emix.dubai.entity.User;
-import com.emix.dubai.service.ServiceException;
+import com.emix.dubai.exception.ServiceException;
 import com.emix.dubai.service.account.AccountService;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;

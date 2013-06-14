@@ -33,7 +33,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="${ctx}/account/settings">设置</a></li>
                     <li class="divider"></li>
-                    <li><a href="${ctx}/logout">退出</a></li>
+                    <li><a href="${ctx}/passport/logout">退出</a></li>
                 </ul>
             </div>
             <!-- user dropdown ends -->
