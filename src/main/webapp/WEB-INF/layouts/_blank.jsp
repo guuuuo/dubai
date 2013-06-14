@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dubai &gt;&gt;<sitemesh:title/></title>
+    <title>Dubai &gt;&gt; <sitemesh:title/></title>
     <!-- The styles -->
     <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.css">
     <link rel='stylesheet' href='/assets/css/vendor/uniform.default.css'>

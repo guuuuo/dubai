@@ -1,5 +1,6 @@
 package com.emix.dubai.web.admin;
 
+import com.emix.dubai.constants.GlobalConstants;
 import com.emix.dubai.entity.User;
 import com.emix.dubai.service.ServiceException;
 import com.emix.dubai.service.account.AccountService;
@@ -25,8 +26,6 @@ import java.util.Map;
 @RequestMapping(value = "/admin/user")
 public class UserAdminController {
 
-    private static final int PAGE_SIZE = 20;
-
     private static Map<String, String> sortTypes = Maps.newLinkedHashMap();
 
     static {
@@ -43,7 +42,7 @@ public class UserAdminController {
                        @RequestParam(value = "page", defaultValue = "1") int pageNumber, Model model, ServletRequest request) {
         Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 
-        Page<User> users = accountService.getUsers(searchParams, pageNumber, PAGE_SIZE, sortType);
+        Page<User> users = accountService.getUsers(searchParams, pageNumber, GlobalConstants.PAGE_SIZE, sortType);
 
         model.addAttribute("users", users);
         model.addAttribute("sortType", sortType);

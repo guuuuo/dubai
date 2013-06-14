@@ -2,6 +2,7 @@ package com.emix.dubai.web;
 
 import com.emix.dubai.entity.User;
 import com.emix.dubai.service.account.AccountService;
+import com.emix.dubai.service.common.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,8 @@ public class RegisterController {
 
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private MailService mailService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String registerForm() {
@@ -30,8 +33,9 @@ public class RegisterController {
     @RequestMapping(method = RequestMethod.POST)
     public String register(@Valid User user, RedirectAttributes redirectAttributes) {
         accountService.registerUser(user);
-        redirectAttributes.addFlashAttribute("username", user.getLoginName());
-        return "redirect:/login";
+        mailService.sendRegisterNotification(user);
+        redirectAttributes.addFlashAttribute("user", user);
+        return "registerResult";
     }
 
     /**

@@ -5,4 +5,5 @@ package com.emix.dubai.constants;
  */
 public class GlobalConstants {
     public final static String CAPTCHA_SESSION_KEY = "CAPTCHA_SESSION_KEY";
+    public final static int PAGE_SIZE = 5;
 }

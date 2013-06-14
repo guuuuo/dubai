@@ -311,6 +311,12 @@
             <version>1.4.3</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.14</version>
+        </dependency>
+
 		<!-- selenium 2.0 -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
