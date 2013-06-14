@@ -45,6 +45,17 @@
                             <input type="email" id="email" name="email" class="input-large"/>
                         </div>
                     </div>
+
+                    <div class="control-group">
+                        <label for="captcha" class="control-label">验证码</label>
+                        <div class="controls">
+                            <input type="text"class="input-small required" id="captcha" name="captcha" />
+                            &nbsp;&nbsp;
+                            <img id="captchaImg" src="${ctx}/captcha" />
+                            &nbsp;&nbsp;
+                            <a href="javascript:void(0);" onclick="javascript:utils.reloadCaptcha('${ctx}');">看不清？</a>
+                        </div>
+                    </div>
                     <div class="form-actions">
                         <input id="submit_btn" class="btn btn-primary" type="submit" value="重置密码"/>
                     </div>

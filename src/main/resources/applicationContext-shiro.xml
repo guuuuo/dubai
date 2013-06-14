@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
-	default-lazy-init="true">
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-lazy-init="true">
 
 	<description>Shiro安全配置</description>
 
@@ -21,7 +22,13 @@
 		<property name="securityManager" ref="securityManager" />
 		<property name="loginUrl" value="/login" />
 		<property name="successUrl" value="/dashboard" />
-		<property name="filterChainDefinitions">
+        <property name="unauthorizedUrl" value="/403" />
+        <property name="filters">
+            <util:map>
+                <entry key="authc" value-ref="formAuthenticationFilter"/>
+            </util:map>
+        </property>
+        <property name="filterChainDefinitions">
 			<value>
 				/login = authc
 				/logout = logout
@@ -29,6 +36,8 @@
 				/api/** = anon
                 /*.txt = anon
                 /favicon.ico = anon
+                /captcha = anon
+                /403 = anon		
 				/register = anon
                 /register/** = anon
 				/*-password = anon
@@ -46,4 +55,6 @@
 	
 	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+	<bean id="formAuthenticationFilter" class="com.emix.dubai.shiro.CaptchaFormAuthenticationFilter"/>
 </beans>

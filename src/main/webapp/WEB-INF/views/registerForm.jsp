@@ -58,6 +58,16 @@
                             <input type="password" id="confirmPassword" name="confirmPassword" class="input-large required" equalTo="#plainPassword"/>
                         </div>
                     </div>
+                    <div class="control-group">
+                        <label for="captcha" class="control-label">验证码</label>
+                        <div class="controls">
+                            <input type="text"class="input-small required" id="captcha" name="captcha" />
+                            &nbsp;&nbsp;
+                            <img id="captchaImg" src="${ctx}/captcha" />
+                            &nbsp;&nbsp;
+                            <a href="javascript:void(0);" onclick="javascript:utils.reloadCaptcha('${ctx}');">看不清？</a>
+                        </div>
+                    </div>
                     <div class="form-actions">
                         <input id="submit_btn" class="btn btn-primary" type="submit" value="提交注册信息"/>
                     </div>
