@@ -14,7 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import com.emix.dubai.data.TaskData;
-import com.emix.dubai.entity.Task;
+import com.emix.dubai.business.entity.Task;
 import com.emix.dubai.functional.BaseFunctionalTestCase;
 import org.springside.modules.mapper.JsonMapper;
 import org.springside.modules.test.category.Smoke;

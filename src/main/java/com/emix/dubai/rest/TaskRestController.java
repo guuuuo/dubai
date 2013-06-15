@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.util.UriComponentsBuilder;
-import com.emix.dubai.entity.Task;
-import com.emix.dubai.service.task.TaskService;
+import com.emix.dubai.business.entity.Task;
+import com.emix.dubai.business.service.task.TaskService;
 import org.springside.modules.beanvalidator.BeanValidators;
 
 /**

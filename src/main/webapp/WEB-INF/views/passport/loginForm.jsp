@@ -4,7 +4,7 @@
 <%@ page import="org.apache.shiro.authc.AuthenticationException" %>
 <%@ page import="org.apache.shiro.authc.UnknownAccountException" %>
 <%@ page import="org.apache.shiro.authc.IncorrectCredentialsException" %>
-<%@ page import="com.emix.dubai.exception.IncorrectCaptchaException" %>
+<%@ page import="com.emix.core.exception.IncorrectCaptchaException" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 

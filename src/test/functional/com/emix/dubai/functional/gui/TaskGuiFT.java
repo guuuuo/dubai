@@ -7,7 +7,7 @@ import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import com.emix.dubai.data.TaskData;
-import com.emix.dubai.entity.Task;
+import com.emix.dubai.business.entity.Task;
 import com.emix.dubai.functional.BaseSeleniumTestCase;
 import org.springside.modules.test.category.Smoke;
 

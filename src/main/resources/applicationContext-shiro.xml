@@ -13,7 +13,7 @@
 	</bean>
 
 	<!-- 項目自定义的Realm, 所有accountService依赖的dao都需要用depends-on声明 -->
-	<bean id="shiroDbRealm" class="com.emix.dubai.service.account.ShiroDbRealm" depends-on="userDao,taskDao">
+	<bean id="shiroDbRealm" class="com.emix.dubai.business.service.account.ShiroDbRealm" depends-on="userDao,taskDao">
 		<property name="accountService" ref="accountService"/>
 	</bean>
 	
@@ -53,5 +53,5 @@
 	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
-	<bean id="formAuthenticationFilter" class="com.emix.dubai.shiro.CaptchaFormAuthenticationFilter"/>
+	<bean id="formAuthenticationFilter" class="com.emix.core.shiro.CaptchaFormAuthenticationFilter"/>
 </beans>
