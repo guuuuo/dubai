@@ -1,7 +1,7 @@
 package com.emix.dubai.business.service.account;
 
 import com.emix.dubai.data.UserData;
-import com.emix.dubai.business.entity.User;
+import com.emix.dubai.business.entity.sys.User;
 import com.emix.dubai.business.repository.TaskDao;
 import com.emix.dubai.business.repository.UserDao;
 import com.emix.core.exception.ServiceException;
@@ -93,7 +93,7 @@ public class AccountServiceTest {
         accountService.entryptPassword(user);
         System.out.println(user.getLoginName());
         System.out.println(user.getPlainPassword());
-        System.out.println(user.getSalt());
-        System.out.println(user.getPassword());
+        System.out.println("salt: " + user.getSalt());
+        System.out.println("entrypt password: " + user.getPassword());
     }
 }

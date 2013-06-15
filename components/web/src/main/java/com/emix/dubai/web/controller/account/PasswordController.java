@@ -1,6 +1,6 @@
 package com.emix.dubai.web.controller.account;
 
-import com.emix.dubai.business.entity.User;
+import com.emix.dubai.business.entity.sys.User;
 import com.emix.dubai.business.service.account.AccountService;
 import com.emix.dubai.business.service.account.ShiroDbRealm;
 import org.apache.shiro.SecurityUtils;

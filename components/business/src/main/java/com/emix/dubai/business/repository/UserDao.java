@@ -1,6 +1,6 @@
 package com.emix.dubai.business.repository;
 
-import com.emix.dubai.business.entity.User;
+import com.emix.dubai.business.entity.sys.User;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 

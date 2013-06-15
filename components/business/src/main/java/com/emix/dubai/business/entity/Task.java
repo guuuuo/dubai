@@ -5,6 +5,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.emix.dubai.business.entity.sys.User;
 import org.hibernate.validator.constraints.NotBlank;
 
 //JPA标识

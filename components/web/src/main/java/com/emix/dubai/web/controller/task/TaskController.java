@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.emix.dubai.business.entity.Task;
-import com.emix.dubai.business.entity.User;
+import com.emix.dubai.business.entity.sys.User;
 import com.emix.dubai.business.service.account.ShiroDbRealm.ShiroUser;
 import com.emix.dubai.business.service.task.TaskService;
 import org.springside.modules.web.Servlets;

@@ -1,6 +1,6 @@
 package com.emix.dubai.business.service.account;
 
-import com.emix.dubai.business.entity.User;
+import com.emix.dubai.business.entity.sys.User;
 import com.emix.dubai.business.repository.TaskDao;
 import com.emix.dubai.business.repository.UserDao;
 import com.emix.core.exception.ServiceException;
@@ -66,6 +66,8 @@ public class AccountService {
         user.setRegisterDate(dateProvider.getDate());
         user.setNiceName(user.getLoginName());
         user.setStatusCode(UserStatus.Pending.code());
+        user.setCreatedBy(user.getLoginName());
+        user.setCreatedWhen(dateProvider.getDate());
 
         userDao.save(user);
     }

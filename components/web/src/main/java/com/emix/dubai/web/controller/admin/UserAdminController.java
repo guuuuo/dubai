@@ -2,7 +2,7 @@ package com.emix.dubai.web.controller.admin;
 
 import com.emix.core.web.BaseController;
 import com.emix.dubai.constants.GlobalConstants;
-import com.emix.dubai.business.entity.User;
+import com.emix.dubai.business.entity.sys.User;
 import com.emix.core.exception.ServiceException;
 import com.emix.dubai.business.service.account.AccountService;
 import com.google.common.collect.Maps;

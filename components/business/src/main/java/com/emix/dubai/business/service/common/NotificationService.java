@@ -1,6 +1,6 @@
 package com.emix.dubai.business.service.common;
 
-import com.emix.dubai.business.entity.User;
+import com.emix.dubai.business.entity.sys.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.mail.javamail.JavaMailSender;

@@ -1,5 +1,6 @@
-package com.emix.dubai.business.entity;
+package com.emix.dubai.business.entity.sys;
 
+import com.emix.dubai.business.entity.IdEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.ImmutableList;
@@ -14,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "dubai_user")
+@Table(name = "sys_user")
 public class User extends IdEntity {
     private String loginName;
     private String niceName;
