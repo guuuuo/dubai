@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-lazy-init="true">
+
+    <description>Quartz</description>
+
+    <!-- Quartz本地Schduler -->
+    <bean id="localQuartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false">
+        <property name="configLocation" value="classpath:quartz.properties"/>
+        <property name="applicationContextSchedulerContextKey" value="applicationContextKey" />
+        <!-- Quartz配置 -->
+        <property name="quartzProperties">
+            <props>
+                <prop key="org.quartz.threadPool.threadCount">5</prop>
+            </props>
+        </property>
+        <!-- 启动时延期3秒开始任务 -->
+        <property name="startupDelay" value="3"/>
+        <!-- Triggers集成 -->
+        <property name="triggers">
+            <list>
+                <ref bean="cronTrigger"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Cron式Trigger定义 -->
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean" >
+        <property name="jobDetail" ref="cronJobDetail" />
+        <property name="cronExpression" >
+            <value>0/3 * *  * * ?</value>
+        </property>
+    </bean>
+
+    <!-- Cron JobDetail -->
+    <bean id="cronJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="com.emix.core.quartz.CommonJobBean" />
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="realJobBeanName" value="testJob" />
+            </map>
+        </property>
+    </bean>
+
+</beans>
