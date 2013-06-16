@@ -1,6 +1,5 @@
 package com.emix.dubai.business.entity;
 
-import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -9,9 +8,9 @@ import com.emix.dubai.business.entity.sys.User;
 import org.hibernate.validator.constraints.NotBlank;
 
 //JPA标识
-@Entity
+@javax.persistence.Entity
 @Table(name = "dubai_task")
-public class Task extends IdEntity {
+public class Task extends BaseEntity {
 
 	private String title;
 	private String description;

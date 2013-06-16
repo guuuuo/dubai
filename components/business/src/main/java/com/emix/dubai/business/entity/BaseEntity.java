@@ -16,7 +16,7 @@ import java.util.Date;
  */
 //JPA 基类的标识
 @MappedSuperclass
-public abstract class IdEntity {
+public abstract class BaseEntity {
 
     protected Long id;
     protected String createdBy;

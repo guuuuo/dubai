@@ -1,18 +1,17 @@
 package com.emix.dubai.business.entity.sys;
 
-import com.emix.dubai.business.entity.IdEntity;
+import com.emix.dubai.business.entity.BaseEntity;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
  * @author niko
  */
-@Entity
+@javax.persistence.Entity
 @Table(name = "sys_role")
-public class Role extends IdEntity {
+public class Role extends BaseEntity {
     private String roleName;
     private String roleDesc;
     @Column

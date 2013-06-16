@@ -1,6 +1,6 @@
 package com.emix.dubai.business.entity.sys;
 
-import com.emix.dubai.business.entity.IdEntity;
+import com.emix.dubai.business.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.ImmutableList;
@@ -8,15 +8,14 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.util.Date;
 import java.util.List;
 
-@Entity
+@javax.persistence.Entity
 @Table(name = "sys_user")
-public class User extends IdEntity {
+public class User extends BaseEntity {
     private String loginName;
     private String niceName;
     private String plainPassword;

@@ -1,155 +1,155 @@
 #
-# In your Quartz properties file, you'll need to set 
-# org.quartz.jobStore.driverDelegateClass = org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+# in your quartz properties file, you'll need to set 
+# org.quartz.jobstore.driverdelegateclass = org.quartz.impl.jdbcjobstore.stdjdbcdelegate
 #
 #
-# By: Ron Cordell - roncordell
-#  I didn't see this anywhere, so I thought I'd post it here. This is the script from Quartz to create the tables in a MySQL database, modified to use INNODB instead of MYISAM.
+# by: ron cordell - roncordell
+#  i didn't see this anywhere, so i thought i'd post it here. this is the script from quartz to create the tables in a mysql database, modified to use innodb instead of myisam.
 
-DROP TABLE IF EXISTS QRTZ_JOB_LISTENERS;
-DROP TABLE IF EXISTS QRTZ_TRIGGER_LISTENERS;
-DROP TABLE IF EXISTS QRTZ_FIRED_TRIGGERS;
-DROP TABLE IF EXISTS QRTZ_PAUSED_TRIGGER_GRPS;
-DROP TABLE IF EXISTS QRTZ_SCHEDULER_STATE;
-DROP TABLE IF EXISTS QRTZ_LOCKS;
-DROP TABLE IF EXISTS QRTZ_SIMPLE_TRIGGERS;
-DROP TABLE IF EXISTS QRTZ_CRON_TRIGGERS;
-DROP TABLE IF EXISTS QRTZ_BLOB_TRIGGERS;
-DROP TABLE IF EXISTS QRTZ_TRIGGERS;
-DROP TABLE IF EXISTS QRTZ_JOB_DETAILS;
-DROP TABLE IF EXISTS QRTZ_CALENDARS;
+drop table if exists qrtz_job_listeners;
+drop table if exists qrtz_trigger_listeners;
+drop table if exists qrtz_fired_triggers;
+drop table if exists qrtz_paused_trigger_grps;
+drop table if exists qrtz_scheduler_state;
+drop table if exists qrtz_locks;
+drop table if exists qrtz_simple_triggers;
+drop table if exists qrtz_cron_triggers;
+drop table if exists qrtz_blob_triggers;
+drop table if exists qrtz_triggers;
+drop table if exists qrtz_job_details;
+drop table if exists qrtz_calendars;
 
-CREATE TABLE QRTZ_JOB_DETAILS(
-JOB_NAME VARCHAR(200) NOT NULL,
-JOB_GROUP VARCHAR(200) NOT NULL,
-DESCRIPTION VARCHAR(250) NULL,
-JOB_CLASS_NAME VARCHAR(250) NOT NULL,
-IS_DURABLE VARCHAR(1) NOT NULL,
-IS_VOLATILE VARCHAR(1) NOT NULL,
-IS_STATEFUL VARCHAR(1) NOT NULL,
-REQUESTS_RECOVERY VARCHAR(1) NOT NULL,
-JOB_DATA BLOB NULL,
-PRIMARY KEY (JOB_NAME,JOB_GROUP))
-ENGINE=InnoDB;
+create table qrtz_job_details(
+job_name varchar(200) not null,
+job_group varchar(200) not null,
+description varchar(250) null,
+job_class_name varchar(250) not null,
+is_durable varchar(1) not null,
+is_volatile varchar(1) not null,
+is_stateful varchar(1) not null,
+requests_recovery varchar(1) not null,
+job_data blob null,
+primary key (job_name,job_group))
+engine=innodb;
 
-CREATE TABLE QRTZ_JOB_LISTENERS (
-JOB_NAME VARCHAR(200) NOT NULL,
-JOB_GROUP VARCHAR(200) NOT NULL,
-JOB_LISTENER VARCHAR(200) NOT NULL,
-PRIMARY KEY (JOB_NAME,JOB_GROUP,JOB_LISTENER),
-INDEX (JOB_NAME, JOB_GROUP),
-FOREIGN KEY (JOB_NAME,JOB_GROUP)
-REFERENCES QRTZ_JOB_DETAILS(JOB_NAME,JOB_GROUP))
-ENGINE=InnoDB;
+create table qrtz_job_listeners (
+job_name varchar(200) not null,
+job_group varchar(200) not null,
+job_listener varchar(200) not null,
+primary key (job_name,job_group,job_listener),
+index (job_name, job_group),
+foreign key (job_name,job_group)
+references qrtz_job_details(job_name,job_group))
+engine=innodb;
 
-CREATE TABLE QRTZ_TRIGGERS (
-TRIGGER_NAME VARCHAR(200) NOT NULL,
-TRIGGER_GROUP VARCHAR(200) NOT NULL,
-JOB_NAME VARCHAR(200) NOT NULL,
-JOB_GROUP VARCHAR(200) NOT NULL,
-IS_VOLATILE VARCHAR(1) NOT NULL,
-DESCRIPTION VARCHAR(250) NULL,
-NEXT_FIRE_TIME BIGINT(13) NULL,
-PREV_FIRE_TIME BIGINT(13) NULL,
-PRIORITY INTEGER NULL,
-TRIGGER_STATE VARCHAR(16) NOT NULL,
-TRIGGER_TYPE VARCHAR(8) NOT NULL,
-START_TIME BIGINT(13) NOT NULL,
-END_TIME BIGINT(13) NULL,
-CALENDAR_NAME VARCHAR(200) NULL,
-MISFIRE_INSTR SMALLINT(2) NULL,
-JOB_DATA BLOB NULL,
-PRIMARY KEY (TRIGGER_NAME,TRIGGER_GROUP),
-INDEX (JOB_NAME, JOB_GROUP),
-FOREIGN KEY (JOB_NAME,JOB_GROUP)
-REFERENCES QRTZ_JOB_DETAILS(JOB_NAME,JOB_GROUP))
-ENGINE=InnoDB;
+create table qrtz_triggers (
+trigger_name varchar(200) not null,
+trigger_group varchar(200) not null,
+job_name varchar(200) not null,
+job_group varchar(200) not null,
+is_volatile varchar(1) not null,
+description varchar(250) null,
+next_fire_time bigint(13) null,
+prev_fire_time bigint(13) null,
+priority integer null,
+trigger_state varchar(16) not null,
+trigger_type varchar(8) not null,
+start_time bigint(13) not null,
+end_time bigint(13) null,
+calendar_name varchar(200) null,
+misfire_instr smallint(2) null,
+job_data blob null,
+primary key (trigger_name,trigger_group),
+index (job_name, job_group),
+foreign key (job_name,job_group)
+references qrtz_job_details(job_name,job_group))
+engine=innodb;
 
-CREATE TABLE QRTZ_SIMPLE_TRIGGERS (
-TRIGGER_NAME VARCHAR(200) NOT NULL,
-TRIGGER_GROUP VARCHAR(200) NOT NULL,
-REPEAT_COUNT BIGINT(7) NOT NULL,
-REPEAT_INTERVAL BIGINT(12) NOT NULL,
-TIMES_TRIGGERED BIGINT(10) NOT NULL,
-PRIMARY KEY (TRIGGER_NAME,TRIGGER_GROUP),
-INDEX (TRIGGER_NAME, TRIGGER_GROUP),
-FOREIGN KEY (TRIGGER_NAME,TRIGGER_GROUP)
-REFERENCES QRTZ_TRIGGERS(TRIGGER_NAME,TRIGGER_GROUP))
-ENGINE=InnoDB;
+create table qrtz_simple_triggers (
+trigger_name varchar(200) not null,
+trigger_group varchar(200) not null,
+repeat_count bigint(7) not null,
+repeat_interval bigint(12) not null,
+times_triggered bigint(10) not null,
+primary key (trigger_name,trigger_group),
+index (trigger_name, trigger_group),
+foreign key (trigger_name,trigger_group)
+references qrtz_triggers(trigger_name,trigger_group))
+engine=innodb;
 
-CREATE TABLE QRTZ_CRON_TRIGGERS (
-TRIGGER_NAME VARCHAR(200) NOT NULL,
-TRIGGER_GROUP VARCHAR(200) NOT NULL,
-CRON_EXPRESSION VARCHAR(120) NOT NULL,
-TIME_ZONE_ID VARCHAR(80),
-PRIMARY KEY (TRIGGER_NAME,TRIGGER_GROUP),
-INDEX (TRIGGER_NAME, TRIGGER_GROUP),
-FOREIGN KEY (TRIGGER_NAME,TRIGGER_GROUP)
-REFERENCES QRTZ_TRIGGERS(TRIGGER_NAME,TRIGGER_GROUP))
-ENGINE=InnoDB;
+create table qrtz_cron_triggers (
+trigger_name varchar(200) not null,
+trigger_group varchar(200) not null,
+cron_expression varchar(120) not null,
+time_zone_id varchar(80),
+primary key (trigger_name,trigger_group),
+index (trigger_name, trigger_group),
+foreign key (trigger_name,trigger_group)
+references qrtz_triggers(trigger_name,trigger_group))
+engine=innodb;
 
-CREATE TABLE QRTZ_BLOB_TRIGGERS (
-TRIGGER_NAME VARCHAR(200) NOT NULL,
-TRIGGER_GROUP VARCHAR(200) NOT NULL,
-BLOB_DATA BLOB NULL,
-PRIMARY KEY (TRIGGER_NAME,TRIGGER_GROUP),
-INDEX (TRIGGER_NAME, TRIGGER_GROUP),
-FOREIGN KEY (TRIGGER_NAME,TRIGGER_GROUP)
-REFERENCES QRTZ_TRIGGERS(TRIGGER_NAME,TRIGGER_GROUP))
-ENGINE=InnoDB;
+create table qrtz_blob_triggers (
+trigger_name varchar(200) not null,
+trigger_group varchar(200) not null,
+blob_data blob null,
+primary key (trigger_name,trigger_group),
+index (trigger_name, trigger_group),
+foreign key (trigger_name,trigger_group)
+references qrtz_triggers(trigger_name,trigger_group))
+engine=innodb;
 
-CREATE TABLE QRTZ_TRIGGER_LISTENERS (
-TRIGGER_NAME VARCHAR(200) NOT NULL,
-TRIGGER_GROUP VARCHAR(200) NOT NULL,
-TRIGGER_LISTENER VARCHAR(200) NOT NULL,
-PRIMARY KEY (TRIGGER_NAME,TRIGGER_GROUP,TRIGGER_LISTENER),
-INDEX (TRIGGER_NAME, TRIGGER_GROUP),
-FOREIGN KEY (TRIGGER_NAME,TRIGGER_GROUP)
-REFERENCES QRTZ_TRIGGERS(TRIGGER_NAME,TRIGGER_GROUP))
-ENGINE=InnoDB;
+create table qrtz_trigger_listeners (
+trigger_name varchar(200) not null,
+trigger_group varchar(200) not null,
+trigger_listener varchar(200) not null,
+primary key (trigger_name,trigger_group,trigger_listener),
+index (trigger_name, trigger_group),
+foreign key (trigger_name,trigger_group)
+references qrtz_triggers(trigger_name,trigger_group))
+engine=innodb;
 
-CREATE TABLE QRTZ_CALENDARS (
-CALENDAR_NAME VARCHAR(200) NOT NULL,
-CALENDAR BLOB NOT NULL,
-PRIMARY KEY (CALENDAR_NAME))
-ENGINE=InnoDB;
+create table qrtz_calendars (
+calendar_name varchar(200) not null,
+calendar blob not null,
+primary key (calendar_name))
+engine=innodb;
 
-CREATE TABLE QRTZ_PAUSED_TRIGGER_GRPS (
-TRIGGER_GROUP VARCHAR(200) NOT NULL,
-PRIMARY KEY (TRIGGER_GROUP))
-ENGINE=InnoDB;
+create table qrtz_paused_trigger_grps (
+trigger_group varchar(200) not null,
+primary key (trigger_group))
+engine=innodb;
 
-CREATE TABLE QRTZ_FIRED_TRIGGERS (
-ENTRY_ID VARCHAR(95) NOT NULL,
-TRIGGER_NAME VARCHAR(200) NOT NULL,
-TRIGGER_GROUP VARCHAR(200) NOT NULL,
-IS_VOLATILE VARCHAR(1) NOT NULL,
-INSTANCE_NAME VARCHAR(200) NOT NULL,
-FIRED_TIME BIGINT(13) NOT NULL,
-PRIORITY INTEGER NOT NULL,
-STATE VARCHAR(16) NOT NULL,
-JOB_NAME VARCHAR(200) NULL,
-JOB_GROUP VARCHAR(200) NULL,
-IS_STATEFUL VARCHAR(1) NULL,
-REQUESTS_RECOVERY VARCHAR(1) NULL,
-PRIMARY KEY (ENTRY_ID))
-ENGINE=InnoDB;
+create table qrtz_fired_triggers (
+entry_id varchar(95) not null,
+trigger_name varchar(200) not null,
+trigger_group varchar(200) not null,
+is_volatile varchar(1) not null,
+instance_name varchar(200) not null,
+fired_time bigint(13) not null,
+priority integer not null,
+state varchar(16) not null,
+job_name varchar(200) null,
+job_group varchar(200) null,
+is_stateful varchar(1) null,
+requests_recovery varchar(1) null,
+primary key (entry_id))
+engine=innodb;
 
-CREATE TABLE QRTZ_SCHEDULER_STATE (
-INSTANCE_NAME VARCHAR(200) NOT NULL,
-LAST_CHECKIN_TIME BIGINT(13) NOT NULL,
-CHECKIN_INTERVAL BIGINT(13) NOT NULL,
-PRIMARY KEY (INSTANCE_NAME))
-ENGINE=InnoDB;
+create table qrtz_scheduler_state (
+instance_name varchar(200) not null,
+last_checkin_time bigint(13) not null,
+checkin_interval bigint(13) not null,
+primary key (instance_name))
+engine=innodb;
 
-CREATE TABLE QRTZ_LOCKS (
-LOCK_NAME VARCHAR(40) NOT NULL,
-PRIMARY KEY (LOCK_NAME))
-ENGINE=InnoDB;
+create table qrtz_locks (
+lock_name varchar(40) not null,
+primary key (lock_name))
+engine=innodb;
 
-INSERT INTO QRTZ_LOCKS values('TRIGGER_ACCESS');
-INSERT INTO QRTZ_LOCKS values('JOB_ACCESS');
-INSERT INTO QRTZ_LOCKS values('CALENDAR_ACCESS');
-INSERT INTO QRTZ_LOCKS values('STATE_ACCESS');
-INSERT INTO QRTZ_LOCKS values('MISFIRE_ACCESS');
+insert into qrtz_locks values('trigger_access');
+insert into qrtz_locks values('job_access');
+insert into qrtz_locks values('calendar_access');
+insert into qrtz_locks values('state_access');
+insert into qrtz_locks values('misfire_access');
 commit; 
