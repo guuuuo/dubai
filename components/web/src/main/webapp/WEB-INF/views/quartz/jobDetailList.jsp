@@ -22,7 +22,10 @@
         <div class="box-header well" data-original-title>
             <h2><i class="icon-user"></i> Job Details</h2>
             <div class="box-btn">
-                <a class="btn" href="${ctx}/admin/user/create">XXX</a>
+                <a class="btn" href="${ctx}/quartz/job-details/start-scheduler">Start Scheduler</a>
+                <a class="btn" href="${ctx}/quartz/job-details/standby-scheduler">Standby Scheduler</a>
+                <a class="btn" href="${ctx}/quartz/job-details/pause-all">Pause All</a>
+                <a class="btn" href="${ctx}/quartz/job-details/resume-all">Resume All</a>
             </div>
         </div>
         <div class="box-content">
@@ -57,7 +60,9 @@
                         <td>${jobDetail.jobClassName}</td>
                         <td class="actions">
                             <ul class="inline">
-
+                                <li><a href="/quartz/job-details/pause?jobGroup=${jobDetail.jobDetailPK.jobGroup}&jobName=${jobDetail.jobDetailPK.jobName}">Pause</a></li>
+                                <li><a href="/quartz/job-details/resume?jobGroup=${jobDetail.jobDetailPK.jobGroup}&jobName=${jobDetail.jobDetailPK.jobName}">Resume</a></li>
+                                <li><a href="/quartz/job-details/unschedule?jobGroup=${jobDetail.jobDetailPK.jobGroup}&jobName=${jobDetail.jobDetailPK.jobName}">UnSchedule</a></li>
                             </ul>
                         </td>
                     </tr>
