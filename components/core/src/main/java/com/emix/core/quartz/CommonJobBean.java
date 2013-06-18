@@ -1,5 +1,7 @@
 package com.emix.core.quartz;
 
+import org.perf4j.LoggingStopWatch;
+import org.perf4j.StopWatch;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -17,9 +19,10 @@ public class CommonJobBean extends QuartzJobBean {
 
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+        StopWatch stopWatch = new LoggingStopWatch();
+
         ApplicationContext applicationContext = getApplicationContext(jobExecutionContext);
         String realJobBeanName = getRealJobBeanName(jobExecutionContext);
-
         Job realJob = (Job) applicationContext.getBean(realJobBeanName);
 
         try {
@@ -27,6 +30,8 @@ public class CommonJobBean extends QuartzJobBean {
         } catch (Exception e) {
             logger.error(String.format("Error happened when execute job, realJobBeanName: %s, jobDataMap:[%s]", realJobBeanName, buildJobDataMap(jobExecutionContext)), e);
         }
+
+        stopWatch.stop(String.format("Job executed, realJobBeanName: %s, jobDataMap:[%s]", realJobBeanName, buildJobDataMap(jobExecutionContext)));
     }
 
     private ApplicationContext getApplicationContext(JobExecutionContext jobExecutionContext) throws JobExecutionException {

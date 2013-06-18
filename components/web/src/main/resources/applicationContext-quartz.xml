@@ -29,7 +29,7 @@
     <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean" >
         <property name="jobDetail" ref="cronJobDetail" />
         <property name="cronExpression" >
-            <value>0/3 * *  * * ?</value>
+            <value>0/30 * *  * * ?</value>
         </property>
     </bean>
 
