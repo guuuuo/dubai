@@ -9,6 +9,7 @@
         <module>components/core</module>
         <module>components/business</module>
         <module>components/web-admin</module>
+        <module>components/web-cms</module>
     </modules>
     <packaging>pom</packaging>
 
