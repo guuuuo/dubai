@@ -1,6 +1,6 @@
 package com.emix.dubai.business.service.common;
 
-import com.emix.dubai.business.entity.sys.User;
+import com.emix.dubai.business.entity.system.User;
 import com.emix.core.utils.TemplateContentProcessor;
 import org.apache.commons.lang3.Validate;
 import org.springframework.mail.javamail.JavaMailSender;

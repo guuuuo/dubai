@@ -1,9 +1,8 @@
 package com.emix.dubai.business.service.account;
 
-import com.emix.dubai.business.entity.sys.User;
-import com.emix.dubai.business.repository.TaskDao;
-import com.emix.dubai.business.repository.UserDao;
 import com.emix.core.exception.ServiceException;
+import com.emix.dubai.business.entity.system.User;
+import com.emix.dubai.business.repository.system.UserRepository;
 import com.emix.dubai.business.service.account.ShiroDbRealm.ShiroUser;
 import com.emix.dubai.business.status.UserStatus;
 import org.apache.commons.lang3.StringUtils;
@@ -42,8 +41,7 @@ public class AccountService {
 
     private static Logger logger = LoggerFactory.getLogger(AccountService.class);
 
-    private UserDao userDao;
-    private TaskDao taskDao;
+    private UserRepository userDao;
     private DateProvider dateProvider = DateProvider.DEFAULT;
 
     public List<User> getAllUser() {
@@ -104,8 +102,6 @@ public class AccountService {
             throw new ServiceException("不能删除超级管理员用户");
         }
         userDao.delete(id);
-        taskDao.deleteByUserId(id);
-
     }
 
     @Transactional(readOnly = false)
@@ -190,13 +186,8 @@ public class AccountService {
     }
 
     @Autowired
-    public void setUserDao(UserDao userDao) {
+    public void setUserDao(UserRepository userDao) {
         this.userDao = userDao;
-    }
-
-    @Autowired
-    public void setTaskDao(TaskDao taskDao) {
-        this.taskDao = taskDao;
     }
 
     public void setDateProvider(DateProvider dateProvider) {

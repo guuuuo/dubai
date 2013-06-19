@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.emix.dubai.business.entity.sys.User;
+import com.emix.dubai.business.entity.system.User;
 import com.emix.dubai.business.service.account.AccountService;
 import com.emix.dubai.business.service.account.ShiroDbRealm.ShiroUser;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;

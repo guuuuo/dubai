@@ -39,7 +39,7 @@
                 /favicon.ico = anon
                 /captcha = anon
                 /403 = anon
-				/admin/** = roles[admin]
+				/system/** = roles[admin]
 				/** = user
 			</value>
 		</property>

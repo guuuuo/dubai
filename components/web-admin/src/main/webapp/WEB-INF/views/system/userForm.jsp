@@ -17,7 +17,7 @@
         </div>
         <div class="box-content">
 
-            <form id="inputForm" action="${ctx}/admin/user/${action}" method="post" class="form-horizontal">
+            <form id="inputForm" action="${ctx}/system/user/${action}" method="post" class="form-horizontal">
                 <input type="hidden" name="id" value="${user.id}"/>
                 <fieldset>
                     <div class="control-group">
@@ -116,7 +116,7 @@
                 loginName: {
                     required: true,
                     minlength: 3,
-                    remote: "${ctx}/admin/user/checkLoginName"
+                    remote: "${ctx}/system/user/checkLoginName"
                 }
                 ,name : {
                     required: true,

@@ -1,4 +1,4 @@
-package com.emix.dubai.business.entity.sys;
+package com.emix.dubai.business.entity.system;
 
 import com.emix.dubai.business.entity.BaseEntity;
 import org.hibernate.annotations.Type;

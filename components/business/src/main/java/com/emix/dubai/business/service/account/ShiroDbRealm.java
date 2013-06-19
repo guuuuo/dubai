@@ -35,7 +35,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.emix.dubai.business.entity.sys.User;
+import com.emix.dubai.business.entity.system.User;
 import org.springside.modules.utils.Encodes;
 
 import com.google.common.base.Objects;

@@ -3,19 +3,6 @@ DROP TABLE IF EXISTS sys_user;
 DROP TABLE IF EXISTS dubai_option;
 DROP TABLE IF EXISTS dubai_post;
 
-CREATE TABLE dubai_task (
-  id          BIGINT AUTO_INCREMENT,
-  title       VARCHAR(128) NOT NULL,
-  description VARCHAR(255),
-  user_id     BIGINT       NOT NULL,
-  created_by VARCHAR(64) NOT NULL,
-  created_when TIMESTAMP DEFAULT '0000-00-00 00:00:00' NOT NULL,
-  updated_by VARCHAR(64),
-  updated_when TIMESTAMP,
-  PRIMARY KEY (id)
-)
-  ENGINE =InnoDB;
-
 CREATE TABLE sys_role
 (
   id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,

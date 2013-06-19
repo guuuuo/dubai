@@ -22,7 +22,7 @@
             <div class="box-header well" data-original-title>
                 <h2><i class="icon-user"></i> User</h2>
                 <div class="box-btn">
-                    <a class="btn" href="${ctx}/admin/user/create">Create User</a>
+                    <a class="btn" href="${ctx}/system/user/create">Create User</a>
                 </div>
             </div>
             <div class="box-content">
@@ -52,7 +52,7 @@
                     <tbody>
                     <c:forEach items="${users.content}" var="user">
                         <tr>
-                            <td><a href="${ctx}/admin/user/update/${user.id}">${user.loginName}</a></td>
+                            <td><a href="${ctx}/system/user/update/${user.id}">${user.loginName}</a></td>
                             <td>${user.niceName}</td>
                             <td>${user.email}</td>
                             <td>
@@ -75,14 +75,14 @@
                                 <ul class="inline">
                                     <c:choose>
                                         <c:when test="${user.statusCode == 1}">
-                                            <li><a href="${ctx}/admin/user/deactive/${user.id}">Deactive</a></li>
+                                            <li><a href="${ctx}/system/user/deactive/${user.id}">Deactive</a></li>
                                         </c:when>
                                         <c:otherwise>
-                                            <li><a href="${ctx}/admin/user/active/${user.id}">Active</a></li>
+                                            <li><a href="${ctx}/system/user/active/${user.id}">Active</a></li>
                                         </c:otherwise>
                                     </c:choose>
-                                    <li><a href="${ctx}/admin/user/update/${user.id}">Update</a></li>
-                                    <li><a href="${ctx}/admin/user/delete/${user.id}">Delete</a></li>
+                                    <li><a href="${ctx}/system/user/update/${user.id}">Update</a></li>
+                                    <li><a href="${ctx}/system/user/delete/${user.id}">Delete</a></li>
                                 </ul>
                             </td>
                         </tr>

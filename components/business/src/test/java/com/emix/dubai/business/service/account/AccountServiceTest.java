@@ -1,11 +1,10 @@
 package com.emix.dubai.business.service.account;
 
-import com.emix.dubai.data.UserData;
-import com.emix.dubai.business.entity.sys.User;
-import com.emix.dubai.business.repository.TaskDao;
-import com.emix.dubai.business.repository.UserDao;
 import com.emix.core.exception.ServiceException;
+import com.emix.dubai.business.entity.system.User;
+import com.emix.dubai.business.repository.system.UserRepository;
 import com.emix.dubai.business.service.account.ShiroDbRealm.ShiroUser;
+import com.emix.dubai.data.UserData;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -30,10 +29,7 @@ public class AccountServiceTest {
 	private AccountService accountService;
 
 	@Mock
-	private UserDao mockUserDao;
-
-	@Mock
-	private TaskDao mockTaskDao;
+	private UserRepository mockUserDao;
 
 	@Before
 	public void setUp() {

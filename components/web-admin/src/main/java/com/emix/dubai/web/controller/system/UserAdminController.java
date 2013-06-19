@@ -1,8 +1,8 @@
-package com.emix.dubai.web.controller.admin;
+package com.emix.dubai.web.controller.system;
 
 import com.emix.core.web.BaseController;
 import com.emix.dubai.constants.GlobalConstants;
-import com.emix.dubai.business.entity.sys.User;
+import com.emix.dubai.business.entity.system.User;
 import com.emix.core.exception.ServiceException;
 import com.emix.dubai.business.service.account.AccountService;
 import com.google.common.collect.Maps;
@@ -24,7 +24,7 @@ import java.util.Map;
  * @author calvin
  */
 @Controller
-@RequestMapping(value = "/admin/user")
+@RequestMapping(value = "/system/user")
 public class UserAdminController extends BaseController {
 
     private static Map<String, String> sortTypes = Maps.newLinkedHashMap();
@@ -51,35 +51,35 @@ public class UserAdminController extends BaseController {
         // 将搜索条件编码成字符串，用于排序，分页的URL
         model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams, "search_"));
 
-        return "admin/userList";
+        return "system/userList";
     }
 
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public String createForm(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("action", "create");
-        return "admin/userForm";
+        return "system/userForm";
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(@Valid User user, RedirectAttributes redirectAttributes) {
         accountService.createUser(user);
         redirectAttributes.addFlashAttribute("username", user.getLoginName());
-        return redirect("/admin/user");
+        return redirect("/system/user");
     }
 
     @RequestMapping(value = "update/{id}", method = RequestMethod.GET)
     public String updateForm(@PathVariable("id") Long id, Model model) {
         model.addAttribute("user", accountService.getUser(id));
         model.addAttribute("action", "update");
-        return "admin/userForm";
+        return "system/userForm";
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public String update(@Valid @ModelAttribute("preloadUser") User user, RedirectAttributes redirectAttributes) {
         accountService.updateUser(user);
         redirectAttributes.addFlashAttribute("message", "更新用户" + user.getLoginName() + "成功");
-        return redirect("/admin/user");
+        return redirect("/system/user");
     }
 
     @RequestMapping(value = "delete/{id}")
@@ -89,10 +89,10 @@ public class UserAdminController extends BaseController {
             accountService.deleteUser(id);
         } catch (ServiceException ex) {
             redirectAttributes.addFlashAttribute("error", ex.getMessage());
-            return redirect("/admin/user");
+            return redirect("/system/user");
         }
         redirectAttributes.addFlashAttribute("message", "删除用户" + user.getLoginName() + "成功");
-        return redirect("/admin/user");
+        return redirect("/system/user");
     }
 
     @RequestMapping(value = "active/{id}")
@@ -100,7 +100,7 @@ public class UserAdminController extends BaseController {
         User user = accountService.getUser(id);
         accountService.activeUser(id);
         redirectAttributes.addFlashAttribute("message", "激活用户" + user.getLoginName() + "成功");
-        return redirect("/admin/user");
+        return redirect("/system/user");
     }
 
     @RequestMapping(value = "deactive/{id}")
@@ -110,10 +110,10 @@ public class UserAdminController extends BaseController {
             accountService.deactiveUser(id);
         } catch (ServiceException ex) {
             redirectAttributes.addFlashAttribute("error", ex.getMessage());
-            return redirect("/admin/user");
+            return redirect("/system/user");
         }
         redirectAttributes.addFlashAttribute("message", "取消激活用户" + user.getLoginName() + "成功");
-        return redirect("/admin/user");
+        return redirect("/system/user");
     }
 
     /**

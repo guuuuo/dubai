@@ -1,6 +1,6 @@
 package com.emix.dubai.web.controller.passport;
 
-import com.emix.dubai.business.entity.sys.User;
+import com.emix.dubai.business.entity.system.User;
 import com.emix.dubai.business.service.account.AccountService;
 import com.emix.dubai.business.service.common.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.emix.dubai.data;
 
-import com.emix.dubai.business.entity.sys.User;
+import com.emix.dubai.business.entity.system.User;
 import org.springside.modules.test.data.RandomData;
 
 public class UserData {
