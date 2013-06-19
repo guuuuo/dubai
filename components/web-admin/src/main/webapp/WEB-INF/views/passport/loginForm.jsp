@@ -94,6 +94,14 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $("#username").focus();
+            $("#inputForm").validate({
+                highlight: function(element) {
+                    $(element).closest('.control-group').removeClass('success').addClass('error');
+                },
+                success: function(element) {
+                    element.text('').addClass('valid').closest('.control-group').removeClass('error').addClass('success');
+                }
+            });
         });
     </script>
 </body>

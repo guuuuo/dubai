@@ -23,6 +23,11 @@ public class LoginController {
 		return "passport/loginForm";
 	}
 
+    @RequestMapping(value ="success", method = RequestMethod.GET)
+    public String loginResult() {
+        return "passport/loginResult";
+    }
+
 	@RequestMapping(method = RequestMethod.POST)
 	public String fail(@RequestParam(FormAuthenticationFilter.DEFAULT_USERNAME_PARAM) String userName, Model model) {
 		model.addAttribute(FormAuthenticationFilter.DEFAULT_USERNAME_PARAM, userName);

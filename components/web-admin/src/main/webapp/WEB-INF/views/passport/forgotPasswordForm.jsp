@@ -73,7 +73,15 @@
     <%@ include file="/WEB-INF/layouts/includes/js.jsp"%>
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#loginName").focus();
+            $("#username").focus();
+            $("#inputForm").validate({
+                highlight: function(element) {
+                    $(element).closest('.control-group').removeClass('success').addClass('error');
+                },
+                success: function(element) {
+                    element.text('').addClass('valid').closest('.control-group').removeClass('error').addClass('success');
+                }
+            });
         });
     </script>
 </body>

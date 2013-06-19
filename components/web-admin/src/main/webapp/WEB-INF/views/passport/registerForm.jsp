@@ -90,16 +90,22 @@
             $("#inputForm").validate({
                 rules: {
                     loginName: {
-                        remote: "${ctx}/passport/register/checkLoginName"
+                        remote: "${ctx}/passport/register/validateLoginName"
                     },
                     email : {
                         required: true,
                         email: true
+                    },
+                    captcha : {
+                            remote: "${ctx}/passport/register/validateCaptcha"
                     }
                 },
                 messages: {
                     loginName: {
-                        remote: "用户名已存在，请检查后重新输入"
+                        remote: "用户名已存在"
+                    },
+                    captcha : {
+                        remote: "验证码输入有误"
                     }
                 },
                 highlight: function(element) {

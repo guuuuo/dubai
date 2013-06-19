@@ -18,7 +18,6 @@ import java.util.List;
 public class User extends BaseEntity {
     private String loginName;
     private String niceName;
-    private String plainPassword;
     private String password;
     private String email;
     private String salt;
@@ -28,6 +27,10 @@ public class User extends BaseEntity {
     private String actKey;
     private Date actKeyGenDate;
     private Date actDate;
+
+    // *** do not persistence ***
+    private String plainPassword;
+    private String captcha;
 
     public User() {
     }
@@ -155,5 +158,15 @@ public class User extends BaseEntity {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
+    }
+
+    @Transient
+    @JsonIgnore
+    public String getCaptcha() {
+        return captcha;
+    }
+
+    public void setCaptcha(String captcha) {
+        this.captcha = captcha;
     }
 }
