@@ -9,10 +9,10 @@
 <head>
     <title>Dubai &gt;&gt; <sitemesh:title/></title>
     <!-- The styles -->
-    <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.css">
-    <link rel='stylesheet' href='/assets/css/vendor/uniform.default.css'>
-    <link rel='stylesheet' href='/assets/vendor/jquery-validation/validate.css'>
-    <link rel='stylesheet' href='/assets/css/main.css'>
+    <link rel="stylesheet" href="${ctx}/assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel='stylesheet' href='${ctx}/assets/css/vendor/uniform.default.css'>
+    <link rel='stylesheet' href='${ctx}/assets/vendor/jquery-validation/validate.css'>
+    <link rel='stylesheet' href='${ctx}/assets/css/main.css'>
     <style type="text/css">
         body {
             background-color: #f5f5f5;
@@ -51,7 +51,7 @@
     <![endif]-->
 
     <!-- The fav icon -->
-    <link rel="shortcut icon" href="/assets/img/favicon.ico">
+    <link rel="shortcut icon" href="${ctx}/assets/img/favicon.ico">
 
     <sitemesh:head/>
 </head>

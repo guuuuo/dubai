@@ -8,7 +8,7 @@
     <modules>
         <module>components/core</module>
         <module>components/business</module>
-        <module>components/web</module>
+        <module>components/web-admin</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -239,6 +239,11 @@
             <artifactId>log4jdbc-remix</artifactId>
             <version>0.2.7</version>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.perf4j</groupId>
+            <artifactId>perf4j</artifactId>
+            <version>0.9.16</version>
         </dependency>
         <!-- LOGGING end -->
 

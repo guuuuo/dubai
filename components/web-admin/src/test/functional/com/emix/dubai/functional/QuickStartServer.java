@@ -22,17 +22,13 @@ public class QuickStartServer {
         // 设定Spring的profile
         System.setProperty("spring.profiles.active", "development");
 
-        // 启动Jetty
-//		Server server = JettyFactory.createServerInSource(PORT, CONTEXT);
-//		JettyFactory.setTldJarNames(server, TLD_JAR_NAMES);
-
         Server server = new Server();
 
         Connector connector = new SelectChannelConnector();
         connector.setPort(PORT);
         server.setConnectors(new Connector[]{connector});
 
-        WebAppContext context = new WebAppContext("components/web/src/main/webapp", "/");
+        WebAppContext context = new WebAppContext("components/web-admin/src/main/webapp", "/admin");
         server.setHandler(context);
 
         server.setStopAtShutdown(true);
