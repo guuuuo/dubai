@@ -60,9 +60,9 @@
                         <td>${jobDetail.jobClassName}</td>
                         <td class="actions">
                             <ul class="inline">
-                                <li><a href="/quartz/job-details/pause?jobGroup=${jobDetail.jobDetailPK.jobGroup}&jobName=${jobDetail.jobDetailPK.jobName}">Pause</a></li>
-                                <li><a href="/quartz/job-details/resume?jobGroup=${jobDetail.jobDetailPK.jobGroup}&jobName=${jobDetail.jobDetailPK.jobName}">Resume</a></li>
-                                <li><a href="/quartz/job-details/unschedule?jobGroup=${jobDetail.jobDetailPK.jobGroup}&jobName=${jobDetail.jobDetailPK.jobName}">UnSchedule</a></li>
+                                <li><a href="${ctx}/quartz/job-details/pause?jobGroup=${jobDetail.jobDetailPK.jobGroup}&jobName=${jobDetail.jobDetailPK.jobName}">Pause</a></li>
+                                <li><a href="${ctx}/quartz/job-details/resume?jobGroup=${jobDetail.jobDetailPK.jobGroup}&jobName=${jobDetail.jobDetailPK.jobName}">Resume</a></li>
+                                <li><a href="${ctx}/quartz/job-details/unschedule?jobGroup=${jobDetail.jobDetailPK.jobGroup}&jobName=${jobDetail.jobDetailPK.jobName}">UnSchedule</a></li>
                             </ul>
                         </td>
                     </tr>
