@@ -1,4 +1,7 @@
-﻿<div class="navbar navbar-fixed-top">
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+
+<div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container-fluid">
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
@@ -6,19 +9,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="/"> <img alt="Dubai Logo" src="/assets/img/logo20.png" /> <span>Dubai</span></a>
+            <a class="brand" href="/"> <img alt="Dubai Logo" src="${ctx}/assets/img/logo20.png" /> <span>Dubai</span></a>
 
             <!-- module switch starts -->
-            <div class="nav-collapse collapse">
+            <div class="nav-collapse collapse module-menu">
                 <ul class="nav">
                     <li class="active">
-                        <a href="/">首页</a>
+                        <a href="${ctx}/home">Home</a>
                     </li>
                     <li>
-                        <a href="/">监控</a>
+                        <a href="${ctx}/system">System</a>
                     </li>
                     <li>
-                        <a href="/">日志</a>
+                        <a href="${ctx}/quartz">Quartz</a>
                     </li>
                 </ul>
             </div>

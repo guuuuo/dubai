@@ -41,19 +41,16 @@ public class AccountService {
 
     private static Logger logger = LoggerFactory.getLogger(AccountService.class);
 
-    private UserRepository userDao;
+    @Autowired
+    private UserRepository userRepository;
     private DateProvider dateProvider = DateProvider.DEFAULT;
 
-    public List<User> getAllUser() {
-        return (List<User>) userDao.findAll();
-    }
-
     public User getUser(Long id) {
-        return userDao.findOne(id);
+        return userRepository.findOne(id);
     }
 
     public User findUserByLoginName(String loginName) {
-        return userDao.findByLoginName(loginName);
+        return userRepository.findByLoginName(loginName);
     }
 
     @Transactional(readOnly = false)
@@ -67,7 +64,7 @@ public class AccountService {
         user.setCreatedBy(user.getLoginName());
         user.setCreatedWhen(dateProvider.getDate());
 
-        userDao.save(user);
+        userRepository.save(user);
     }
 
     @Transactional(readOnly = false)
@@ -75,8 +72,10 @@ public class AccountService {
         entryptPassword(user);
         generateActivationKey(user);
         user.setRegisterDate(dateProvider.getDate());
+        user.setCreatedBy("niko");
+        user.setCreatedWhen(dateProvider.getDate());
 
-        userDao.save(user);
+        userRepository.save(user);
     }
 
     @Transactional(readOnly = false)
@@ -84,15 +83,15 @@ public class AccountService {
         if (StringUtils.isNotBlank(user.getPlainPassword())) {
             entryptPassword(user);
         }
-        userDao.save(user);
+        userRepository.save(user);
     }
 
     @Transactional(readOnly = false)
     public void updatePassword(User user) {
-        User dbUser = userDao.findOne(user.getId());
+        User dbUser = userRepository.findOne(user.getId());
         dbUser.setPlainPassword(user.getPlainPassword());
         entryptPassword(dbUser);
-        userDao.save(dbUser);
+        userRepository.save(dbUser);
     }
 
     @Transactional(readOnly = false)
@@ -101,14 +100,14 @@ public class AccountService {
             logger.warn("操作员{}尝试删除超级管理员用户", getCurrentUserName());
             throw new ServiceException("不能删除超级管理员用户");
         }
-        userDao.delete(id);
+        userRepository.delete(id);
     }
 
     @Transactional(readOnly = false)
     public void activeUser(Long id) {
-        User user = userDao.findOne(id);
+        User user = userRepository.findOne(id);
         user.setStatusCode(UserStatus.Active.code());
-        userDao.save(user);
+        userRepository.save(user);
     }
 
     @Transactional(readOnly = false)
@@ -117,16 +116,16 @@ public class AccountService {
             logger.warn("操作员{}尝试取消激活超级管理员用户", getCurrentUserName());
             throw new ServiceException("不能取消激活超级管理员用户");
         }
-        User user = userDao.findOne(id);
+        User user = userRepository.findOne(id);
         user.setStatusCode(UserStatus.Inactive.code());
-        userDao.save(user);
+        userRepository.save(user);
     }
 
     public Page<User> getUsers(Map<String, Object> searchParams, int pageNumber, int pageSize, String sortType) {
         PageRequest pageRequest = buildPageRequest(pageNumber, pageSize, sortType);
         Specification<User> spec = buildSpecification(searchParams);
 
-        return userDao.findAll(spec, pageRequest);
+        return userRepository.findAll(spec, pageRequest);
     }
 
     /**
@@ -183,11 +182,6 @@ public class AccountService {
     void generateActivationKey(User user) {
         user.setActKey(Encodes.encodeHex(Digests.sha1((user.getLoginName() + System.currentTimeMillis()).getBytes())));
         user.setActKeyGenDate(dateProvider.getDate());
-    }
-
-    @Autowired
-    public void setUserDao(UserRepository userDao) {
-        this.userDao = userDao;
     }
 
     public void setDateProvider(DateProvider dateProvider) {
