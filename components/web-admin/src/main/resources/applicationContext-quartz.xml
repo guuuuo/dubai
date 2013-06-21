@@ -5,41 +5,34 @@
 
     <description>Quartz</description>
 
-    <!-- Quartz本地Schduler -->
-    <bean id="localQuartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false">
-        <property name="configLocation" value="classpath:quartz.properties"/>
-        <property name="applicationContextSchedulerContextKey" value="applicationContextKey" />
-        <!-- Quartz配置 -->
-        <property name="quartzProperties">
-            <props>
-                <prop key="org.quartz.threadPool.threadCount">5</prop>
-            </props>
-        </property>
-        <!-- 启动时延期3秒开始任务 -->
-        <property name="startupDelay" value="3"/>
-        <!-- Triggers集成 -->
-        <property name="triggers">
-            <list>
-                <ref bean="cronTrigger"/>
-            </list>
-        </property>
-    </bean>
-
-    <!-- Cron式Trigger定义 -->
-    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean" >
-        <property name="jobDetail" ref="cronJobDetail" />
-        <property name="cronExpression" >
-            <value>0/30 * *  * * ?</value>
-        </property>
-    </bean>
-
     <!-- Cron JobDetail -->
-    <bean id="cronJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+    <bean id="testJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
         <property name="jobClass" value="com.emix.core.quartz.CommonJobBean" />
         <property name="jobDataAsMap">
             <map>
                 <entry key="realJobBeanName" value="testJob" />
             </map>
+        </property>
+    </bean>
+    <bean id="testTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean" >
+        <property name="jobDetail" ref="testJobDetail" />
+        <property name="cronExpression" >
+            <value>0/30 * *  * * ?</value>
+        </property>
+    </bean>
+
+    <!-- Quartz本地Schduler -->
+    <bean id="localQuartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false">
+        <property name="configLocation" value="classpath:quartz.properties" />
+        <property name="dataSource" ref="dataSource" />
+        <property name="autoStartup" value="true" />
+        <property name="startupDelay" value="30"/>
+        <property name="overwriteExistingJobs" value="true"/>
+        <property name="applicationContextSchedulerContextKey" value="applicationContextKey" />
+        <property name="triggers">
+            <list>
+                <ref bean="testTrigger"/>
+            </list>
         </property>
     </bean>
 

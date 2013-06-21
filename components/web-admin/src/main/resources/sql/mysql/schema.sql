@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS dubai_task;
+DROP TABLE IF EXISTS sys_role;
 DROP TABLE IF EXISTS sys_user;
-DROP TABLE IF EXISTS dubai_option;
+DROP TABLE IF EXISTS sys_option;
 DROP TABLE IF EXISTS dubai_post;
 
 CREATE TABLE sys_role
@@ -42,7 +42,7 @@ CREATE UNIQUE INDEX idx_unq_user_login_name ON sys_user ( login_name );
 CREATE INDEX idx_user_login_name ON sys_user ( login_name );
 CREATE INDEX idx_user_nice_name ON sys_user ( nice_name );
 
-CREATE TABLE dubai_option
+CREATE TABLE sys_option
 (
   id       BIGINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
   name     VARCHAR(64) DEFAULT ''      NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE dubai_option
   updated_when TIMESTAMP
 )
   ENGINE =InnoDB;
-CREATE UNIQUE INDEX idx_unq_option_name ON dubai_option (name);
+CREATE UNIQUE INDEX idx_unq_option_name ON sys_option (name);
 
 CREATE TABLE dubai_post
 (
