@@ -1,10 +1,12 @@
 package com.emix.dubai.web.controller.system;
 
-import com.emix.core.web.BaseController;
-import com.emix.dubai.constants.GlobalConstants;
-import com.emix.dubai.business.entity.system.User;
 import com.emix.core.exception.ServiceException;
+import com.emix.core.web.BaseController;
+import com.emix.dubai.business.entity.system.Role;
+import com.emix.dubai.business.entity.system.User;
+import com.emix.dubai.business.service.system.RoleService;
 import com.emix.dubai.business.service.system.UserService;
+import com.emix.dubai.constants.GlobalConstants;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,17 +26,19 @@ import java.util.Map;
  * @author calvin
  */
 @Controller
-@RequestMapping(value = "/system/user")
-public class UserAdminController extends BaseController {
+@RequestMapping(value = "/system/role")
+public class RoleController extends BaseController {
 
     private static Map<String, String> sortTypes = Maps.newLinkedHashMap();
 
     static {
         sortTypes.put("auto", "自动");
-        sortTypes.put("loginName", "登录名");
-        sortTypes.put("name", "用户名");
+        sortTypes.put("roleName", "角色名称");
+        sortTypes.put("roleDesc", "角色描述");
     }
 
+    @Autowired
+    private RoleService roleService;
     @Autowired
     private UserService userService;
 
@@ -43,43 +47,43 @@ public class UserAdminController extends BaseController {
                        @RequestParam(value = "page", defaultValue = "1") int pageNumber, Model model, ServletRequest request) {
         Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 
-        Page<User> users = userService.getUsers(searchParams, pageNumber, GlobalConstants.PAGE_SIZE, sortType);
+        Page<Role> roles = roleService.getRoles(searchParams, pageNumber, GlobalConstants.PAGE_SIZE, sortType);
 
-        model.addAttribute("users", users);
+        model.addAttribute("roles", roles);
         model.addAttribute("sortType", sortType);
         model.addAttribute("sortTypes", sortTypes);
         // 将搜索条件编码成字符串，用于排序，分页的URL
         model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams, "search_"));
 
-        return "system/userList";
+        return "system/roleList";
     }
 
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public String createForm(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("role", new Role());
         model.addAttribute("action", "create");
-        return "system/userForm";
+        return "system/roleForm";
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String create(@Valid User user, RedirectAttributes redirectAttributes) {
-        userService.createUser(user);
-        redirectAttributes.addFlashAttribute("username", user.getLoginName());
-        return redirect("/system/user");
+    public String create(@Valid Role role, RedirectAttributes redirectAttributes) {
+        roleService.create(role);
+        redirectAttributes.addFlashAttribute("roleName", role.getRoleName());
+        return redirect("/system/role");
     }
 
     @RequestMapping(value = "update/{id}", method = RequestMethod.GET)
     public String updateForm(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("user", userService.getUser(id));
+        model.addAttribute("role", roleService.getRole(id));
         model.addAttribute("action", "update");
-        return "system/userForm";
+        return "system/roleForm";
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public String update(@Valid @ModelAttribute("preloadUser") User user, RedirectAttributes redirectAttributes) {
-        userService.updateUser(user);
-        redirectAttributes.addFlashAttribute("message", "更新用户" + user.getLoginName() + "成功");
-        return redirect("/system/user");
+    public String update(@Valid @ModelAttribute("preloadRole") Role role, RedirectAttributes redirectAttributes) {
+        roleService.update(role);
+        redirectAttributes.addFlashAttribute("message", "更新角色" + role.getRoleName() + "成功");
+        return redirect("/system/role");
     }
 
     @RequestMapping(value = "delete/{id}")

@@ -13,8 +13,8 @@
 	</bean>
 
 	<!-- 項目自定义的Realm, 所有accountService依赖的dao都需要用depends-on声明 -->
-	<bean id="shiroDbRealm" class="com.emix.dubai.business.service.account.ShiroDbRealm" depends-on="userDao,taskDao">
-		<property name="accountService" ref="accountService"/>
+	<bean id="shiroDbRealm" class="com.emix.dubai.business.service.system.ShiroDbRealm" depends-on="userDao,taskDao">
+		<property name="userService" ref="accountService"/>
 	</bean>
 	
 	<!-- Shiro Filter -->

@@ -34,8 +34,8 @@
                     <form class="form-search" action="#">
                         <label for="search_LIKE_jobName">Job Name</label> <input type="text" id="search_LIKE_jobName" name="search_LIKE_jobDetailPK.jobName" class="input-medium" value="${param.search_LIKE_jobDetailPK.jobName}">
                         <label for="search_LIKE_jobClassName">Job Class Name</label> <input type="text"  id="search_LIKE_jobClassName" name="search_LIKE_jobClassName" class="input-medium" value="${param.search_LIKE_jobClassName}">
-                        <button type="submit" class="btn btn-primary" id="search_btn">Search</button>
-                        <button type="reset" class="btn" id="reset_btn">Reset</button>
+                        <button type="submit" class="btn btn-primary" id="search_btn">查询</button>
+                        <a class="btn" id="reset_btn" href="${ctx}/quartz/job-details" >重置</a>
                     </form>
                 </div>
                 <tags:sort/>

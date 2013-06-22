@@ -3,7 +3,7 @@ package com.emix.dubai.web.controller.passport;
 import com.emix.core.shiro.ShiroConstant;
 import com.emix.core.utils.StringUtil;
 import com.emix.dubai.business.entity.system.User;
-import com.emix.dubai.business.service.account.AccountService;
+import com.emix.dubai.business.service.system.UserService;
 import com.emix.dubai.business.service.common.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +24,7 @@ import javax.validation.Valid;
 public class RegisterController {
 
     @Autowired
-    private AccountService accountService;
+    private UserService userService;
     @Autowired
     private NotificationService notificationService;
 
@@ -35,7 +35,7 @@ public class RegisterController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String register(@Valid User user, RedirectAttributes redirectAttributes) {
-        accountService.registerUser(user);
+        userService.registerUser(user);
         notificationService.sendRegisterNotification(user);
         redirectAttributes.addFlashAttribute("user", user);
         return "passport/registerResult";
@@ -47,7 +47,7 @@ public class RegisterController {
     @RequestMapping(value = "validateLoginName")
     @ResponseBody
     public String validateLoginName(@RequestParam("loginName") String loginName) {
-        if (accountService.findUserByLoginName(loginName) == null) {
+        if (userService.findUserByLoginName(loginName) == null) {
             return "true";
         } else {
             return "false";

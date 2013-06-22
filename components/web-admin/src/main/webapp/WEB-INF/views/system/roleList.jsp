@@ -6,7 +6,7 @@
 
 <html>
 <head>
-	<title>用户管理</title>
+	<title>角色管理</title>
 </head>
 
 <body>
@@ -20,19 +20,19 @@
     <div class="row-fluid">
         <div class="box span12">
             <div class="box-header well" data-original-title>
-                <h2><i class="icon-user"></i> User</h2>
+                <h2><i class="icon-user"></i> Role</h2>
                 <div class="box-btn">
-                    <a class="btn" href="${ctx}/system/user/create">Create User</a>
+                    <a class="btn" href="${ctx}/system/role/create">Create Role</a>
                 </div>
             </div>
             <div class="box-content">
                 <div class="row-fluid">
                     <div class="span10">
                         <form class="form-search" action="#">
-                            <label for="search_LIKE_loginName">登录名</label> <input type="text" id="search_LIKE_loginName" name="search_LIKE_loginName" class="input-medium" value="${param.search_LIKE_loginName}">
-                            <label for="search_LIKE_name">昵称</label> <input type="text"  id="search_LIKE_name" name="search_LIKE_name" class="input-medium" value="${param.search_LIKE_niceName}">
+                            <label for="search_LIKE_roleName">角色名称</label> <input type="text" id="search_LIKE_roleName" name="search_LIKE_roleName" class="input-medium" value="${param.search_LIKE_roleName}">
+                            <label for="search_LIKE_roleDesc">角色描述</label> <input type="text"  id="search_LIKE_roleDesc" name="search_LIKE_roleDesc" class="input-medium" value="${param.search_LIKE_roleDesc}">
                             <button type="submit" class="btn btn-primary" id="search_btn">查询</button>
-                            <a class="btn" id="reset_btn" href="${ctx}/system/user" >重置</a>
+                            <a class="btn" id="reset_btn" href="${ctx}/system/role" >重置</a>
                         </form>
                     </div>
                     <tags:sort/>
@@ -41,55 +41,50 @@
                 <table id="contentTable" class="table table-striped table-bordered table-condensed">
                     <thead>
                         <tr>
-                            <th>登录名</th>
-                            <th>昵称</th>
-                            <th>电子邮件</th>
-                            <th>注册时间</th>
+                            <th>角色名称</th>
+                            <th>角色描述</th>
+                            <th>创建时间</th>
                             <th>状态</th>
                             <th>管理</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${users.content}" var="user">
+                    <c:forEach items="${roles.content}" var="role">
                         <tr>
-                            <td><a href="${ctx}/system/user/update/${user.id}">${user.loginName}</a></td>
-                            <td>${user.niceName}</td>
-                            <td>${user.email}</td>
+                            <td><a href="${ctx}/system/role/update/${role.id}">${role.roleName}</a></td>
+                            <td>${role.roleDesc}</td>
                             <td>
-                                <fmt:formatDate value="${user.registerDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+                                <fmt:formatDate value="${role.createdWhen}" pattern="yyyy-MM-dd HH:mm:ss" />
                             </td>
                             <td>
                                 <c:choose>
-                                    <c:when test="${user.statusCode == 1}">
+                                    <c:when test="${role.active}">
                                         <span class="label label-success">Active</span>
                                     </c:when>
-                                    <c:when test="${user.statusCode == 0}">
-                                        <span class="label label-warning">Pending</span>
-                                    </c:when>
-                                    <c:when test="${user.statusCode == -1}">
-                                        <span class="label">Inactive</span>
+                                    <c:when test="${!role.active}">
+                                        <span class="label label-warning">Inactive</span>
                                     </c:when>
                                 </c:choose>
                             </td>
                             <td class="actions">
                                 <ul class="inline">
                                     <c:choose>
-                                        <c:when test="${user.statusCode == 1}">
-                                            <li><a href="${ctx}/system/user/deactive/${user.id}">Deactive</a></li>
+                                        <c:when test="${role.active}">
+                                            <li><a href="${ctx}/system/role/deactive/${role.id}">Deactive</a></li>
                                         </c:when>
                                         <c:otherwise>
-                                            <li><a href="${ctx}/system/user/active/${user.id}">Active</a></li>
+                                            <li><a href="${ctx}/system/role/active/${role.id}">Active</a></li>
                                         </c:otherwise>
                                     </c:choose>
-                                    <li><a href="${ctx}/system/user/update/${user.id}">Update</a></li>
-                                    <li><a href="${ctx}/system/user/delete/${user.id}">Delete</a></li>
+                                    <li><a href="${ctx}/system/role/update/${role.id}">Update</a></li>
+                                    <li><a href="${ctx}/system/role/delete/${role.id}">Delete</a></li>
                                 </ul>
                             </td>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
-                <tags:pagination page="${users}" paginationSize="20"/>
+                <tags:pagination page="${roles}" paginationSize="20"/>
             </div><!--/box-content-->
         </div><!--/span-->
     </div><!--/row-->

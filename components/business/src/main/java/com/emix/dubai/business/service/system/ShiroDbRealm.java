@@ -16,12 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.emix.dubai.business.service.account;
+package com.emix.dubai.business.service.system;
 
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 
+import com.emix.dubai.business.service.system.UserService;
 import com.emix.dubai.business.status.UserStatus;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -42,7 +43,7 @@ import com.google.common.base.Objects;
 
 public class ShiroDbRealm extends AuthorizingRealm {
 
-	protected AccountService accountService;
+	protected UserService userService;
 
 	/**
 	 * 认证回调函数,登录时调用.
@@ -51,7 +52,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
         try{
             UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-            User user = accountService.findUserByLoginName(token.getUsername());
+            User user = userService.findUserByLoginName(token.getUsername());
             if (user != null && user.getStatusCode() == UserStatus.Active.code()) {
                 byte[] salt = Encodes.decodeHex(user.getSalt());
                 return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getLoginName(), user.getNiceName()),
@@ -69,7 +70,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		ShiroUser shiroUser = (ShiroUser) principals.getPrimaryPrincipal();
-		User user = accountService.findUserByLoginName(shiroUser.loginName);
+		User user = userService.findUserByLoginName(shiroUser.loginName);
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		info.addRoles(user.getRoleList());
 		return info;
@@ -80,15 +81,15 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	 */
 	@PostConstruct
 	public void initCredentialsMatcher() {
-		HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(AccountService.HASH_ALGORITHM);
-		matcher.setHashIterations(AccountService.HASH_INTERATIONS);
+		HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(UserService.HASH_ALGORITHM);
+		matcher.setHashIterations(UserService.HASH_INTERATIONS);
 
 		setCredentialsMatcher(matcher);
 	}
 
 	@Autowired
-	public void setAccountService(AccountService accountService) {
-		this.accountService = accountService;
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 
 	/**

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.emix.dubai.business.entity.system.User;
-import com.emix.dubai.business.service.account.AccountService;
-import com.emix.dubai.business.service.account.ShiroDbRealm.ShiroUser;
+import com.emix.dubai.business.service.system.UserService;
+import com.emix.dubai.business.service.system.ShiroDbRealm.ShiroUser;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -25,18 +25,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ProfileController {
 
 	@Autowired
-	private AccountService accountService;
+	private UserService userService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String profileForm(Model model) {
 		Long id = getCurrentUserId();
-		model.addAttribute("user", accountService.getUser(id));
+		model.addAttribute("user", userService.getUser(id));
 		return "account/profile";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String updateProfile(@Valid @ModelAttribute("preloadUser") User user, RedirectAttributes redirectAttributes) {
-		accountService.updateUser(user);
+		userService.updateUser(user);
 		updateCurrentUserName(user.getNiceName());
         redirectAttributes.addFlashAttribute("message", "个人资料成功保存。");
         return "redirect:/account/settings/profile";
@@ -45,7 +45,7 @@ public class ProfileController {
 	@ModelAttribute("preloadUser")
 	public User getUser(@RequestParam(value = "id", required = false) Long id) {
 		if (id != null) {
-			return accountService.getUser(id);
+			return userService.getUser(id);
 		}
 		return null;
 	}
