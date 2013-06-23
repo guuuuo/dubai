@@ -38,11 +38,13 @@
                         <label class="control-label">状态</label>
                         <div class="controls">
                             <label class="radio inline">
-                                <div class="radio"><span class="checked"><input type="radio" value="1" name="active"></span></div>
+                                <div class="radio"><span class="checked">
+                                    <input type="radio" value="1" name="active" <c:if test="${role.active}">checked="true"</c:if>>
+                                </span></div>
                                 启动
                             </label>
                             <label class="radio inline">
-                                <div class="radio"><span><input type="radio" value="-1" name="active"></span></div>
+                                <div class="radio"><span><input type="radio" value="-1" name="active" <c:if test="${!role.active}">checked="true"</c:if>></span></div>
                                 禁用
                             </label>
                         </div>

@@ -53,7 +53,7 @@ public class RoleService {
     }
 
     @Transactional(readOnly = false)
-    public void deleteUser(Long id) {
+    public void deleteRole(Long id) {
         if (isSupervisor(id)) {
             logger.warn("操作员{}尝试删除超级管理员角色");
             throw new ServiceException("不能删除超级管理员角色");

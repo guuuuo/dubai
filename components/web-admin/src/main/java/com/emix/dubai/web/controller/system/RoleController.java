@@ -88,36 +88,49 @@ public class RoleController extends BaseController {
 
     @RequestMapping(value = "delete/{id}")
     public String delete(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
-        User user = userService.getUser(id);
+        Role role = roleService.getRole(id);
+        if(role==null) {
+            redirectAttributes.addFlashAttribute("error", String.format("不存在id为「%s」的角色", id));
+            return redirect("/system/role");
+        }
         try {
-            userService.deleteUser(id);
+            roleService.deleteRole(id);
         } catch (ServiceException ex) {
             redirectAttributes.addFlashAttribute("error", ex.getMessage());
-            return redirect("/system/user");
+            return redirect("/system/role");
         }
-        redirectAttributes.addFlashAttribute("message", "删除用户" + user.getLoginName() + "成功");
-        return redirect("/system/user");
+        redirectAttributes.addFlashAttribute("message", "删除角色『" + role.getRoleName() + "』成功");
+        return redirect("/system/role");
     }
 
     @RequestMapping(value = "active/{id}")
     public String active(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
-        User user = userService.getUser(id);
-        userService.activeUser(id);
-        redirectAttributes.addFlashAttribute("message", "激活用户" + user.getLoginName() + "成功");
-        return redirect("/system/user");
+        Role role = roleService.getRole(id);
+        if(role==null) {
+            redirectAttributes.addFlashAttribute("error", String.format("不存在id为「%s」的角色", id));
+            return redirect("/system/role");
+        }
+
+        roleService.active(id);
+        redirectAttributes.addFlashAttribute("message", "激活角色『" + role.getRoleName() + "』成功");
+        return redirect("/system/role");
     }
 
     @RequestMapping(value = "deactive/{id}")
     public String deactive(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
-        User user = userService.getUser(id);
+        Role role = roleService.getRole(id);
+        if(role==null) {
+            redirectAttributes.addFlashAttribute("error", String.format("不存在id为「%s」的角色", id));
+            return redirect("/system/role");
+        }
         try {
-            userService.deactiveUser(id);
+            roleService.deactive(id);
         } catch (ServiceException ex) {
             redirectAttributes.addFlashAttribute("error", ex.getMessage());
-            return redirect("/system/user");
+            return redirect("/system/role");
         }
-        redirectAttributes.addFlashAttribute("message", "取消激活用户" + user.getLoginName() + "成功");
-        return redirect("/system/user");
+        redirectAttributes.addFlashAttribute("message", "禁用角色『" + role.getRoleName() + "』成功");
+        return redirect("/system/role");
     }
 
     /**
