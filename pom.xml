@@ -8,8 +8,8 @@
     <modules>
         <module>components/core</module>
         <module>components/business</module>
-        <module>components/web-admin</module>
-        <module>components/web-cms</module>
+        <module>components/web-bo</module>
+        <module>components/web-fo</module>
     </modules>
     <packaging>pom</packaging>
 
