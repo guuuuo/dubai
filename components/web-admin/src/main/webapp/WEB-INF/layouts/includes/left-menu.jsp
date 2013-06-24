@@ -9,6 +9,7 @@
 
             <shiro:hasRole name="admin">
                 <li class="nav-header hidden-tablet">系统模块</li>
+                <li><a class="ajax-link" href="${ctx}/system/dept"><i class="icon-user"></i><span class="hidden-tablet"> 部门管理</span></a></li>
                 <li><a class="ajax-link" href="${ctx}/system/role"><i class="icon-user"></i><span class="hidden-tablet"> 角色管理</span></a></li>
                 <li><a class="ajax-link" href="${ctx}/system/user"><i class="icon-user"></i><span class="hidden-tablet"> 用户管理</span></a></li>
 

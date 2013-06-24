@@ -39,6 +39,10 @@ public class RoleService {
         return roleRepository.findOne(id);
     }
 
+    public Role findByRoleName(String roleName) {
+        return roleRepository.findByRoleName(roleName);
+    }
+
     @Transactional(readOnly = false)
     public void create(Role role) {
         role.setCreatedBy("niko");

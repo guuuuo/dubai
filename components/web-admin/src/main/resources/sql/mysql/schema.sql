@@ -1,7 +1,25 @@
+DROP TABLE IF EXISTS sys_dept;
 DROP TABLE IF EXISTS sys_role;
+DROP TABLE IF EXISTS sys_dept_role;
 DROP TABLE IF EXISTS sys_user;
 DROP TABLE IF EXISTS sys_option;
 DROP TABLE IF EXISTS dubai_post;
+
+CREATE TABLE sys_dept
+(
+  id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  dept_name VARCHAR(64) NOT NULL,
+  dept_desc VARCHAR(200) DEFAULT '' NOT NULL,
+  active VARCHAR(1) DEFAULT '' NOT NULL,
+  parent_dept_id BIGINT,
+  created_by VARCHAR(64) NOT NULL,
+  created_when TIMESTAMP DEFAULT '0000-00-00 00:00:00' NOT NULL,
+  updated_by VARCHAR(64),
+  updated_when TIMESTAMP
+)
+  ENGINE =InnoDB;
+CREATE UNIQUE INDEX idx_unq_dept_dept_name ON sys_dept ( dept_name );
+CREATE INDEX idx_dept_dept_name ON sys_dept ( dept_name );
 
 CREATE TABLE sys_role
 (
@@ -9,6 +27,7 @@ CREATE TABLE sys_role
   role_name VARCHAR(64) NOT NULL,
   role_desc VARCHAR(200) DEFAULT '' NOT NULL,
   active VARCHAR(1) DEFAULT '' NOT NULL,
+  parent_role_id BIGINT,
   created_by VARCHAR(64) NOT NULL,
   created_when TIMESTAMP DEFAULT '0000-00-00 00:00:00' NOT NULL,
   updated_by VARCHAR(64),
@@ -17,6 +36,16 @@ CREATE TABLE sys_role
   ENGINE =InnoDB;
 CREATE UNIQUE INDEX idx_unq_role_role_name ON sys_role ( role_name );
 CREATE INDEX idx_role_role_name ON sys_role ( role_name );
+
+
+CREATE TABLE sys_dept_role
+(
+  id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  dept_id BIGINT,
+  role_id BIGINT
+)
+  ENGINE =InnoDB;
+
 
 CREATE TABLE sys_user
 (
