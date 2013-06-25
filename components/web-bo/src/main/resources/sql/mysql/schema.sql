@@ -1,9 +1,25 @@
+DROP TABLE IF EXISTS sys_resource;
 DROP TABLE IF EXISTS sys_dept;
 DROP TABLE IF EXISTS sys_role;
 DROP TABLE IF EXISTS sys_dept_role;
 DROP TABLE IF EXISTS sys_user;
 DROP TABLE IF EXISTS sys_option;
 DROP TABLE IF EXISTS dubai_post;
+
+CREATE TABLE sys_resource
+(
+  id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  resource VARCHAR(64) NOT NULL,
+  permission VARCHAR(200) DEFAULT '' NOT NULL,
+  active VARCHAR(1) DEFAULT '' NOT NULL,
+  created_by VARCHAR(64) NOT NULL,
+  created_when TIMESTAMP DEFAULT '0000-00-00 00:00:00' NOT NULL,
+  updated_by VARCHAR(64),
+  updated_when TIMESTAMP
+)
+  ENGINE =InnoDB;
+CREATE UNIQUE INDEX idx_unq_sys_resource_resource ON sys_resource ( resource );
+CREATE INDEX idx_sys_resource_resource ON sys_resource ( resource );
 
 CREATE TABLE sys_dept
 (
@@ -18,8 +34,8 @@ CREATE TABLE sys_dept
   updated_when TIMESTAMP
 )
   ENGINE =InnoDB;
-CREATE UNIQUE INDEX idx_unq_dept_dept_name ON sys_dept ( dept_name );
-CREATE INDEX idx_dept_dept_name ON sys_dept ( dept_name );
+CREATE UNIQUE INDEX idx_unq_sys_dept_dept_name ON sys_dept ( dept_name );
+CREATE INDEX idx_sys_dept_dept_name ON sys_dept ( dept_name );
 
 CREATE TABLE sys_role
 (
@@ -34,8 +50,8 @@ CREATE TABLE sys_role
   updated_when TIMESTAMP
 )
   ENGINE =InnoDB;
-CREATE UNIQUE INDEX idx_unq_role_role_name ON sys_role ( role_name );
-CREATE INDEX idx_role_role_name ON sys_role ( role_name );
+CREATE UNIQUE INDEX idx_unq_sys_role_role_name ON sys_role ( role_name );
+CREATE INDEX idx_sys_role_role_name ON sys_role ( role_name );
 
 
 CREATE TABLE sys_dept_role
@@ -67,9 +83,9 @@ CREATE TABLE sys_user
   updated_when TIMESTAMP
 )
   ENGINE =InnoDB;
-CREATE UNIQUE INDEX idx_unq_user_login_name ON sys_user ( login_name );
-CREATE INDEX idx_user_login_name ON sys_user ( login_name );
-CREATE INDEX idx_user_nice_name ON sys_user ( nice_name );
+CREATE UNIQUE INDEX idx_unq_sys_user_login_name ON sys_user ( login_name );
+CREATE INDEX idx_sys_user_login_name ON sys_user ( login_name );
+CREATE INDEX idx_sys_user_nice_name ON sys_user ( nice_name );
 
 CREATE TABLE sys_option
 (
