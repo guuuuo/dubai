@@ -14,10 +14,10 @@
             <!-- module switch starts -->
             <div class="nav-collapse collapse module-menu">
                 <ul class="nav">
-                    <li class="active">
+                    <li>
                         <a href="${ctx}/home">Home</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="${ctx}/system">System</a>
                     </li>
                     <li>

@@ -1,1 +1,0 @@
-INSERT INTO dubai.dubai_user (id, login_name, nice_name, password, email, salt, roles, register_date, status_code, act_key, act_key_gen_date, act_date) VALUES (1, 'admin', 'Administrator', '943e8febe51f22f6018c0e36b2a0193ee8c9bd8a', 'im@uubb.cc', '34a8b6afcb485c28', 'admin', '2013-06-08 18:20:55', 1, 'c4660ef68c6b96d5f60325f12696faec57023c54', '2013-06-08 15:12:12', null);
