@@ -16,13 +16,13 @@ import java.util.Map;
 /**
  * @author niko
  */
-public class SendRegisterNotificationTask implements Runnable {
+public class SendResetPasswordNotificationTask implements Runnable {
 
     private JavaMailSender javaMailSender;
     private User user;
     private ApplicationProperties properties;
 
-    SendRegisterNotificationTask(JavaMailSender javaMailSender, User user, ApplicationProperties properties) {
+    SendResetPasswordNotificationTask(JavaMailSender javaMailSender, User user, ApplicationProperties properties) {
         this.javaMailSender = javaMailSender;
         this.user = user;
         this.properties = properties;
@@ -37,11 +37,11 @@ public class SendRegisterNotificationTask implements Runnable {
                 MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
                 messageHelper.setTo(user.getEmail());
                 messageHelper.setSentDate(new Date());
-                messageHelper.setSubject("Please active your account");
+                messageHelper.setSubject("Please reset your password");
                 Map<String, Object> root = new HashMap<String, Object>();
                 root.put("properties", properties);
                 root.put("user", user);
-                messageHelper.setText(TemplateContentProcessor.processTemplateWithFile("register-notification.ftl", root), true);
+                messageHelper.setText(TemplateContentProcessor.processTemplateWithFile("reset-password-notification.ftl", root), true);
             }
         });
 

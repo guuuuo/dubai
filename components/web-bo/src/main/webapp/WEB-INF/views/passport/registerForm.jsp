@@ -94,18 +94,23 @@
                     },
                     email : {
                         required: true,
-                        email: true
+                        email: true,
+                        remote: "${ctx}/passport/register/validateEmail"
                     },
                     captcha : {
-                            remote: "${ctx}/passport/register/validateCaptcha"
+                        remote: "${ctx}/passport/register/validateCaptcha"
                     }
                 },
                 messages: {
                     loginName: {
                         remote: "用户名已存在"
                     },
+                    email : {
+                        email : "格式错误",
+                        remote: "电子邮件已存在"
+                    },
                     captcha : {
-                        remote: "验证码输入有误"
+                        remote: "验证码输入错误"
                     }
                 },
                 highlight: function(element) {

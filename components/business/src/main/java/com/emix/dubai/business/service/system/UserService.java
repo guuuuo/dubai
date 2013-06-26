@@ -24,6 +24,7 @@ import org.springside.modules.utils.DateProvider;
 import org.springside.modules.utils.Encodes;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -52,6 +53,10 @@ public class UserService {
 
     public User findUserByLoginName(String loginName) {
         return userRepository.findByLoginName(loginName);
+    }
+
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
     @Transactional(readOnly = false)
@@ -192,13 +197,13 @@ public class UserService {
     @Transactional(readOnly = false)
     public void activeUser(String key) {
         User user = userRepository.findByActKey(key);
-        if (user == null) {
-            throw new ServiceException("不存在");
-        }
-        if (DateUtils.truncatedCompareTo(dateProvider.getDate(), user.getActKeyGenDate(), Calendar.HOUR) > 24) {
-            throw new ServiceException("激活码已失效");
+        if (user == null
+                || DateUtils.truncatedCompareTo(dateProvider.getDate(), user.getActKeyGenDate(), Calendar.HOUR) > 24
+                || user.getActDate() != null) {
+            throw new ServiceException("激活码错误或者已失效。");
         }
         user.setStatusCode(UserStatus.Active.code());
+        user.setActDate(new Date());
         userRepository.save(user);
     }
 }

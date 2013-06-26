@@ -1,6 +1,7 @@
 package com.emix.dubai.business.service.common;
 
 import com.emix.dubai.business.entity.system.User;
+import com.emix.dubai.business.pojo.ApplicationProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -18,7 +19,11 @@ public class NotificationService {
     @Autowired
     private TaskExecutor taskExecutor;
 
-    public void sendRegisterNotification(final User user) {
-        taskExecutor.execute(new SendRegisterNotificationTask(javaMailSender, user));
+    public void sendRegisterNotification(final User user, final ApplicationProperties properties) {
+        taskExecutor.execute(new SendRegisterNotificationTask(javaMailSender, user, properties));
+    }
+
+    public void sendResetPasswordNotification(final User user, final ApplicationProperties properties) {
+        taskExecutor.execute(new SendResetPasswordNotificationTask(javaMailSender, user, properties));
     }
 }

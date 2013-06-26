@@ -3,6 +3,7 @@ package com.emix.dubai.web.controller.passport;
 import com.emix.core.shiro.ShiroConstant;
 import com.emix.core.utils.StringUtil;
 import com.emix.dubai.business.entity.system.User;
+import com.emix.dubai.business.pojo.ApplicationProperties;
 import com.emix.dubai.business.service.system.UserService;
 import com.emix.dubai.business.service.common.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class RegisterController {
     private UserService userService;
     @Autowired
     private NotificationService notificationService;
+    @Autowired
+    private ApplicationProperties applicationProperties;
 
     @RequestMapping(method = RequestMethod.GET)
     public String registerForm() {
@@ -36,14 +39,11 @@ public class RegisterController {
     @RequestMapping(method = RequestMethod.POST)
     public String register(@Valid User user, RedirectAttributes redirectAttributes) {
         userService.registerUser(user);
-        notificationService.sendRegisterNotification(user);
+        notificationService.sendRegisterNotification(user, applicationProperties);
         redirectAttributes.addFlashAttribute("user", user);
         return "passport/registerResult";
     }
 
-    /**
-     * Ajax请求校验loginName是否唯一。
-     */
     @RequestMapping(value = "validateLoginName")
     @ResponseBody
     public String validateLoginName(@RequestParam("loginName") String loginName) {
@@ -54,9 +54,6 @@ public class RegisterController {
         }
     }
 
-    /**
-     * Ajax请求校验loginName是否唯一。
-     */
     @RequestMapping(value = "validateCaptcha")
     @ResponseBody
     public String validateCaptcha(@RequestParam("captcha") String captcha, HttpServletRequest request) {
@@ -66,6 +63,16 @@ public class RegisterController {
         } else {
             return "false";
         }
-
     }
+
+    @RequestMapping(value = "validateEmail")
+    @ResponseBody
+    public String validateEmail(@RequestParam("email") String email) {
+        if (userService.findUserByEmail(email) == null) {
+            return "true";
+        } else {
+            return "false";
+        }
+    }
+
 }

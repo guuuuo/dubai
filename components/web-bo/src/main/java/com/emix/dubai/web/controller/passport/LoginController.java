@@ -20,7 +20,7 @@ public class LoginController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String loginForm() {
-		return "passport/loginForm";
+        return "passport/loginForm";
 	}
 
     @RequestMapping(value ="success", method = RequestMethod.GET)

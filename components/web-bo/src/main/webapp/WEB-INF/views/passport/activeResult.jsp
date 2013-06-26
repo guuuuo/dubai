@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>重置密码 &gt;&gt; 请查收邮件</title>
+    <title>提示</title>
 </head>
 
 <body>
@@ -22,7 +22,12 @@
             <form id="inputForm" action="" method="post" class="form-horizontal">
                 <fieldset>
                     <legend><small>提示</small></legend>
-                    <p>登录成功</p>
+                    <c:if test="${not empty message}">
+                    <p>${message}</p>
+                    </c:if>
+                    <c:if test="${not empty error}">
+                    <p class="red">${error}</p>
+                    </c:if>
                     <br/>
                     <div class="control-group center">
                         <div id="showDiv"><span class="red">5</span> 秒后自动跳转至首页</div>
