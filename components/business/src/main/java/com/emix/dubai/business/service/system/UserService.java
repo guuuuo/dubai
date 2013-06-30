@@ -2,7 +2,9 @@ package com.emix.dubai.business.service.system;
 
 import com.emix.core.exception.ServiceException;
 import com.emix.dubai.business.entity.system.User;
+import com.emix.dubai.business.pojo.ApplicationProperties;
 import com.emix.dubai.business.repository.system.UserRepository;
+import com.emix.dubai.business.service.common.NotificationService;
 import com.emix.dubai.business.service.system.ShiroDbRealm.ShiroUser;
 import com.emix.dubai.business.status.UserStatus;
 import org.apache.commons.lang3.StringUtils;
@@ -43,9 +45,14 @@ public class UserService {
 
     private static Logger logger = LoggerFactory.getLogger(UserService.class);
 
+    private DateProvider dateProvider = DateProvider.DEFAULT;
+
     @Autowired
     private UserRepository userRepository;
-    private DateProvider dateProvider = DateProvider.DEFAULT;
+    @Autowired
+    private NotificationService notificationService;
+    @Autowired
+    private ApplicationProperties properties;
 
     public User getUser(Long id) {
         return userRepository.findOne(id);
@@ -62,7 +69,7 @@ public class UserService {
     @Transactional(readOnly = false)
     public void registerUser(User user) {
         entryptPassword(user);
-        generateActivationKey(user);
+        generateActKey(user);
         user.setRoles("user");
         user.setRegisterDate(dateProvider.getDate());
         user.setNiceName(user.getLoginName());
@@ -76,7 +83,7 @@ public class UserService {
     @Transactional(readOnly = false)
     public void createUser(User user) {
         entryptPassword(user);
-        generateActivationKey(user);
+        generateActKey(user);
         user.setRegisterDate(dateProvider.getDate());
         user.setCreatedBy("niko");
         user.setCreatedWhen(dateProvider.getDate());
@@ -185,7 +192,7 @@ public class UserService {
         user.setPassword(Encodes.encodeHex(hashPassword));
     }
 
-    void generateActivationKey(User user) {
+    void generateActKey(User user) {
         user.setActKey(Encodes.encodeHex(Digests.sha1((user.getLoginName() + System.currentTimeMillis()).getBytes())));
         user.setActKeyGenDate(dateProvider.getDate());
     }
@@ -196,6 +203,26 @@ public class UserService {
 
     @Transactional(readOnly = false)
     public void activeUser(String key) {
+        User user = userRepository.findByActKey(key);
+        if (user == null
+                || DateUtils.truncatedCompareTo(dateProvider.getDate(), user.getActKeyGenDate(), Calendar.HOUR) > 24
+                || user.getActDate() != null) {
+            throw new ServiceException("激活码错误或者已失效。");
+        }
+        user.setStatusCode(UserStatus.Active.code());
+        user.setActDate(new Date());
+        userRepository.save(user);
+    }
+
+    public void sendResetPwdEmail(User user) {
+        generateActKey(user);
+        userRepository.save(user);
+        notificationService.sendResetPwdNotification(user, properties);
+    }
+
+
+    @Transactional(readOnly = false)
+    public void resetPassword(String key) {
         User user = userRepository.findByActKey(key);
         if (user == null
                 || DateUtils.truncatedCompareTo(dateProvider.getDate(), user.getActKeyGenDate(), Calendar.HOUR) > 24

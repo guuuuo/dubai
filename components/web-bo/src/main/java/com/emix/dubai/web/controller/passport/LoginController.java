@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 @RequestMapping(value = "/passport/login")
-public class LoginController {
+public class LoginController extends PassportBaseController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String loginForm() {

@@ -22,7 +22,7 @@ import javax.validation.Valid;
  */
 @Controller
 @RequestMapping(value = "/passport/register")
-public class RegisterController {
+public class RegisterController extends PassportBaseController {
 
     @Autowired
     private UserService userService;
@@ -48,17 +48,6 @@ public class RegisterController {
     @ResponseBody
     public String validateLoginName(@RequestParam("loginName") String loginName) {
         if (userService.findUserByLoginName(loginName) == null) {
-            return "true";
-        } else {
-            return "false";
-        }
-    }
-
-    @RequestMapping(value = "validateCaptcha")
-    @ResponseBody
-    public String validateCaptcha(@RequestParam("captcha") String captcha, HttpServletRequest request) {
-        String captchaInSession = (String) request.getSession().getAttribute(ShiroConstant.CAPTCHA_SESSION_KEY);
-        if (!StringUtil.isEmpty(captcha) && captcha.equalsIgnoreCase(captchaInSession)) {
             return "true";
         } else {
             return "false";

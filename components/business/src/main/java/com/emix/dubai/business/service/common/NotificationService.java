@@ -26,4 +26,8 @@ public class NotificationService {
     public void sendResetPasswordNotification(final User user, final ApplicationProperties properties) {
         taskExecutor.execute(new SendResetPasswordNotificationTask(javaMailSender, user, properties));
     }
+
+    public void sendResetPwdNotification(User user, final ApplicationProperties properties) {
+        //To change body of created methods use File | Settings | File Templates.
+    }
 }
