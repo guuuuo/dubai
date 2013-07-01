@@ -5,6 +5,7 @@ import com.emix.dubai.constants.GlobalConstants;
 import com.emix.dubai.business.entity.system.User;
 import com.emix.core.exception.ServiceException;
 import com.emix.dubai.business.service.system.UserService;
+import com.emix.dubai.web.form.passport.UserForm;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -62,8 +63,12 @@ public class UserAdminController extends BaseController {
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String create(@Valid User user, RedirectAttributes redirectAttributes) {
-        userService.createUser(user);
+    public String create(@Valid UserForm userForm, RedirectAttributes redirectAttributes) {
+        User user = userForm.getUser();
+        String plainPassword = userForm.getPlainPassword();
+
+        userService.createUser(user, plainPassword);
+
         redirectAttributes.addFlashAttribute("username", user.getLoginName());
         return redirect("/system/user");
     }
@@ -76,8 +81,12 @@ public class UserAdminController extends BaseController {
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public String update(@Valid @ModelAttribute("preloadUser") User user, RedirectAttributes redirectAttributes) {
-        userService.updateUser(user);
+    public String update(@Valid @ModelAttribute("preloadUser") UserForm userForm, RedirectAttributes redirectAttributes) {
+        User user = userForm.getUser();
+        String plainPassword = userForm.getPlainPassword();
+
+        userService.updateUser(user, plainPassword);
+
         redirectAttributes.addFlashAttribute("message", "更新用户" + user.getLoginName() + "成功");
         return redirect("/system/user");
     }

@@ -1,0 +1,17 @@
+com\emix\dubai\web\controller\account\ProfileController.class
+com\emix\dubai\web\controller\account\SettingsController.class
+com\emix\dubai\web\form\passport\UserForm.class
+com\emix\dubai\web\controller\system\DepartmentController.class
+com\emix\dubai\web\controller\passport\ActiveController.class
+com\emix\dubai\web\controller\SystemErrorController.class
+com\emix\dubai\web\controller\passport\RegisterController.class
+com\emix\dubai\web\controller\quartz\JobDetailController.class
+com\emix\dubai\web\controller\account\PasswordController.class
+com\emix\dubai\quartz\job\TestJob.class
+com\emix\dubai\web\controller\passport\LoginController.class
+com\emix\dubai\web\controller\passport\ForgotPasswordController.class
+com\emix\dubai\web\controller\system\RoleController.class
+com\emix\dubai\web\controller\HomeController.class
+com\emix\dubai\web\controller\CaptchaController.class
+com\emix\dubai\web\controller\system\UserAdminController.class
+com\emix\dubai\web\controller\DashboardAction.class

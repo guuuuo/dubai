@@ -2,6 +2,7 @@ package com.emix.dubai.web.controller.account;
 
 import javax.validation.Valid;
 
+import com.emix.dubai.web.form.passport.UserForm;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,9 +36,13 @@ public class ProfileController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String updateProfile(@Valid @ModelAttribute("preloadUser") User user, RedirectAttributes redirectAttributes) {
-		userService.updateUser(user);
+	public String updateProfile(@Valid @ModelAttribute("preloadUser") UserForm userForm, RedirectAttributes redirectAttributes) {
+        User user = userForm.getUser();
+        String plainPassword = userForm.getPlainPassword();
+
+		userService.updateUser(user, plainPassword);
 		updateCurrentUserName(user.getNiceName());
+
         redirectAttributes.addFlashAttribute("message", "个人资料成功保存。");
         return "redirect:/account/settings/profile";
 	}

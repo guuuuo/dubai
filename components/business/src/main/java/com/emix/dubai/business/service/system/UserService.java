@@ -67,8 +67,8 @@ public class UserService {
     }
 
     @Transactional(readOnly = false)
-    public void registerUser(User user) {
-        entryptPassword(user);
+    public void registerUser(User user, String plainPassword) {
+        entryptPassword(user, plainPassword);
         generateActKey(user);
         user.setRoles("user");
         user.setRegisterDate(dateProvider.getDate());
@@ -81,8 +81,8 @@ public class UserService {
     }
 
     @Transactional(readOnly = false)
-    public void createUser(User user) {
-        entryptPassword(user);
+    public void createUser(User user, String plainPassword) {
+        entryptPassword(user, plainPassword);
         generateActKey(user);
         user.setRegisterDate(dateProvider.getDate());
         user.setCreatedBy("niko");
@@ -92,18 +92,17 @@ public class UserService {
     }
 
     @Transactional(readOnly = false)
-    public void updateUser(User user) {
-        if (StringUtils.isNotBlank(user.getPlainPassword())) {
-            entryptPassword(user);
+    public void updateUser(User user, String plainPassword) {
+        if (StringUtils.isNotBlank(plainPassword)) {
+            entryptPassword(user, plainPassword);
         }
         userRepository.save(user);
     }
 
     @Transactional(readOnly = false)
-    public void updatePassword(User user) {
+    public void updatePassword(User user, String plainPassword) {
         User dbUser = userRepository.findOne(user.getId());
-        dbUser.setPlainPassword(user.getPlainPassword());
-        entryptPassword(dbUser);
+        entryptPassword(dbUser, plainPassword);
         userRepository.save(dbUser);
     }
 
@@ -184,11 +183,11 @@ public class UserService {
     /**
      * 设定安全的密码，生成随机的salt并经过1024次 sha-1 hash
      */
-    void entryptPassword(User user) {
+    void entryptPassword(User user, String plainPassword) {
         byte[] salt = Digests.generateSalt(SALT_SIZE);
         user.setSalt(Encodes.encodeHex(salt));
 
-        byte[] hashPassword = Digests.sha1(user.getPlainPassword().getBytes(), salt, HASH_INTERATIONS);
+        byte[] hashPassword = Digests.sha1(plainPassword.getBytes(), salt, HASH_INTERATIONS);
         user.setPassword(Encodes.encodeHex(hashPassword));
     }
 

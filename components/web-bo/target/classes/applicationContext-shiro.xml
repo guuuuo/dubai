@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-lazy-init="true">
+
+    <description>Shiro安全配置</description>
+
+    <!-- Shiro's main business-tier object for web-enabled applications -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="shiroDbRealm"/>
+        <property name="cacheManager" ref="shiroEhcacheManager"/>
+    </bean>
+
+    <!-- 項目自定义的Realm, 所有accountService依赖的dao都需要用depends-on声明 -->
+    <bean id="shiroDbRealm" class="com.emix.dubai.business.service.system.ShiroDbRealm" depends-on="userRepository">
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <bean id="chainDefinitionSectionMetaSource"
+          class="com.emix.dubai.business.service.system.ChainDefinitionSectionMetaSource" depends-on="resourceRepository" >
+        <property name="filterChainDefinitions">
+            <value>
+                /passport/login = authc
+                /passport/logout = logout
+                /*.txt = anon
+                /assets/** = anon
+                /api/** = anon
+                /passport/** = anon
+                /favicon.ico = anon
+                /captcha = anon
+                /403 = anon
+                /system/** = roles[admin]
+                /** = user
+            </value>
+        </property>
+    </bean>
+
+    <!-- Shiro Filter -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/passport/login"/>
+        <property name="successUrl" value="/passport/login/success"/>
+        <property name="unauthorizedUrl" value="/403"/>
+
+        <property name="filters">
+            <util:map>
+                <entry key="authc" value-ref="formAuthenticationFilter"/>
+            </util:map>
+        </property>
+
+        <!-- shiro连接约束配置,在这里使用自定义的动态获取资源类 -->
+        <property name="filterChainDefinitionMap" ref="chainDefinitionSectionMetaSource"/>
+    </bean>
+
+    <!-- 用户授权信息Cache, 采用EhCache -->
+    <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:ehcache/ehcache-shiro.xml"/>
+    </bean>
+
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <bean id="formAuthenticationFilter" class="com.emix.core.shiro.CaptchaFormAuthenticationFilter"/>
+</beans>

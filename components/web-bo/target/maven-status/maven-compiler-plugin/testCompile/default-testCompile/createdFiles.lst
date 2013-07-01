@@ -1,0 +1,8 @@
+com\emix\dubai\functional\QuickStartServer.class
+com\emix\dubai\data\UserData.class
+com\emix\dubai\functional\gui\UserAdminFT.class
+com\emix\dubai\functional\BaseFunctionalTestCase.class
+com\emix\dubai\functional\gui\RegisterFT.class
+com\emix\dubai\functional\gui\SecurityFT.class
+com\emix\dubai\functional\BaseSeleniumTestCase.class
+com\emix\dubai\functional\gui\ProfileFT.class

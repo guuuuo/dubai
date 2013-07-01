@@ -28,10 +28,6 @@ public class User extends BaseEntity {
     private Date actKeyGenDate;
     private Date actDate;
 
-    // *** do not persistence ***
-    private String plainPassword;
-    private String captcha;
-
     public User() {
     }
 
@@ -54,17 +50,6 @@ public class User extends BaseEntity {
 
     public void setNiceName(String niceName) {
         this.niceName = niceName;
-    }
-
-    // 不持久化到数据库，也不显示在Restful接口的属性.
-    @Transient
-    @JsonIgnore
-    public String getPlainPassword() {
-        return plainPassword;
-    }
-
-    public void setPlainPassword(String plainPassword) {
-        this.plainPassword = plainPassword;
     }
 
     public String getPassword() {
@@ -158,15 +143,5 @@ public class User extends BaseEntity {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
-    }
-
-    @Transient
-    @JsonIgnore
-    public String getCaptcha() {
-        return captcha;
-    }
-
-    public void setCaptcha(String captcha) {
-        this.captcha = captcha;
     }
 }

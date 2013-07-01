@@ -6,8 +6,12 @@ import com.emix.dubai.business.entity.system.User;
 import com.emix.dubai.business.pojo.ApplicationProperties;
 import com.emix.dubai.business.service.system.UserService;
 import com.emix.dubai.business.service.common.NotificationService;
+import com.emix.dubai.web.form.passport.ForgotPasswordForm;
+import com.emix.dubai.web.form.passport.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,14 +36,23 @@ public class RegisterController extends PassportBaseController {
     private ApplicationProperties applicationProperties;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String registerForm() {
+    public String registerForm(Model model) {
+        model.addAttribute("userForm", new UserForm());
         return "passport/registerForm";
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String register(@Valid User user, RedirectAttributes redirectAttributes) {
-        userService.registerUser(user);
+    public String register(@Valid UserForm userForm, BindingResult result, RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            return "passport/registerForm";
+        }
+
+        User user = userForm.getUser();
+        String plainPassword = userForm.getPlainPassword();
+
+        userService.registerUser(user, plainPassword);
         notificationService.sendRegisterNotification(user, applicationProperties);
+
         redirectAttributes.addFlashAttribute("user", user);
         return "passport/registerResult";
     }

@@ -43,7 +43,7 @@ public class UserServiceTest {
 		Date currentTime = new Date();
 		userService.setDateProvider(new ConfigurableDateProvider(currentTime));
 
-		userService.registerUser(user);
+		userService.registerUser(user, UserData.randomPassword());
 
 		// 验证user的角色，注册日期和加密后的密码都被自动更新了。
 		assertEquals("user", user.getRoles());
@@ -56,13 +56,12 @@ public class UserServiceTest {
 	public void updateUser() {
 		// 如果明文密码不为空，加密密码会被更新.
 		User user = UserData.randomNewUser();
-		userService.updateUser(user);
+		userService.updateUser(user, UserData.randomPassword());
 		assertNotNull(user.getSalt());
 
 		// 如果明文密码为空，加密密码无变化。
 		User user2 = UserData.randomNewUser();
-		user2.setPlainPassword(null);
-		userService.updateUser(user2);
+		userService.updateUser(user2, null);
 		assertNull(user2.getSalt());
 	}
 
@@ -85,10 +84,8 @@ public class UserServiceTest {
     @Test
     public void entryptPassword() {
         User user = UserData.randomNewUser();
-        user.setPlainPassword("admin");
-        userService.entryptPassword(user);
+        userService.entryptPassword(user, "admin");
         System.out.println(user.getLoginName());
-        System.out.println(user.getPlainPassword());
         System.out.println("salt: " + user.getSalt());
         System.out.println("entrypt password: " + user.getPassword());
     }

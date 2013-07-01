@@ -3,6 +3,7 @@ package com.emix.dubai.web.controller.account;
 import com.emix.dubai.business.entity.system.User;
 import com.emix.dubai.business.service.system.UserService;
 import com.emix.dubai.business.service.system.ShiroDbRealm;
+import com.emix.dubai.web.form.passport.UserForm;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,8 +31,12 @@ public class PasswordController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String updateProfile(@ModelAttribute("preloadUser") User user, RedirectAttributes redirectAttributes) {
-        userService.updatePassword(user);
+    public String updateProfile(@ModelAttribute("preloadUser") UserForm userForm, RedirectAttributes redirectAttributes) {
+        User user = userForm.getUser();
+        String plainPassword = userForm.getPlainPassword();
+
+        userService.updatePassword(user, plainPassword);
+
         redirectAttributes.addFlashAttribute("message", "更新密码成功。");
         return "redirect:/account/settings/password";
     }

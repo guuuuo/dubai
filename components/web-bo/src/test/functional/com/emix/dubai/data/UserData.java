@@ -9,7 +9,6 @@ public class UserData {
 		User user = new User();
 		user.setLoginName(RandomData.randomName("user"));
 		user.setNiceName(RandomData.randomName("User"));
-		user.setPlainPassword(RandomData.randomName("password"));
 
 		return user;
 	}
