@@ -21,7 +21,7 @@
                         <a href="${ctx}/system">System</a>
                     </li>
                     <li>
-                        <a href="${ctx}/quartz">Quartz</a>
+                        <a href="${ctx}/cms">CMS</a>
                     </li>
                 </ul>
             </div>

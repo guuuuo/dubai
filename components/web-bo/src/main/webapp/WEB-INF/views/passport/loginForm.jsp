@@ -72,7 +72,7 @@
                     </div>
                     <div class="control-group">
                         <div class="controls">
-                            <label for="rememberMe"><input type="checkbox" id="rememberMe" name="rememberMe" />记住我的登录信息<span class="red">（请勿在公用电脑或者网吧内使用此项）</span></label>
+                            <label for="rememberMe"><input type="checkbox" id="rememberMe" name="rememberMe" />记住我的登录信息</label>
                         </div>
                     </div>
 
