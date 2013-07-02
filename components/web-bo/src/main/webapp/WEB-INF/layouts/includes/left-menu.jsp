@@ -20,14 +20,12 @@
                 <li><a class="ajax-link" href="${ctx}/system/acl"><i class="icon-user"></i><span class="hidden-tablet"> 权限分配</span></a></li>
 
 
+                <li class="nav-header hidden-tablet">定时任务管理</li>
+                <li><a class="ajax-link" href="${ctx}/quartz/job-details"><i class="icon-user"></i><span class="hidden-tablet"> 定时任务</span></a></li>
+
                 <li class="nav-header hidden-tablet">其它</li>
                 <li><a class="ajax-link" href="${ctx}/system/log"><i class="icon-user"></i><span class="hidden-tablet"> 系统日志</span></a></li>
             </shiro:hasRole>
-
-            <!--
-            <li class="nav-header hidden-tablet">调度管理</li>
-            <li><a class="ajax-link" href="${ctx}/quartz/job-details"><i class="icon-user"></i><span class="hidden-tablet"> 作业管理</span></a></li>
-            -->
 
         </ul>
     </div><!--/.well -->
