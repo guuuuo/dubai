@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
+       default-lazy-init="true">
+
+    <description>Message</description>
+
+    <!-- 设置国际化属性文件及其默认编码 注意：未设置p:defaultEncoding="UTF-8"前页面出现过乱码 -->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+          p:basenames="/WEB-INF/messages/application,/WEB-INF/messages/common, /WEB-INF/messages/system"
+          p:defaultEncoding="UTF-8"
+          p:cacheSeconds="0"/>
+
+    <!-- 设置国际化修改拦截器 -->
+    <bean id="localeChangeInterceptor"
+          class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="locale"/>
+    </bean>
+
+    <!--
+        这个本地化解析器检查客户端中的Cookie是否包含本地化信息。 如果有的话，就使用。
+        当配置这个解析器的时候，可以指定cookie名，以及cookie的最长生存期（Max Age）
+     -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver"/>
+</beans>

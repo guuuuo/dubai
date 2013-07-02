@@ -13,8 +13,8 @@
 	</context:component-scan>
 	
 	<mvc:annotation-driven/>
-		
-	<!-- 将无法mapping到Controller的path交给default servlet handler处理 -->		
+
+    <!-- 将无法mapping到Controller的path交给default servlet handler处理 -->
 	<mvc:default-servlet-handler/>
 	
 	<!-- 定义JSP文件的位置 --> 
@@ -25,4 +25,9 @@
 	
 	<!-- 定义无Controller的path<->view直接映射 -->
 	<mvc:view-controller path="/" view-name="redirect:/dashboard"/>
+
+    <mvc:interceptors>
+        <!-- 设置国际化修改拦截器 -->
+        <ref bean="localeChangeInterceptor"/>
+    </mvc:interceptors>
 </beans>

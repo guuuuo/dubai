@@ -1,9 +1,10 @@
 package com.emix.dubai.web.validator.passport;
 
+import com.emix.core.utils.StringUtil;
 import com.emix.dubai.business.entity.system.User;
+import com.emix.dubai.web.form.passport.ForgotPasswordForm;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 /**
@@ -19,6 +20,12 @@ public class ForgotPasswordValidator implements Validator {
 
     @Override
     public void validate(Object object, Errors errors) {
-        ValidationUtils.rejectIfEmpty(errors, "name", "field.required");
+        ForgotPasswordForm forgotPasswordForm = (ForgotPasswordForm) object;
+
+        if (StringUtil.isEmpty(forgotPasswordForm.getLoginName()) && StringUtil.isEmpty(forgotPasswordForm.getEmail())) {
+            //注意这里的code.error和message_en.properties里的设置对应的.
+            errors.rejectValue("loginName", "common.field.required");
+            errors.rejectValue("email", "common.field.required");
+        }
     }
 }

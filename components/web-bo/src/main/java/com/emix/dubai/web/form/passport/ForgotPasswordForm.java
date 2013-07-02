@@ -7,9 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author nikog
  */
 public class ForgotPasswordForm {
-    @NotEmpty
     private String loginName;
-    @NotEmpty
     @Email
     private String email;
     @NotEmpty

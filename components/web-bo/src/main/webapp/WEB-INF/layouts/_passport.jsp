@@ -2,12 +2,13 @@
 <%@ taglib prefix="sitemesh" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dubai &gt;&gt; <sitemesh:title/></title>
+    <title><fmt:message key="application.name"/> &gt;&gt; <sitemesh:title/></title>
     <!-- The styles -->
     <link rel="stylesheet" href="${ctx}/assets/vendor/bootstrap/css/bootstrap.css">
     <link rel='stylesheet' href='${ctx}/assets/css/vendor/uniform.default.css'>

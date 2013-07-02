@@ -35,8 +35,11 @@ public class ForgotPasswordController extends PassportBaseController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String forgotPassword(@Valid ForgotPasswordForm forgotPasswordForm, BindingResult result) {
+    public String forgotPassword(@Valid ForgotPasswordForm forgotPasswordForm, BindingResult result, Model model) {
+        validator.validate(forgotPasswordForm, result);
+
         if (result.hasErrors()) {
+            model.addAttribute("forgotPasswordForm", forgotPasswordForm);
             return "passport/forgotPasswordForm";
         }
 
