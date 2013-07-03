@@ -27,10 +27,3 @@ function docReady(){
     //rich text editor
     $('.cleditor').cleditor();
 }
-
-if (typeof utils == 'undefined' || !utils) {
-    utils = {};
-}
-utils.reloadCaptcha = function(baseURL) {
-    $("#captchaImg").attr("src", baseURL + "/captcha?data=" + new Date() + Math.floor(Math.random() * 24));
-}

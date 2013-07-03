@@ -1,9 +1,9 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page import="org.apache.shiro.web.filter.authc.FormAuthenticationFilter"%>
 <%@ taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
@@ -25,39 +25,35 @@
             <form:form id="inputForm" modelAttribute="userForm" action="${ctx}/passport/register" method="post" cssClass="form-horizontal">
                 <fieldset>
                     <legend><small>创建新帐号</small></legend>
+                    <tags:error />
                     <div class="control-group">
                         <label for="loginName" class="control-label">用户名</label>
                         <div class="controls">
                             <form:input path="user.loginName" id="loginName" cssClass="input-large required" minlength="6"/>
-                            <form:errors path="user.loginName"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="email" class="control-label">电子邮件</label>
                         <div class="controls">
                             <form:input path="user.email" id="email" class="input-large required"/>
-                            <form:errors path="user.email"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="plainPassword" class="control-label">密码</label>
                         <div class="controls">
                             <form:password path="plainPassword" id="plainPassword" cssClass="input-large required"/>
-                            <form:errors path="plainPassword"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="confirmPassword" class="control-label">确认密码</label>
                         <div class="controls">
                             <form:password path="confirmPassword" id="confirmPassword" cssClass="input-large required" equalTo="#plainPassword"/>
-                            <form:errors path="confirmPassword"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="captcha" class="control-label">验证码</label>
                         <div class="controls">
                             <form:input path="captcha" id="captcha" cssClass="input-small required"/>
-                            <form:errors path="captcha"/>
                             &nbsp;&nbsp;
                             <img id="captchaImg" src="${ctx}/captcha" />
                             &nbsp;&nbsp;

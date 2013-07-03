@@ -23,3 +23,4 @@
 
 <!-- application script -->
 <script src="${ctx}/assets/js/main.js"></script>
+<script src="${ctx}/assets/js/utils.js"></script>

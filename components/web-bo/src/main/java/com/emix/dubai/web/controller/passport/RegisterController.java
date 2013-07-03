@@ -42,8 +42,10 @@ public class RegisterController extends PassportBaseController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String register(@Valid UserForm userForm, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String register(@Valid UserForm userForm, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
+            model.addAttribute("errors", result);
+            model.addAttribute("userForm", userForm);
             return "passport/registerForm";
         }
 

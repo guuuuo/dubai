@@ -550,3 +550,11 @@ ul.ajax-loaders {
 td.actions ul {
     margin: 0;
 }
+
+/********** validator **********/
+#error-message ul {
+    margin-bottom: 0px;
+}
+span.error {
+    color:#B94846;
+}

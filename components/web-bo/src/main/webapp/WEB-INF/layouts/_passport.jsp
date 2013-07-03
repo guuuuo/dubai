@@ -54,6 +54,8 @@
     <!-- The fav icon -->
     <link rel="shortcut icon" href="${ctx}/assets/img/favicon.ico">
 
+    <%@ include file="/WEB-INF/layouts/includes/js.jsp"%>
+
     <sitemesh:head/>
 </head>
 

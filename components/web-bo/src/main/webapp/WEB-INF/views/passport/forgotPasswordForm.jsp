@@ -1,9 +1,9 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page import="org.apache.shiro.web.filter.authc.FormAuthenticationFilter"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
@@ -25,26 +25,24 @@
             <form:form id="inputForm" modelAttribute="forgotPasswordForm" action="${ctx}/passport/forgot-password" method="post" cssClass="form-horizontal">
                 <fieldset>
                     <legend><small>请输入用户名/电子邮件，重置密码</small></legend>
+                    <tags:error />
                     <div class="control-group">
                         <form:label path="loginName" for="loginName" cssClass="control-label"><fmt:message key="system.user.loginName" /></form:label>
                         <div class="controls">
-                            <form:input path="loginName" id="loginName" cssClass="input-large" cssErrorClass="input-large error"/>
-                            <form:errors path="loginName" cssClass="error" />
+                            <form:input path="loginName" id="loginName" cssClass="input-large" />
                         </div>
                     </div>
                     <div class="control-group">
                         <form:label path="email" for="email" cssClass="control-label">或者 <fmt:message key="system.user.email" /></form:label>
                         <div class="controls">
-                            <form:input path="email" id="email" cssClass="input-large" cssErrorClass="input-large error"/>
-                            <form:errors path="email" cssClass="error" />
+                            <form:input path="email" id="email" cssClass="input-large" />
                         </div>
                     </div>
 
                     <div class="control-group">
                         <form:label path="captcha" for="captcha" cssClass="control-label">验证码</form:label>
                         <div class="controls">
-                            <form:input path="captcha" id="captcha" cssClass="input-small required" cssErrorClass="input-small required error"/>
-                            <form:errors path="captcha" cssClass="error" />
+                            <form:input path="captcha" id="captcha" cssClass="input-small required" />
                             &nbsp;&nbsp;
                             <img id="captchaImg" src="${ctx}/captcha" />
                             &nbsp;&nbsp;
@@ -63,21 +61,5 @@
         没有帐号？ <a href="${ctx}/passport/register">创建新帐号</a><br>
         已有帐号？ 请 <a href="${ctx}/passport/login">直接登录</a>
     </div>
-
-    <!-- *** JavaScript *** -->
-    <%@ include file="/WEB-INF/layouts/includes/js.jsp"%>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#username").focus();
-            $("#inputForm").validate({
-                highlight: function(element) {
-                    $(element).closest('.control-group').removeClass('success').addClass('error');
-                },
-                success: function(element) {
-                    element.text('').addClass('valid').closest('.control-group').removeClass('error').addClass('success');
-                }
-            });
-        });
-    </script>
 </body>
 </html>

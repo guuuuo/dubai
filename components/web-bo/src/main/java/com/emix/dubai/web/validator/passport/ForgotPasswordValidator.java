@@ -1,31 +1,30 @@
 package com.emix.dubai.web.validator.passport;
 
+import com.emix.core.shiro.ShiroConstant;
 import com.emix.core.utils.StringUtil;
-import com.emix.dubai.business.entity.system.User;
 import com.emix.dubai.web.form.passport.ForgotPasswordForm;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author nikog
  */
 @Component
-public class ForgotPasswordValidator implements Validator {
-    @SuppressWarnings("unchecked")
-    @Override
-    public boolean supports(Class clazz) {
-        return User.class.isAssignableFrom(clazz);
-    }
+public class ForgotPasswordValidator {
 
-    @Override
-    public void validate(Object object, Errors errors) {
-        ForgotPasswordForm forgotPasswordForm = (ForgotPasswordForm) object;
-
+    public void validate(ForgotPasswordForm forgotPasswordForm, HttpServletRequest request, Errors errors) {
         if (StringUtil.isEmpty(forgotPasswordForm.getLoginName()) && StringUtil.isEmpty(forgotPasswordForm.getEmail())) {
-            //注意这里的code.error和message_en.properties里的设置对应的.
-            errors.rejectValue("loginName", "common.field.required");
-            errors.rejectValue("email", "common.field.required");
+            errors.rejectValue("loginName", "", "");
+            errors.rejectValue("email", "", "");
+            errors.reject("", "用户名和电子邮件至少需要填写一项！");
+        }
+
+        String captcha = forgotPasswordForm.getCaptcha();
+        String captchaInSession = (String) request.getSession().getAttribute(ShiroConstant.CAPTCHA_SESSION_KEY);
+        if (!StringUtil.isEmpty(captcha) && !captcha.equalsIgnoreCase(captchaInSession)) {
+            errors.rejectValue("captcha", "", "验证码错误！");
         }
     }
 }
