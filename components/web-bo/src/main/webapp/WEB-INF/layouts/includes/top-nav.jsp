@@ -14,15 +14,11 @@
             <!-- module switch starts -->
             <div class="nav-collapse collapse module-menu">
                 <ul class="nav">
-                    <li>
-                        <a href="${ctx}/home">Home</a>
-                    </li>
-                    <li class="active">
-                        <a href="${ctx}/system">System</a>
-                    </li>
-                    <li>
-                        <a href="${ctx}/cms">CMS</a>
-                    </li>
+                    <c:forEach items="${sys_modules}" var="module">
+                        <li <c:if test="${sys_currentModuleCode == module.moduleCode}">class="active"</c:if>>
+                            <a href="${ctx}/module/${module.moduleCode}">${module.moduleName}</a>
+                        </li>
+                    </c:forEach>
                 </ul>
             </div>
             <!-- module switch ends -->

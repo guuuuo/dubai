@@ -1,3 +1,6 @@
+DROP TABLE IF EXISTS sys_module;
+DROP TABLE IF EXISTS sys_menu_group;
+DROP TABLE IF EXISTS sys_menu_item;
 DROP TABLE IF EXISTS sys_resource;
 DROP TABLE IF EXISTS sys_dept;
 DROP TABLE IF EXISTS sys_role;
@@ -5,6 +8,58 @@ DROP TABLE IF EXISTS sys_dept_role;
 DROP TABLE IF EXISTS sys_user;
 DROP TABLE IF EXISTS sys_option;
 DROP TABLE IF EXISTS dubai_post;
+
+CREATE TABLE sys_module
+(
+  id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  module_code VARCHAR(32) NOT NULL,
+  module_name VARCHAR(64) NOT NULL,
+  module_desc VARCHAR(200) DEFAULT '' NOT NULL,
+  url VARCHAR(200) DEFAULT '' NOT NULL,
+  i18n_key VARCHAR(200) DEFAULT '' NOT NULL,
+  active VARCHAR(1) DEFAULT '' NOT NULL,
+  order SMALLINT NULL,
+  created_by VARCHAR(64) NOT NULL,
+  created_when TIMESTAMP DEFAULT '0000-00-00 00:00:00' NOT NULL,
+  updated_by VARCHAR(64),
+  updated_when TIMESTAMP
+)
+  ENGINE =InnoDB;
+
+CREATE TABLE sys_menu_group
+(
+  id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  module_id BIGINT NOT NULL,
+  menu_group_name VARCHAR(64) NOT NULL,
+  menu_group_desc VARCHAR(200) DEFAULT '' NOT NULL,
+  url VARCHAR(200) DEFAULT '' NOT NULL,
+  i18n_key VARCHAR(200) DEFAULT '' NOT NULL,
+  active VARCHAR(1) DEFAULT '' NOT NULL,
+  order SMALLINT NULL,
+  created_by VARCHAR(64) NOT NULL,
+  created_when TIMESTAMP DEFAULT '0000-00-00 00:00:00' NOT NULL,
+  updated_by VARCHAR(64),
+  updated_when TIMESTAMP
+)
+  ENGINE =InnoDB;
+
+
+CREATE TABLE sys_menu_item
+(
+  id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  menu_group_id BIGINT NOT NULL,
+  menu_item_name VARCHAR(64) NOT NULL,
+  menu_item_desc VARCHAR(200) DEFAULT '' NOT NULL,
+  url VARCHAR(200) DEFAULT '' NOT NULL,
+  i18n_key VARCHAR(200) DEFAULT '' NOT NULL,
+  active VARCHAR(1) DEFAULT '' NOT NULL,
+  order SMALLINT NULL,
+  created_by VARCHAR(64) NOT NULL,
+  created_when TIMESTAMP DEFAULT '0000-00-00 00:00:00' NOT NULL,
+  updated_by VARCHAR(64),
+  updated_when TIMESTAMP
+)
+  ENGINE =InnoDB;
 
 CREATE TABLE sys_resource
 (

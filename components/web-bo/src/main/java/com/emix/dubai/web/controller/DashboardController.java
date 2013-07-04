@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping(value = "/dashboard")
-public class DashboardAction {
+public class DashboardController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String dashboard() {

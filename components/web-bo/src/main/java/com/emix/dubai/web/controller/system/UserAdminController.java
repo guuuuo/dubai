@@ -1,6 +1,6 @@
 package com.emix.dubai.web.controller.system;
 
-import com.emix.core.web.BaseController;
+import com.emix.dubai.web.controller.BaseController;
 import com.emix.dubai.constants.GlobalConstants;
 import com.emix.dubai.business.entity.system.User;
 import com.emix.core.exception.ServiceException;

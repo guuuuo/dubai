@@ -1,7 +1,7 @@
 package com.emix.dubai.web.controller.system;
 
 import com.emix.core.exception.ServiceException;
-import com.emix.core.web.BaseController;
+import com.emix.dubai.web.controller.BaseController;
 import com.emix.dubai.business.entity.system.Department;
 import com.emix.dubai.business.entity.system.User;
 import com.emix.dubai.business.service.system.DepartmentService;

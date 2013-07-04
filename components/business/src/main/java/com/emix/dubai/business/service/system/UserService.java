@@ -4,6 +4,7 @@ import com.emix.core.exception.ServiceException;
 import com.emix.dubai.business.entity.system.User;
 import com.emix.dubai.business.pojo.ApplicationProperties;
 import com.emix.dubai.business.repository.system.UserRepository;
+import com.emix.dubai.business.service.BaseService;
 import com.emix.dubai.business.service.common.NotificationService;
 import com.emix.dubai.business.service.system.ShiroDbRealm.ShiroUser;
 import com.emix.dubai.business.status.UserStatus;
@@ -37,15 +38,13 @@ import java.util.Map;
 // Spring Service Bean的标识.
 @Component
 @Transactional(readOnly = true)
-public class UserService {
+public class UserService extends BaseService {
 
     public static final String HASH_ALGORITHM = "SHA-1";
     public static final int HASH_INTERATIONS = 1024;
     private static final int SALT_SIZE = 8;
 
     private static Logger logger = LoggerFactory.getLogger(UserService.class);
-
-    private DateProvider dateProvider = DateProvider.DEFAULT;
 
     @Autowired
     private UserRepository userRepository;

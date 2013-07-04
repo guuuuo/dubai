@@ -29,5 +29,11 @@
     <mvc:interceptors>
         <!-- 设置国际化修改拦截器 -->
         <ref bean="localeChangeInterceptor"/>
+
+        <!-- ACL -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.emix.dubai.web.interceptor.AclInterceptor" />
+        </mvc:interceptor>
     </mvc:interceptors>
 </beans>

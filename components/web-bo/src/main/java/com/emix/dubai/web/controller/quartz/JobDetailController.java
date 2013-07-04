@@ -1,6 +1,6 @@
 package com.emix.dubai.web.controller.quartz;
 
-import com.emix.core.web.BaseController;
+import com.emix.dubai.web.controller.BaseController;
 import com.emix.dubai.business.entity.quartz.JobDetail;
 import com.emix.dubai.business.service.quartz.JobDetailService;
 import com.emix.dubai.constants.GlobalConstants;

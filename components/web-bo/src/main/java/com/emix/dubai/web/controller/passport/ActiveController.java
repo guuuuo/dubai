@@ -1,8 +1,8 @@
 package com.emix.dubai.web.controller.passport;
 
 import com.emix.core.exception.ServiceException;
-import com.emix.core.web.BaseController;
 import com.emix.dubai.business.service.system.UserService;
+import com.emix.dubai.web.controller.BaseController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
