@@ -4,6 +4,7 @@ import com.emix.dubai.business.entity.BaseEntity;
 
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,7 +19,7 @@ public class Module extends BaseEntity {
     private String url;
     private String i18nKey;
     private Boolean active;
-    private Integer order;
+    private Integer displayOrder;
 
     private Set<MenuGroup> menuGroups = new HashSet<MenuGroup>();
 
@@ -73,15 +74,16 @@ public class Module extends BaseEntity {
         this.active = active;
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getDisplayOrder() {
+        return displayOrder;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setDisplayOrder(Integer displayOrder) {
+        this.displayOrder = displayOrder;
     }
 
     @OneToMany(mappedBy = "module", fetch = FetchType.LAZY)
+    @OrderBy("displayOrder ASC")
     public Set<MenuGroup> getMenuGroups() {
         return menuGroups;
     }

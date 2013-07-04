@@ -14,9 +14,9 @@
             <!-- module switch starts -->
             <div class="nav-collapse collapse module-menu">
                 <ul class="nav">
-                    <c:forEach items="${sys_modules}" var="module">
-                        <li <c:if test="${sys_currentModuleCode == module.moduleCode}">class="active"</c:if>>
-                            <a href="${ctx}/module/${module.moduleCode}">${module.moduleName}</a>
+                    <c:forEach items="${_modules}" var="module">
+                        <li <c:if test="${_currentModuleCode == module.moduleCode}">class="active"</c:if>>
+                            <a href="${ctx}/module/${module.moduleCode}" title="${module.moduleDesc}">${module.moduleName}</a>
                         </li>
                     </c:forEach>
                 </ul>

@@ -15,7 +15,7 @@ public class MenuItem extends BaseEntity {
     private String url;
     private String i18nKey;
     private Boolean active;
-    private Integer order;
+    private Integer displayOrder;
 
     private MenuGroup menuGroup;
 
@@ -62,12 +62,12 @@ public class MenuItem extends BaseEntity {
         this.active = active;
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getDisplayOrder() {
+        return displayOrder;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setDisplayOrder(Integer displayOrder) {
+        this.displayOrder = displayOrder;
     }
 
     @ManyToOne(cascade = CascadeType.REFRESH)

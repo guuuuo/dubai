@@ -1,5 +1,6 @@
 package com.emix.dubai.web.interceptor;
 
+import com.emix.dubai.business.entity.system.Module;
 import com.emix.dubai.business.pojo.ApplicationProperties;
 import com.emix.dubai.business.service.system.MenuGroupService;
 import com.emix.dubai.business.service.system.MenuItemService;
@@ -33,9 +34,10 @@ public class AclInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         if (modelAndView != null && modelAndView.getModelMap() != null) {
             String currentModuleCode = getCurrentModuleCode(request);
-            modelAndView.getModelMap().addAttribute("sys_currentModuleCode", currentModuleCode);
-            modelAndView.getModelMap().addAttribute("sys_modules", moduleService.loadAllModule());
-            modelAndView.getModelMap().addAttribute("sys_menuGroups", menuGroupService.findByModuleCode(currentModuleCode));
+            Module currentModule = moduleService.findByModuleCode(currentModuleCode);
+            modelAndView.getModelMap().addAttribute("_currentModuleCode", currentModuleCode);
+            modelAndView.getModelMap().addAttribute("_modules", moduleService.loadAllModule());
+            modelAndView.getModelMap().addAttribute("_menuGroups", currentModule.getMenuGroups());
         }
     }
 

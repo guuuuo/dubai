@@ -14,7 +14,7 @@ public class MenuGroup extends BaseEntity {
     private String url;
     private String i18nKey;
     private Boolean active;
-    private Integer order;
+    private Integer displayOrder;
 
     private Module module;
     private Set<MenuItem> menuItems = new HashSet<MenuItem>();
@@ -62,12 +62,12 @@ public class MenuGroup extends BaseEntity {
         this.active = active;
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getDisplayOrder() {
+        return displayOrder;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setDisplayOrder(Integer displayOrder) {
+        this.displayOrder = displayOrder;
     }
 
     @ManyToOne(cascade = CascadeType.REFRESH)
@@ -81,6 +81,7 @@ public class MenuGroup extends BaseEntity {
     }
 
     @OneToMany(mappedBy = "menuGroup", fetch = FetchType.LAZY)
+    @OrderBy("displayOrder ASC")
     public Set<MenuItem> getMenuItems() {
         return menuItems;
     }

@@ -6,6 +6,7 @@ import com.emix.dubai.business.service.BaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,11 @@ public class ModuleService extends BaseService {
     private static Logger logger = LoggerFactory.getLogger(ModuleService.class);
 
     public Iterable<Module> loadAllModule() {
-        return moduleRepository.findAll();
+        Sort sort = new Sort("displayOrder");
+        return moduleRepository.findAll(sort);
+    }
+
+    public Module findByModuleCode(String moduleCode) {
+        return moduleRepository.findByModuleCode(moduleCode);
     }
 }
