@@ -77,7 +77,7 @@
                                         </c:otherwise>
                                     </c:choose>
                                     <li><a href="${ctx}/system/dept/update/${dept.id}">Update</a></li>
-                                    <li><a href="${ctx}/system/dept/delete/${dept.id}">Delete</a></li>
+                                    <li><a href="${ctx}/system/dept/delete/${dept.id}" rel="popover-del" id="aDel${dept.id}">Delete</a></li>
                                 </ul>
                             </td>
                         </tr>
