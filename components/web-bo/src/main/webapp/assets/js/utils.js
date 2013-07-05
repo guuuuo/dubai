@@ -37,7 +37,7 @@ utils.hidePopover = function(domId) {
 utils.addDelConfirmListener = function() {
     $("[rel='popover-del']").each(function (index, item) {
         $(item).popover({
-            placement: 'bottom',
+            placement: 'top',
             title: '<div style="text-align:center;color:red;"> 确认删除？</div>',
             html: 'true',
             content: '<div id="popOverBox"><a class="btn btn-small btn-primary" href="' + $(item).attr('href') + '">Yes</a>' +
