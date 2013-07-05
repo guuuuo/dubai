@@ -23,19 +23,34 @@
             </div>
             <!-- module switch ends -->
 
-            <!-- user dropdown starts -->
-            <div class="btn-group pull-right" >
-                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="icon-user"></i><span class="hidden-phone"> <shiro:principal property="name"/></span>
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="${ctx}/account/settings">设置</a></li>
-                    <li class="divider"></li>
-                    <li><a href="${ctx}/passport/logout">退出</a></li>
-                </ul>
+            <div class="pull-right">
+                <!-- language dropdown starts -->
+                <div class="btn-group" >
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="hidden-phone">Language</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="?locale=en_US">English</a></li>
+                        <li><a href="?locale=zh_CN">简体中文</a></li>
+                    </ul>
+                </div>
+                <!-- language dropdown ends -->
+
+                <!-- user dropdown starts -->
+                <div class="btn-group" >
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="icon-user"></i><span class="hidden-phone"> <shiro:principal property="name"/></span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="${ctx}/account/settings">设置</a></li>
+                        <li class="divider"></li>
+                        <li><a href="${ctx}/passport/logout">退出</a></li>
+                    </ul>
+                </div>
+                <!-- user dropdown ends -->
             </div>
-            <!-- user dropdown ends -->
 
         </div>
     </div>
