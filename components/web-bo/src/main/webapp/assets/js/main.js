@@ -26,4 +26,6 @@ function docReady(){
 
     //rich text editor
     $('.cleditor').cleditor();
+
+    utils.addDelConfirmListener();
 }

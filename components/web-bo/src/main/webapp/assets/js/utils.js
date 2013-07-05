@@ -29,3 +29,21 @@ var $byId = function (id, frame) {
         return document.getElementById(id);
     }
 };
+
+utils.hidePopover = function(domId) {
+    $('#'+domId).popover('hide');
+}
+
+utils.addDelConfirmListener = function() {
+    $("[rel='popover-del']").each(function (index, item) {
+        $(item).popover({
+            placement: 'bottom',
+            title: '<div style="text-align:center;color:red;"> 确认删除？</div>',
+            html: 'true',
+            content: '<div id="popOverBox"><a class="btn btn-small btn-primary" href="' + $(item).attr('href') + '">Yes</a>' +
+                '&nbsp;<a class="btn btn-small" href="javascript:void(0);" onclick="utils.hidePopover(\'' + $(item).attr('id') + '\');">Cancel</a></div>'
+        });
+    }).click(function () {
+            return false;
+        });
+}

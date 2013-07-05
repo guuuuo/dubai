@@ -59,7 +59,7 @@
                         </div>
                     </c:if>
                     <div class="form-actions">
-                        <input id="submit_btn" class="btn btn-primary" type="submit" value="提交"/>&nbsp;
+                        <input id="submit_btn" class="btn btn-primary" type="submit" value="提交" data-loading-text="提交中..."/>&nbsp;
                         <input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>
                     </div>
                 </fieldset>
@@ -72,9 +72,9 @@
 <script>
     $(document).ready(function() {
         //聚焦第一个输入框
-        $("#loginName").focus();
+        $("#roleName").focus();
         <c:if test="${action == 'update'}">
-        $("#name").focus();
+        $("#roleDesc").focus();
         </c:if>
         //为inputForm注册validate函数
         $("#inputForm").validate({
@@ -92,7 +92,7 @@
             },
             messages: {
                 roleName: {
-                    remote: "用户登录名已存在"
+                    remote: "角色名称已存在"
                 }
             }
         });

@@ -15,6 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <%@ include file="/WEB-INF/layouts/includes/css.jsp"%>
+    <%@ include file="/WEB-INF/layouts/includes/js.jsp"%>
     <sitemesh:head/>
 </head>
 
@@ -48,6 +49,5 @@
 
 <hr>
 <%@ include file="/WEB-INF/layouts/includes/bottom-footer.jsp"%>
-<%@ include file="/WEB-INF/layouts/includes/js.jsp"%>
 </body>
 </html>

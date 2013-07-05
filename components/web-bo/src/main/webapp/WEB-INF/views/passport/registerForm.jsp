@@ -62,6 +62,7 @@
                     </div>
                     <div class="form-actions">
                         <input id="submit_btn" class="btn btn-primary" type="submit" value="提交注册信息"/>
+                        &nbsp;<a href="${ctx}/passport/login">已有帐号登录</a>
                     </div>
                 </fieldset>
             </form:form>
@@ -69,7 +70,6 @@
     </div><!--/row-->
 
     <div class="account-extra">
-        已有帐号？ 请 <a href="${ctx}/passport/login">直接登录</a>
     </div>
 
     <!-- *** JavaScript *** -->

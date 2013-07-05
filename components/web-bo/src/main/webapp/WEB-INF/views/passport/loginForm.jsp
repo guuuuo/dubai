@@ -78,6 +78,8 @@
 
                     <div class="form-actions">
                         <input id="submit_btn" class="btn btn-primary" type="submit" value="登录"/>
+                        &nbsp;<a href="${ctx}/passport/register">创建新帐号</a>
+                        &nbsp;<a href="${ctx}/passport/forgot-password">忘记密码？</a>
                     </div>
                 </fieldset>
             </form>
@@ -85,8 +87,6 @@
     </div><!--/row-->
 
     <div class="account-extra">
-        没有帐号？ <a href="${ctx}/passport/register">创建新帐号</a><br>
-        忘记登录密码？ <a href="${ctx}/passport/forgot-password">重置密码</a>
     </div>
 
     <!-- *** JavaScript *** -->

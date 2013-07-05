@@ -23,6 +23,7 @@
                 <h2><i class="icon-user"></i> Role</h2>
                 <div class="box-btn">
                     <a class="btn" href="${ctx}/system/role/create">Create Role</a>
+                    <a href="#myModal" role="button" class="btn" data-toggle="modal">新增角色</a>
                 </div>
             </div>
             <div class="box-content">
@@ -38,7 +39,7 @@
                     <tags:sort/>
                 </div>
 
-                <table id="contentTable" class="table table-striped table-bordered table-condensed">
+                <table id="contentTable" class="table table-striped table-bordered table-condensed table-hover">
                     <thead>
                         <tr>
                             <th>角色名称</th>
@@ -77,7 +78,7 @@
                                         </c:otherwise>
                                     </c:choose>
                                     <li><a href="${ctx}/system/role/update/${role.id}">Update</a></li>
-                                    <li><a href="${ctx}/system/role/delete/${role.id}">Delete</a></li>
+                                    <li><a href="${ctx}/system/role/delete/${role.id}" rel="popover-del" id="aDel${role.id}">Delete</a></li>
                                 </ul>
                             </td>
                         </tr>
@@ -88,5 +89,64 @@
             </div><!--/box-content-->
         </div><!--/span-->
     </div><!--/row-->
+
+    <!-- Edit Popup -->
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">新增角色</h3>
+        </div>
+        <div class="modal-body">
+
+            <form id="inputForm" action="${ctx}/system/role/${action}" method="post" class="form-horizontal">
+                <input type="hidden" name="id" value="${role.id}"/>
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label">角色名称</label>
+                        <div class="controls">
+                            <input type="text" id="roleName" name="roleName" value="${role.roleName}" class="input-large" <c:if test="${action == 'update'}">disabled=""</c:if>/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">角色描述</label>
+                        <div class="controls">
+                            <input type="text" id="roleDesc" name="roleDesc" value="${role.roleDesc}" class="input-large required"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">状态</label>
+                        <div class="controls">
+                            <label class="radio inline">
+                                <div class="radio"><span class="checked">
+                                    <input type="radio" value="1" name="active" <c:if test="${role.active}">checked="true"</c:if>>
+                                </span></div>
+                                启动
+                            </label>
+                            <label class="radio inline">
+                                <div class="radio"><span><input type="radio" value="0" name="active" <c:if test="${!role.active}">checked="true"</c:if>></span></div>
+                                禁用
+                            </label>
+                        </div>
+                    </div>
+
+                    <c:if test="${action == 'update'}">
+                        <div class="control-group">
+                            <label class="control-label">创建日期</label>
+                            <div class="controls">
+                                <span class="help-inline" style="padding:5px 0px"><fmt:formatDate value="${role.createdWhen}" pattern="yyyy年MM月dd日  HH时mm分ss秒" /></span>
+                            </div>
+                        </div>
+                    </c:if>
+                </fieldset>
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <input id="submit_btn" class="btn btn-primary" type="submit" value="提交" onclick="$('#inputForm').submit();return false;"/>&nbsp;
+            <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+        </div>
+    </div>
 </body>
 </html>
