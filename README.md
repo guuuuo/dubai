@@ -4,6 +4,6 @@
 
 ### Demo
 
-[URL] http://dubai.cfapps.io/
+[URL] http://dubai.sturgeon.mopaas.com
 
 [User] admin/admin
