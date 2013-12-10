@@ -60,7 +60,7 @@
                     </c:if>
                     <div class="form-actions">
                         <input id="submit_btn" class="btn btn-primary" type="submit" value="提交" data-loading-text="提交中..."/>&nbsp;
-                        <input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>
+                        <a class="btn" href="${ctx}/system/role">返回</a>
                     </div>
                 </fieldset>
             </form>
