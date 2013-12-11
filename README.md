@@ -4,11 +4,11 @@
 
 **应用所使用的技术及软件：**
 
-前台：Bootstrap2、jQuery
-后台：基于Springside，符合Java EE规范，可以非常容易地集成JMX、WorkFlow、Quartz等
-权限控制：Shiro
-DB：MySQL
-项目管理：Maven
+* 前台：Bootstrap2、jQuery
+* 后台：基于Springside，符合Java EE规范，可以非常容易地集成JMX、WorkFlow、Quartz等
+* 权限控制：Shiro
+* DB：MySQL
+* 项目管理：Maven
 
 **创新点：**
 
@@ -23,6 +23,7 @@ DB：MySQL
 3、模块、菜单组、菜单（后台实现，管理界面开发中）
 
 **应用截图：**
+
 登录页面：
 ![登录页面][2]
 仪表盘：
