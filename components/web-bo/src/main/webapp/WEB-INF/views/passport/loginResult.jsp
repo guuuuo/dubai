@@ -25,7 +25,7 @@
                     <p>登录成功</p>
                     <br/>
                     <div class="control-group center">
-                        <div id="showDiv"><span class="red">5</span> 秒后自动跳转至首页</div>
+                        <div id="showDiv"><span class="red">3</span> 秒后自动跳转至首页</div>
                     </div>
             </form>
         </div><!--/span-->
@@ -49,7 +49,7 @@
             }
         }
         $(function () {
-            var value = 5;
+            var value = 3;
             $("body").append("<input type='hidden' id='init_value' value=" + value + " />");
             time = setInterval('auto_jump()', 1000);
         })

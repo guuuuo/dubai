@@ -49,5 +49,6 @@
 
 <hr>
 <%@ include file="/WEB-INF/layouts/includes/bottom-footer.jsp"%>
+<%@ include file="/WEB-INF/layouts/includes/tracking.jsp"%>
 </body>
 </html>

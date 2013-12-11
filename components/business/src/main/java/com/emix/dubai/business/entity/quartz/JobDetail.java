@@ -6,7 +6,7 @@ import javax.persistence.*;
  * @author niko
  */
 @javax.persistence.Entity
-@Table(name = "qrtz_job_details")
+@Table(name = "QRTZ_JOB_DETAILS")
 public class JobDetail {
     @Id
     private JobDetailPK jobDetailPK;

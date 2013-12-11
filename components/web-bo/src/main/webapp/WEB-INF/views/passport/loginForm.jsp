@@ -26,7 +26,7 @@
         <div class="span6 account-box" style="margin: 0 auto; float:none;">
             <form id="inputForm" action="${ctx}/passport/login" method="post" class="form-horizontal">
                 <fieldset>
-                    <legend><small>登录</small></legend>
+                    <legend><small>登录（测试帐号：admin/admin）</small></legend>
                     <%
                         String expMsg = "";
                         Object errorObject = request.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);

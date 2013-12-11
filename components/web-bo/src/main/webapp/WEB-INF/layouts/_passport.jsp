@@ -70,5 +70,7 @@
 
 </div><!--/.fluid-container-->
 
+<%@ include file="/WEB-INF/layouts/includes/tracking.jsp"%>
+
 </body>
 </html>
