@@ -54,7 +54,7 @@
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 
     <!-- production环境 -->
-    <context:property-placeholder ignore-unresolvable="true" location="classpath*:/application.properties"/>
+    <context:property-placeholder ignore-unresolvable="true" location="classpath*:/config/${dubai_env}/application.properties"/>
 
     <!-- 数据源配置, 使用DBCP数据库连接池 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">

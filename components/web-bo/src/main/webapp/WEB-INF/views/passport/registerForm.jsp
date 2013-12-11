@@ -75,44 +75,44 @@
     <!-- *** JavaScript *** -->
     <%@ include file="/WEB-INF/layouts/includes/js.jsp"%>
     <script type="text/javascript">
-        <%--$(document).ready(function() {--%>
-            <%--//聚焦第一个输入框--%>
-            <%--$("#loginName").focus();--%>
-            <%--//为inputForm注册validate函数--%>
-            <%--$("#inputForm").validate({--%>
-                <%--rules: {--%>
-                    <%--loginName: {--%>
-                        <%--remote: "${ctx}/passport/register/validateLoginName"--%>
-                    <%--},--%>
-                    <%--email : {--%>
-                        <%--required: true,--%>
-                        <%--email: true,--%>
-                        <%--remote: "${ctx}/passport/register/validateEmail"--%>
-                    <%--},--%>
-                    <%--captcha : {--%>
-                        <%--remote: "${ctx}/passport/register/validateCaptcha"--%>
-                    <%--}--%>
-                <%--},--%>
-                <%--messages: {--%>
-                    <%--loginName: {--%>
-                        <%--remote: "用户名已存在"--%>
-                    <%--},--%>
-                    <%--email : {--%>
-                        <%--email : "格式错误",--%>
-                        <%--remote: "电子邮件已存在"--%>
-                    <%--},--%>
-                    <%--captcha : {--%>
-                        <%--remote: "验证码输入错误"--%>
-                    <%--}--%>
-                <%--},--%>
-                <%--highlight: function(element) {--%>
-                    <%--$(element).closest('.control-group').removeClass('success').addClass('error');--%>
-                <%--},--%>
-                <%--success: function(element) {--%>
-                    <%--element.text('').addClass('valid').closest('.control-group').removeClass('error').addClass('success');--%>
-                <%--}--%>
-            <%--});--%>
-        <%--});--%>
+        $(document).ready(function() {
+            //聚焦第一个输入框
+            $("#loginName").focus();
+            //为inputForm注册validate函数
+            $("#inputForm").validate({
+                rules: {
+                    loginName: {
+                        remote: "${ctx}/passport/register/validateLoginName"
+                    },
+                    email : {
+                        required: true,
+                        email: true,
+                        remote: "${ctx}/passport/register/validateEmail"
+                    },
+                    captcha : {
+                        remote: "${ctx}/passport/register/validateCaptcha"
+                    }
+                },
+                messages: {
+                    loginName: {
+                        remote: "用户名已存在"
+                    },
+                    email : {
+                        email : "格式错误",
+                        remote: "电子邮件已存在"
+                    },
+                    captcha : {
+                        remote: "验证码输入错误"
+                    }
+                },
+                highlight: function(element) {
+                    $(element).closest('.control-group').removeClass('success').addClass('error');
+                },
+                success: function(element) {
+                    element.text('').addClass('valid').closest('.control-group').removeClass('error').addClass('success');
+                }
+            });
+        });
     </script>
 
 </body>

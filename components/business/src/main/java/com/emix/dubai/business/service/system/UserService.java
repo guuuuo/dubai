@@ -193,6 +193,7 @@ public class UserService extends BaseService {
     void generateActKey(User user) {
         user.setActKey(Encodes.encodeHex(Digests.sha1((user.getLoginName() + System.currentTimeMillis()).getBytes())));
         user.setActKeyGenDate(dateProvider.getDate());
+        user.setActDate(user.getActKeyGenDate());
     }
 
     public void setDateProvider(DateProvider dateProvider) {
@@ -204,11 +205,11 @@ public class UserService extends BaseService {
         User user = userRepository.findByActKey(key);
         if (user == null
                 || DateUtils.truncatedCompareTo(dateProvider.getDate(), user.getActKeyGenDate(), Calendar.HOUR) > 24
-                || user.getActDate() != null) {
+                || DateUtils.truncatedCompareTo(user.getActDate(), user.getActKeyGenDate(), Calendar.MILLISECOND) > 0) {
             throw new ServiceException("激活码错误或者已失效。");
         }
         user.setStatusCode(UserStatus.Active.code());
-        user.setActDate(new Date());
+        user.setActDate(dateProvider.getDate());
         userRepository.save(user);
     }
 

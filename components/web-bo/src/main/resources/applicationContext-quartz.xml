@@ -23,7 +23,7 @@
 
     <!-- Quartz本地Schduler -->
     <bean id="localQuartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false">
-        <property name="configLocation" value="classpath:quartz.properties" />
+        <property name="configLocation" value="classpath:config/${dubai_env}/quartz.properties" />
         <property name="autoStartup" value="false" />
         <property name="startupDelay" value="30"/>
         <property name="overwriteExistingJobs" value="false"/>
