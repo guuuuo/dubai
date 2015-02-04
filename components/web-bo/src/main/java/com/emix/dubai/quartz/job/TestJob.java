@@ -5,7 +5,8 @@ import org.quartz.JobExecutionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springside.modules.utils.DateProvider;
+
+import java.util.Calendar;
 
 /**
  * @author niko
@@ -16,7 +17,6 @@ public class TestJob implements Job {
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) {
-        DateProvider dateProvider = DateProvider.DEFAULT;
-        logger.info(String.format("******** Current Time: %s ******** ", dateProvider.getDate()));
+        logger.info(String.format("******** Current Time: %s ******** ", Calendar.getInstance().getTime()));
     }
 }

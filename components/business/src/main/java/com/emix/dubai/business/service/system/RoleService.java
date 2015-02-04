@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springside.modules.persistence.DynamicSpecifications;
 import org.springside.modules.persistence.SearchFilter;
-import org.springside.modules.utils.DateProvider;
 
+import java.util.Calendar;
 import java.util.Map;
 
 /**
@@ -33,7 +33,6 @@ public class RoleService {
 
     @Autowired
     private RoleRepository roleRepository;
-    private DateProvider dateProvider = DateProvider.DEFAULT;
 
     public Role getRole(Long id) {
         return roleRepository.findOne(id);
@@ -46,7 +45,7 @@ public class RoleService {
     @Transactional(readOnly = false)
     public void create(Role role) {
         role.setCreatedBy("niko");
-        role.setCreatedWhen(dateProvider.getDate());
+        role.setCreatedWhen(Calendar.getInstance().getTime());
 
         roleRepository.save(role);
     }

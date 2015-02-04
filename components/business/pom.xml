@@ -12,6 +12,8 @@
 
     <artifactId>business</artifactId>
 
+    <name>Dubai :: Module :: business</name>
+
     <dependencies>
         <dependency>
             <groupId>com.emix</groupId>

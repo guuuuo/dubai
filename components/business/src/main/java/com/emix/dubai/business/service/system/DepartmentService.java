@@ -16,8 +16,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springside.modules.persistence.DynamicSpecifications;
 import org.springside.modules.persistence.SearchFilter;
-import org.springside.modules.utils.DateProvider;
 
+import java.util.Calendar;
 import java.util.Map;
 
 /**
@@ -34,7 +34,6 @@ public class DepartmentService {
 
     @Autowired
     private DepartmentRepository departmentRepository;
-    private DateProvider dateProvider = DateProvider.DEFAULT;
 
     public Department getDepartment(Long id) {
         return departmentRepository.findOne(id);
@@ -47,7 +46,7 @@ public class DepartmentService {
     @Transactional(readOnly = false)
     public void create(Department Department) {
         Department.setCreatedBy("niko");
-        Department.setCreatedWhen(dateProvider.getDate());
+        Department.setCreatedWhen(Calendar.getInstance().getTime());
 
         departmentRepository.save(Department);
     }

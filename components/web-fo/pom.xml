@@ -13,6 +13,8 @@
 
     <artifactId>web-fo</artifactId>
 
+    <name>Dubai :: Module :: web-fo</name>
+
     <dependencies>
         <dependency>
             <groupId>com.emix</groupId>

@@ -12,6 +12,8 @@
 
     <artifactId>core</artifactId>
 
+    <name>Dubai :: Module :: core</name>
+
     <dependencies>
         <!-- Quartz -->
         <dependency>

@@ -23,7 +23,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springside.modules.persistence.DynamicSpecifications;
 import org.springside.modules.persistence.SearchFilter;
 import org.springside.modules.security.utils.Digests;
-import org.springside.modules.utils.DateProvider;
 import org.springside.modules.utils.Encodes;
 
 import java.util.Calendar;
@@ -70,11 +69,11 @@ public class UserService extends BaseService {
         entryptPassword(user, plainPassword);
         generateActKey(user);
         user.setRoles("user");
-        user.setRegisterDate(dateProvider.getDate());
+        user.setRegisterDate(Calendar.getInstance().getTime());
         user.setNiceName(user.getLoginName());
         user.setStatusCode(UserStatus.Pending.code());
         user.setCreatedBy(user.getLoginName());
-        user.setCreatedWhen(dateProvider.getDate());
+        user.setCreatedWhen(Calendar.getInstance().getTime());
 
         userRepository.save(user);
     }
@@ -83,9 +82,9 @@ public class UserService extends BaseService {
     public void createUser(User user, String plainPassword) {
         entryptPassword(user, plainPassword);
         generateActKey(user);
-        user.setRegisterDate(dateProvider.getDate());
+        user.setRegisterDate(Calendar.getInstance().getTime());
         user.setCreatedBy("niko");
-        user.setCreatedWhen(dateProvider.getDate());
+        user.setCreatedWhen(Calendar.getInstance().getTime());
 
         userRepository.save(user);
     }
@@ -192,24 +191,20 @@ public class UserService extends BaseService {
 
     void generateActKey(User user) {
         user.setActKey(Encodes.encodeHex(Digests.sha1((user.getLoginName() + System.currentTimeMillis()).getBytes())));
-        user.setActKeyGenDate(dateProvider.getDate());
+        user.setActKeyGenDate(Calendar.getInstance().getTime());
         user.setActDate(user.getActKeyGenDate());
-    }
-
-    public void setDateProvider(DateProvider dateProvider) {
-        this.dateProvider = dateProvider;
     }
 
     @Transactional(readOnly = false)
     public void activeUser(String key) {
         User user = userRepository.findByActKey(key);
         if (user == null
-                || DateUtils.truncatedCompareTo(dateProvider.getDate(), user.getActKeyGenDate(), Calendar.HOUR) > 24
+                || DateUtils.truncatedCompareTo(Calendar.getInstance().getTime(), user.getActKeyGenDate(), Calendar.HOUR) > 24
                 || DateUtils.truncatedCompareTo(user.getActDate(), user.getActKeyGenDate(), Calendar.MILLISECOND) > 0) {
             throw new ServiceException("激活码错误或者已失效。");
         }
         user.setStatusCode(UserStatus.Active.code());
-        user.setActDate(dateProvider.getDate());
+        user.setActDate(Calendar.getInstance().getTime());
         userRepository.save(user);
     }
 
@@ -224,7 +219,7 @@ public class UserService extends BaseService {
     public void resetPassword(String key) {
         User user = userRepository.findByActKey(key);
         if (user == null
-                || DateUtils.truncatedCompareTo(dateProvider.getDate(), user.getActKeyGenDate(), Calendar.HOUR) > 24
+                || DateUtils.truncatedCompareTo(Calendar.getInstance().getTime(), user.getActKeyGenDate(), Calendar.HOUR) > 24
                 || user.getActDate() != null) {
             throw new ServiceException("激活码错误或者已失效。");
         }

@@ -23,16 +23,15 @@
 
     <!-- Quartz本地Schduler -->
     <bean id="localQuartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false">
-        <property name="configLocation" value="classpath:config/${dubai_env}/quartz.properties" />
+        <!--<property name="configLocation" value="classpath:config/${dubai_env}/quartz.properties" />-->
         <property name="autoStartup" value="false" />
         <property name="startupDelay" value="30"/>
         <property name="overwriteExistingJobs" value="false"/>
         <property name="applicationContextSchedulerContextKey" value="applicationContextKey" />
-        <property name="triggers">
-            <list>
-                <ref bean="testTrigger"/>
-            </list>
-        </property>
+        <!--<property name="triggers">-->
+            <!--<list>-->
+            <!--</list>-->
+        <!--</property>-->
     </bean>
 
 </beans>

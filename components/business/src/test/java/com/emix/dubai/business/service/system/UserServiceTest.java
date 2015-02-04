@@ -12,9 +12,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springside.modules.test.security.shiro.ShiroTestUtils;
-import org.springside.modules.utils.DateProvider.ConfigurableDateProvider;
-
-import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -40,14 +37,9 @@ public class UserServiceTest {
 	@Test
 	public void registerUser() {
 		User user = UserData.randomNewUser();
-		Date currentTime = new Date();
-		userService.setDateProvider(new ConfigurableDateProvider(currentTime));
-
 		userService.registerUser(user, UserData.randomPassword());
-
 		// 验证user的角色，注册日期和加密后的密码都被自动更新了。
 		assertEquals("user", user.getRoles());
-		assertEquals(currentTime, user.getRegisterDate());
 		assertNotNull(user.getPassword());
 		assertNotNull(user.getSalt());
 	}
