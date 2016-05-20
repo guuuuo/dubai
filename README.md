@@ -1,3 +1,7 @@
+# Dubai
+
+[![Build Status](https://travis-ci.org/xmniko/dubai.svg?branch=master)](https://travis-ci.org/xmniko/dubai)
+
 **应用说明及使用场景：**
 
 基于Springside、Mysql、Bootstrap2的后台系统框架，旨在为繁杂的各种业务流程提供一个界面简约、操作高效、运行稳定、容易集成和横向扩展的开发基础框架及规范。
