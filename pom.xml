@@ -47,37 +47,8 @@
         <jdbc.driver.version>${mysql.version}</jdbc.driver.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>central</id>
-            <name>Central Repository</name>
-            <url>http://repo.maven.apache.org/maven2</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
     <!-- 依赖项定义 -->
     <dependencies>
-        <!-- SPRINGSIDE -->
-        <dependency>
-            <groupId>io.springside</groupId>
-            <artifactId>springside-core</artifactId>
-            <version>${springside.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springside</groupId>
-            <artifactId>springside-core</artifactId>
-            <version>${springside.version}</version>
-            <classifier>tests</classifier>
-        </dependency>
-        <dependency>
-            <groupId>io.springside</groupId>
-            <artifactId>springside-utils</artifactId>
-            <version>${springside.version}</version>
-        </dependency>
-
         <!-- AOP begin -->
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -177,6 +148,12 @@
             <version>2.5</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.0</version>
+            <scope>provided</scope>
+        </dependency>
         <!-- WEB end -->
 
         <!-- SECURITY begin -->
@@ -272,17 +249,12 @@
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
         </dependency>
-        <!-- GENERAL UTILS end -->
-
-        <!-- TEST begin -->
-        <!--
         <dependency>
-            <groupId>io.springside</groupId>
-            <artifactId>springside-test</artifactId>
-            <version>${springside.version}</version>
-            <scope>test</scope>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
         </dependency>
-        -->
+        <!-- GENERAL UTILS end -->
 
         <dependency>
             <groupId>junit</groupId>
