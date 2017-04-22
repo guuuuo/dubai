@@ -50,6 +50,6 @@
 
 ### Demo
 
-[URL] http://dubai.sturgeon.mopaas.com
+[URL] http://dubai.butterfly.mopaasapp.com
 
 [User] admin/admin
