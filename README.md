@@ -1,6 +1,6 @@
 # Dubai
 
-[![Build Status](https://travis-ci.org/xmniko/dubai.svg?branch=master)](https://travis-ci.org/xmniko/dubai)
+[![Build Status](https://travis-ci.org/guuuuo/dubai.svg?branch=master)](https://travis-ci.org/guuuuo/dubai)
 
 **应用说明及使用场景：**
 
