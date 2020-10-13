@@ -30,7 +30,7 @@
         <commons-lang3.version>3.1</commons-lang3.version>
         <guava.version>13.0.1</guava.version>
         <joda-time.version>2.1</joda-time.version>
-        <junit.version>4.11</junit.version>
+        <junit.version>4.13.1</junit.version>
         <mockito.version>1.9.5</mockito.version>
         <selenium.version>2.28.0</selenium.version>
         <jetty.version>7.6.8.v20121106</jetty.version>
