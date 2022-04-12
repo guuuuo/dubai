@@ -23,7 +23,7 @@
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <sitemesh.version>2.4.2</sitemesh.version>
         <shiro.version>1.2.1</shiro.version>
-        <hibernate-validator.version>4.3.0.Final</hibernate-validator.version>
+        <hibernate-validator.version>5.3.5.Final</hibernate-validator.version>
         <jackson.version>2.10.1</jackson.version>
         <slf4j.version>1.7.2</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
