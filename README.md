@@ -41,7 +41,7 @@
 ![用户信息维护][6]
 
 
-  [1]: http://dubai.sturgeon.mopaas.com
+  [1]: https://dubai.amoylabs.com:30443
   [2]: http://static.oschina.net/uploads/space/2013/1211/100834_UvZs_106616.png
   [3]: http://static.oschina.net/uploads/space/2013/1211/100859_dgsz_106616.png
   [4]: http://static.oschina.net/uploads/space/2013/1211/100913_Rjsq_106616.png
@@ -50,6 +50,6 @@
 
 ### Demo
 
-[URL] http://dubai.butterfly.mopaasapp.com
+[URL] https://dubai.amoylabs.com:30443
 
 [User] admin/admin
